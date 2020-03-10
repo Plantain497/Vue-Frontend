@@ -1,0 +1,15 @@
+<template>
+	<div>
+		<LandingNavBar />
+		<Hero />
+	</div>
+</template>
+
+<script>
+import Hero from '@/components/landing/Hero.vue';
+import LandingNavBar from '@/components/landing/LandingNavBar';
+
+export default {
+	components: { Hero, LandingNavBar },
+};
+</script>
