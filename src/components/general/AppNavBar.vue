@@ -88,18 +88,23 @@
 								alt="Avatar"
 							/>
 						</button>
+						<!--
+              enter: Part A (initial state)
+              to: Part B (end state)
+              active: HOW we get from A to B
+             -->
 						<transition
 							name="custom-classes-transition"
-							x-transition:enter="transition ease-out duration-100"
-							x-transition:enter-start="transform opacity-0 scale-95"
-							x-transition:enter-end="transform opacity-100 scale-100"
-							x-transition:leave="transition ease-in duration-75"
-							x-transition:leave-start="transform opacity-100 scale-100"
-							x-transition:leave-end="transform opacity-0 scale-95"
+							enter-class="transform scale-95 opacity-0"
+							enter-active-class="transition duration-100 ease-out"
+							enter-to-class="transform scale-100 opacity-100"
+							leave-class="transform scale-100 opacity-100"
+							leave-active-class="transition duration-75 ease-in"
+							leave-to-class="transform scale-95 opacity-0"
 						>
 							<div
 								v-if="settingsOpen"
-								class="absolute right-0 w-48 mt-2 origin-top-right rounded-md shadow-lg"
+								class="absolute right-0 w-40 mt-2 origin-top-right rounded-md shadow-lg"
 							>
 								<div class="py-1 font-medium bg-white rounded-md shadow-xs">
 									<router-link
