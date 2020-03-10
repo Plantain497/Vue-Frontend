@@ -33,24 +33,27 @@
 									'text-white bg-gray-900': $route.name === 'Dashboard',
 								}"
 								class="px-3 py-2 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-								>Dashboard</router-link
 							>
+								Dashboard
+							</router-link>
 							<router-link
 								to="/todo"
 								:class="{
 									'text-white bg-gray-900': $route.name === 'Todo',
 								}"
 								class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-								>To-Do</router-link
 							>
+								To-Do
+							</router-link>
 							<router-link
 								to="/calendar"
 								:class="{
 									'text-white bg-gray-900': $route.name === 'Calendar',
 								}"
 								class="px-3 py-2 ml-4 text-sm font-medium leading-5 text-gray-300 transition duration-150 ease-in-out rounded-md hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700"
-								>Calendar</router-link
 							>
+								Calendar
+							</router-link>
 						</div>
 					</div>
 				</div>
@@ -102,19 +105,22 @@
 									<router-link
 										to="/profile"
 										class="block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-										>Your Profile</router-link
 									>
+										Your Profile
+									</router-link>
 									<router-link
 										to="/settings"
 										class="block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-										>Settings</router-link
 									>
+										Settings
+									</router-link>
 									<!-- TODO: Add method to clean JWT -->
 									<router-link
 										to="/"
 										class="block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-										>Sign out</router-link
 									>
+										Sign out
+									</router-link>
 								</div>
 							</div>
 						</transition>
@@ -133,7 +139,8 @@
 						'text-white bg-gray-900': $route.name === 'Dashboard',
 					}"
 					class="block px-3 py-2 text-base font-medium text-gray-300 transition duration-150 ease-in-out rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:text-white focus:bg-gray-700"
-					>Dashboard
+				>
+					Dashboard
 				</router-link>
 				<router-link
 					to="/todo"
@@ -141,16 +148,18 @@
 						'text-white bg-gray-900': $route.name === 'Todo',
 					}"
 					class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 transition duration-150 ease-in-out rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:text-white focus:bg-gray-700"
-					>To-Do</router-link
 				>
+					To-Do
+				</router-link>
 				<router-link
 					to="/calendar"
 					:class="{
 						'text-white bg-gray-900': $route.name === 'Calendar',
 					}"
 					class="block px-3 py-2 mt-1 text-base font-medium text-gray-300 transition duration-150 ease-in-out rounded-md hover:bg-gray-700 hover:text-white focus:outline-none focus:text-white focus:bg-gray-700"
-					>Calendar</router-link
 				>
+					Calendar
+				</router-link>
 			</div>
 		</div>
 	</nav>
