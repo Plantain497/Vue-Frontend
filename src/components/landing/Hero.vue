@@ -7,7 +7,8 @@
 				<h2
 					class="text-4xl font-extrabold leading-10 tracking-tight text-gray-900 sm:text-5xl sm:leading-none md:text-6xl"
 				>
-					Beautiful tools to <br class="xl:hidden" />
+					Beautiful tools to
+					<br class="xl:hidden" />
 					<span class="text-indigo-600">supercharge planning</span>
 				</h2>
 				<p

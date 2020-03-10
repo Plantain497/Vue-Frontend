@@ -106,7 +106,10 @@
 								v-if="settingsOpen"
 								class="absolute right-0 w-40 mt-2 origin-top-right rounded-md shadow-lg"
 							>
-								<div class="py-1 font-medium bg-white rounded-md shadow-xs">
+								<div
+									class="py-1 bg-white rounded-md shadow-xs"
+									v-click-outside="closeSettings"
+								>
 									<router-link
 										to="/profile"
 										class="block w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
@@ -185,6 +188,9 @@ export default {
 			// Add JWT clean
 			this.settingsOpen = false;
 			this.$router.push('/');
+		},
+		closeSettings: function() {
+			this.settingsOpen = false;
 		},
 	},
 };
