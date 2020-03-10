@@ -104,23 +104,22 @@
 								<div class="py-1 font-medium bg-white rounded-md shadow-xs">
 									<router-link
 										to="/profile"
-										class="block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+										class="block w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
 									>
 										Your Profile
 									</router-link>
 									<router-link
 										to="/settings"
-										class="block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+										class="block w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
 									>
 										Settings
 									</router-link>
-									<!-- TODO: Add method to clean JWT -->
-									<router-link
-										to="/"
-										class="block px-4 py-2 text-sm leading-5 text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
+									<button
+										v-on:click="logout"
+										class="block w-full px-4 py-2 text-sm leading-5 text-left text-gray-700 transition duration-150 ease-in-out hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
 									>
 										Sign out
-									</router-link>
+									</button>
 								</div>
 							</div>
 						</transition>
@@ -175,6 +174,13 @@ export default {
 			hamburgerOpen: false,
 			settingsOpen: false,
 		};
+	},
+	methods: {
+		logout: function() {
+			// Add JWT clean
+			this.settingsOpen = false;
+			this.$router.push('/');
+		},
 	},
 };
 </script>
