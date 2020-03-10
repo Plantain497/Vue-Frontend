@@ -16,12 +16,12 @@
 			>
 				<div class="flex-shrink-0">
 					<img
-						src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
+						src="@/assets/shortLogo.svg"
 						class="block w-auto h-8 lg:hidden"
 						alt="Logo"
 					/>
 					<img
-						src="https://tailwindui.com/img/logos/workflow-mark-on-white.svg"
+						src="@/assets/shortLogo.svg"
 						class="hidden w-auto h-8 lg:block"
 						alt="Logo"
 					/>

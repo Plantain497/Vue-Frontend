@@ -17,12 +17,12 @@
 						<img
 							class="block w-auto h-8 lg:hidden"
 							src="@/assets/shortLogo.svg"
-							alt=""
+							alt="Short Logo"
 						/>
 						<img
 							class="hidden w-auto h-8 lg:block"
 							src="@/assets/fullLogo.svg"
-							alt=""
+							alt="Full Logo"
 						/>
 					</div>
 					<div class="hidden sm:block sm:ml-6">
