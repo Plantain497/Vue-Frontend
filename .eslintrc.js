@@ -20,4 +20,4 @@ module.exports = {
 		indent: ['error', 'tab'],
 		semi: 'error'
 	}
-}
+};
