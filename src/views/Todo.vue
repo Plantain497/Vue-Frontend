@@ -19,7 +19,14 @@ export default {
 	},
 	data: function() {
 		return {
-			todoList: [{ title: 'Feed the cat', description: 'Olive is hungry' }],
+			todoList: [
+				{
+					title: 'Feed the cat',
+					description:
+						'Olive is hungry and needs her food RIGHT NOW ASDKJAHSKDHAKJSHDKAJSHDKASJHDAKSJDHAKSHDKAJSHDAKSJDHAKSJHDKAJSHDKJASHDAKSJHDKASJHDKJASHD',
+				},
+				{ title: 'Do laundry', description: 'need underwear' },
+			],
 		};
 	},
 };
