@@ -32,12 +32,16 @@ export default {
 		},
 		isComplete: {
 			type: Boolean,
+			default: false,
 		},
 		dueDate: {
 			type: Date,
 		},
 		assignees: {
 			type: Array,
+		},
+		id: {
+			type: Number,
 		},
 	},
 };

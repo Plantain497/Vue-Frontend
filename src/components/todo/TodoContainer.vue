@@ -4,7 +4,7 @@
 			<todo-item
 				:title="todo.title"
 				:description="todo.description"
-				:is-complete="false"
+				v-on:click="sendClickedTodoItem"
 			></todo-item>
 		</div>
 	</div>
@@ -19,6 +19,12 @@ export default {
 	props: {
 		todoList: {
 			type: Array,
+		},
+	},
+	methods: {
+		sendClickedTodoItem: function() {
+			console.log(this);
+			this.$emit('sendTodoItemEvent', this);
 		},
 	},
 };
