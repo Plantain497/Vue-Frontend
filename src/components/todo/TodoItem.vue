@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="flex items-center w-1/2 px-6 py-4 pb-4 whitespace-no-wrap border-b border-gray-300 rounded-sm hover:bg-purple-200"
+		class="flex items-center px-6 py-4 pb-4 whitespace-no-wrap border-b border-gray-300 rounded-sm hover:bg-purple-200"
 	>
 		<input
 			:checked="isComplete"
