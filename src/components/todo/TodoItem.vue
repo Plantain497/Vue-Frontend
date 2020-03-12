@@ -40,11 +40,5 @@ export default {
 			type: Array,
 		},
 	},
-	methods: {
-		displayToDoDescription: function(event) {
-			// `event` is the native DOM event
-			alert(event.target.tagName);
-		},
-	},
 };
 </script>

@@ -11,24 +11,11 @@
 	</div>
 </template>
 <script>
+import TodoItem from '@/components/todo/TodoItem';
 export default {
 	name: 'TodoDescription',
 	props: {
-		title: {
-			type: String,
-		},
-		description: {
-			type: String,
-		},
-		isComplete: {
-			type: Boolean,
-		},
-		dueDate: {
-			type: Date,
-		},
-		assignees: {
-			type: Array,
-		},
+		selectedTodo: TodoItem,
 	},
 };
 </script>
