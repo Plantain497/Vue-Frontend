@@ -84,9 +84,16 @@
 						>
 							<img
 								class="w-8 h-8 rounded-full"
-								src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+								v-if="basicProfile.UK !== ''"
+								:src="basicProfile.UK"
 								alt="Avatar"
 							/>
+							<span
+								class="flex items-center justify-center w-8 h-8 text-base text-white bg-indigo-500 rounded-full"
+								v-else
+							>
+								<h3>{{ basicProfile.vW[0] }}</h3>
+							</span>
 						</button>
 						<!--
               enter: Part A (initial state)
@@ -108,7 +115,7 @@
 							>
 								<div
 									class="py-1 bg-white rounded-md shadow-xs"
-									:v-click-outside="(settingsOpen = false)"
+									:v-click-outside="closeSettings"
 								>
 									<router-link
 										to="/profile"
@@ -196,6 +203,17 @@ export default {
 					}),
 			);
 		},
+		closeSettings: function() {
+			this.settingsOpen = false;
+		},
+	},
+	created: function() {
+		this.$getGapiClient().then(gapi => {
+			this.basicProfile = gapi.auth2
+				.getAuthInstance()
+				.currentUser.get()
+				.getBasicProfile();
+		});
 	},
 };
 </script>

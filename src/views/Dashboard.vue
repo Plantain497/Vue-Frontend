@@ -13,15 +13,5 @@ export default {
 	components: {
 		HelloWorld,
 	},
-	// created: function() {
-	// 	this.$getGapiClient().then(gapi => {
-	// 		console.log(
-	// 			gapi.auth2
-	// 				.getAuthInstance()
-	// 				.currentUser.get()
-	// 				.getBasicProfile(),
-	// 		);
-	// 	});
-	// },
 };
 </script>
