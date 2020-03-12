@@ -115,7 +115,7 @@
 							>
 								<div
 									class="py-1 bg-white rounded-md shadow-xs"
-									:v-click-outside="closeSettings"
+									v-click-outside="closeSettings"
 								>
 									<router-link
 										to="/profile"

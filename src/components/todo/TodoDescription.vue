@@ -1,5 +1,5 @@
 <template>
-	<div class="h-full ml-10 bg-gray-200 rounded-lg shadow-sm">
+	<div class="h-full ml-10 mr-5 bg-gray-200 rounded-lg shadow-sm">
 		<div class="px-6 py-4">
 			<div class="mb-2 text-xl font-bold">The Coldest Sunset</div>
 			<p class="text-base text-gray-700">
