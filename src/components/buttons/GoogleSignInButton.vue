@@ -8,7 +8,6 @@
 	</button>
 </template>
 <script>
-// Todo: Add Auth
 export default {
 	props: {
 		text: {
@@ -20,8 +19,15 @@ export default {
 		},
 	},
 	methods: {
-		authenticate: function() {
-			this.$router.push('Dashboard');
+		authenticate() {
+			this.$gapi.getGapiClient().then(gapi =>
+				gapi.auth2
+					.getAuthInstance()
+					.signIn()
+					.then(() => {
+						this.$router.push('Dashboard');
+					}),
+			);
 		},
 	},
 };
