@@ -92,7 +92,7 @@
               enter: Part A (initial state)
               to: Part B (end state)
               active: HOW we get from A to B
-             -->
+						-->
 						<transition
 							name="custom-classes-transition"
 							enter-class="transform scale-95 opacity-0"
@@ -108,7 +108,7 @@
 							>
 								<div
 									class="py-1 bg-white rounded-md shadow-xs"
-									v-click-outside="closeSettings"
+									:v-click-outside="(settingsOpen = false)"
 								>
 									<router-link
 										to="/profile"
@@ -181,6 +181,7 @@ export default {
 		return {
 			hamburgerOpen: false,
 			settingsOpen: false,
+			basicProfile: {},
 		};
 	},
 	methods: {
@@ -194,9 +195,6 @@ export default {
 						this.$router.push('/');
 					}),
 			);
-		},
-		closeSettings: function() {
-			this.settingsOpen = false;
 		},
 	},
 };

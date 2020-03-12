@@ -3,7 +3,7 @@ module.exports = {
 	env: {
 		node: true,
 	},
-	extends: ['plugin:vue/essential', 'plugin:vue/recommended', 'prettier'],
+	extends: ['plugin:vue/essential', 'prettier'],
 	parserOptions: {
 		ecmaVersion: 2020,
 	},
@@ -14,5 +14,6 @@ module.exports = {
 		indent: ['error', 'tab'],
 		semi: 'error',
 		'no-var-requires': 0,
+		'vue/html-indent': ['error', 'tab'], // enforce tabs in template
 	},
 };
