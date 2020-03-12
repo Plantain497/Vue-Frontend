@@ -8,14 +8,17 @@
 				:is-complete="false"
 			></todo-item>
 		</div>
+		<todo-description></todo-description>
 	</div>
 </template>
 <script>
 import TodoItem from '@/components/todo/TodoItem';
+import TodoDescription from '@/components/todo/TodoDescription';
 export default {
 	name: 'Todo',
 	components: {
 		TodoItem,
+		TodoDescription,
 	},
 	data: function() {
 		return {
