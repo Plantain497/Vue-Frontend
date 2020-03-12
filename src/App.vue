@@ -14,5 +14,13 @@ export default {
 	components: {
 		AppNavBar,
 	},
+	created() {
+		try {
+			// NOTE: 45min refresh policy is what google recommends
+			window.setInterval(this.$gapi.refreshToken(), 2.7e6);
+		} catch (e) {
+			console.error(e);
+		}
+	},
 };
 </script>
