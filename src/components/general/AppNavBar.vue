@@ -185,8 +185,8 @@ export default {
 	},
 	methods: {
 		logout: function() {
-			// Add JWT clean
 			this.settingsOpen = false;
+			this.$gapi.logout();
 			this.$router.push('/');
 		},
 		closeSettings: function() {

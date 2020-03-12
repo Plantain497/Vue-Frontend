@@ -4,17 +4,17 @@ import App from './App.vue';
 import './assets/tailwind.css';
 import router from './router';
 import vco from 'v-click-outside';
-import GAuth from 'vue-google-oauth2';
+import VueGAPI from 'vue-gapi';
 
 Vue.use(vco);
 
-const gAuthOption = {
-	clientId: process.env.VUE_APP_GAPI,
+const apiConfig = {
+	apiKey: process.env.VUE_APP_APIKEY,
+	clientId: process.env.VUE_APP_CLIENTID,
 	scope: 'https://www.googleapis.com/auth/calendar',
-	prompt: 'select_account',
 };
 
-Vue.use(GAuth, gAuthOption);
+Vue.use(VueGAPI, apiConfig);
 
 Vue.config.productionTip = false;
 
