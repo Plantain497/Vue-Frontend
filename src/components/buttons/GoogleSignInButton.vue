@@ -19,7 +19,7 @@ export default {
 		},
 	},
 	methods: {
-		authenticate() {
+		authenticate: function() {
 			this.$gapi.getGapiClient().then(gapi =>
 				gapi.auth2
 					.getAuthInstance()

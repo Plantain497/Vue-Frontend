@@ -1,5 +1,8 @@
 <template>
-	<nav v-if="['Landing'].includes($route.name) === false" class="bg-gray-800">
+	<nav
+		v-if="['Landing', 'Login'].includes($route.name) === false"
+		class="bg-gray-800"
+	>
 		<div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">
 			<div class="relative flex items-center justify-between h-16">
 				<div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -82,18 +85,25 @@
 							v-on:click="settingsOpen = !settingsOpen"
 							class="flex text-sm transition duration-150 ease-in-out border-2 border-transparent rounded-full focus:outline-none focus:border-white"
 						>
-							<img
-								class="w-8 h-8 rounded-full"
-								v-if="basicProfile.UK !== ''"
-								:src="basicProfile.UK"
-								alt="Avatar"
-							/>
-							<span
-								class="flex items-center justify-center w-8 h-8 text-base text-white bg-indigo-500 rounded-full"
+							<div v-if="basicProfile">
+								<img
+									class="w-8 h-8 rounded-full"
+									v-if="basicProfile.UK !== ''"
+									:src="basicProfile.UK"
+									loading="lazy"
+									alt="Avatar"
+								/>
+								<span
+									class="flex items-center justify-center w-8 h-8 text-base text-white bg-indigo-500 rounded-full"
+									v-else
+								>
+									<h3>{{ basicProfile.vW[0] }}</h3>
+								</span>
+							</div>
+							<div
 								v-else
-							>
-								<h3>{{ basicProfile.vW[0] }}</h3>
-							</span>
+								class="flex items-center justify-center w-8 h-8 text-base text-white bg-gray-300 rounded-full"
+							></div>
 						</button>
 						<!--
               enter: Part A (initial state)
@@ -180,6 +190,7 @@
 </template>
 <script>
 import Hamburger from '@/components/buttons/Hamburger';
+import TokenService from '../../services/TokenService';
 export default {
 	components: {
 		Hamburger,
@@ -194,6 +205,7 @@ export default {
 	methods: {
 		logout: function() {
 			this.settingsOpen = false;
+			TokenService.clearStorage();
 			this.$gapi.getGapiClient().then(gapi =>
 				gapi.auth2
 					.getAuthInstance()
