@@ -190,7 +190,6 @@
 </template>
 <script>
 import Hamburger from '@/components/buttons/Hamburger';
-import TokenService from '../../services/TokenService';
 export default {
 	components: {
 		Hamburger,
@@ -204,23 +203,17 @@ export default {
 	},
 	methods: {
 		logout: function() {
-			this.settingsOpen = false;
-			TokenService.clearStorage();
-			this.$gapi.getGapiClient().then(gapi =>
-				gapi.auth2
-					.getAuthInstance()
-					.signOut()
-					.then(() => {
-						this.$router.push('/');
-					}),
-			);
+			this.$gapi.logout(() => {
+				this.closeSettings();
+				this.$router.push('/');
+			});
 		},
 		closeSettings: function() {
 			this.settingsOpen = false;
 		},
 	},
 	created: function() {
-		this.$getGapiClient().then(gapi => {
+		this.$gapi.getGapiClient().then(gapi => {
 			this.basicProfile = gapi.auth2
 				.getAuthInstance()
 				.currentUser.get()

@@ -85,32 +85,13 @@
 	</div>
 </template>
 <script>
-import { TokenService } from '@/services/TokenService';
-
 export default {
 	methods: {
 		authenticate: function() {
-			this.$gapi.getGapiClient().then(gapi =>
-				gapi.auth2
-					.getAuthInstance()
-					.signIn()
-					.then(() => {
-						this.$router.push(this.$route.query.redirect);
-					}),
-			);
+			this.$gapi.login(() => this.$router.push(this.$route.query.redirect));
 		},
 		logout: function() {
-			try {
-				TokenService.clearStorage();
-			} catch {}
-			this.$gapi.getGapiClient().then(gapi =>
-				gapi.auth2
-					.getAuthInstance()
-					.signOut()
-					.then(() => {
-						this.$router.push('/');
-					}),
-			);
+			this.$gapi.logout(() => this.$router.push('/'));
 		},
 	},
 };

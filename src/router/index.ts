@@ -1,7 +1,6 @@
 import Landing from '@/views/Landing.vue';
 import Vue from 'vue';
 import VueRouter from 'vue-router';
-import TokenService from '@/services/TokenService';
 
 Vue.use(VueRouter);
 
@@ -47,17 +46,12 @@ const router = new VueRouter({
 	routes,
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach(async (to, from, next) => {
 	if (to.matched.some(record => record.meta.requiresAuth)) {
+		await Vue.nextTick();
+		const loggedIn = await router.app.$gapi.isAuthenticated();
 		// this route requires auth, check if logged in
 		// if not, redirect to login page.
-		const time = TokenService.getToken('gapi.expires_at');
-		let loggedIn = false;
-		if (time !== '') {
-			const diff = (new Date().getTime() - JSON.parse(time)) / 1000;
-			loggedIn = diff < 600;
-		}
-
 		if (!loggedIn) {
 			next({
 				path: '/login',

@@ -20,14 +20,7 @@ export default {
 	},
 	methods: {
 		authenticate: function() {
-			this.$gapi.getGapiClient().then(gapi =>
-				gapi.auth2
-					.getAuthInstance()
-					.signIn()
-					.then(() => {
-						this.$router.push('Dashboard');
-					}),
-			);
+			this.$gapi.login(() => this.$router.push('Dashboard'));
 		},
 	},
 };
