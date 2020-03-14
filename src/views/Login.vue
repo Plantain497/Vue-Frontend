@@ -1,7 +1,5 @@
 <template>
-	<div
-		class="fixed inset-x-0 bottom-0 px-4 pb-4 sm:inset-0 sm:flex sm:items-center sm:justify-center"
-	>
+	<div class="fixed inset-0 flex items-center justify-center px-4 pb-4">
 		<transition
 			name="custom-background-transition"
 			enter-class="opacity-0"
@@ -33,12 +31,7 @@
 						<div
 							class="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-indigo-100 rounded-full sm:mx-0 sm:h-10 sm:w-10"
 						>
-							<svg
-								class="w-6 h-6 text-indigo-600"
-								stroke="currentColor"
-								fill="none"
-								viewBox="0 0 24 24"
-							>
+							<svg class="w-6 h-6 text-indigo-600" stroke="currentColor" fill="none" viewBox="0 0 24 24">
 								<path
 									d="M12 15V17M6 21H18C19.1046 21 20 20.1046 20 19V13C20 11.8954 19.1046 11 18 11H6C4.89543 11 4 11.8954 4 13V19C4 20.1046 4.89543 21 6 21ZM16 11V7C16 4.79086 14.2091 3 12 3C9.79086 3 8 4.79086 8 7V11H16Z"
 									stroke-width="2"
@@ -48,13 +41,11 @@
 							</svg>
 						</div>
 						<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-							<h3 class="text-lg font-medium leading-6 text-gray-900">
-								Please Login
-							</h3>
+							<h3 class="text-lg font-medium leading-6 text-gray-900">Please Login</h3>
 							<div class="mt-2">
 								<p class="text-sm leading-5 text-gray-500">
 									To access Plantain, please login with Google or head back
-									home!
+									to our landing page!
 								</p>
 							</div>
 						</div>
@@ -66,18 +57,14 @@
 							v-on:click="authenticate"
 							type="button"
 							class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo sm:text-sm sm:leading-5"
-						>
-							Log In
-						</button>
+						>Log In</button>
 					</span>
 					<span class="flex w-full mt-3 rounded-md shadow-sm sm:mt-0 sm:w-auto">
 						<button
 							v-on:click="logout"
 							type="button"
 							class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-200 rounded-md shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline sm:text-sm sm:leading-5"
-						>
-							Go Home
-						</button>
+						>Go Back</button>
 					</span>
 				</div>
 			</div>
