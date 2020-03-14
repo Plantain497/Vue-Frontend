@@ -13,5 +13,19 @@ export default {
 	components: {
 		HelloWorld,
 	},
+	methods: {
+		getEvents: async function() {
+			this.$gapi.getGapiClient().then(async gapi => {
+				const res = await gapi.client.calendar.events.list({
+					calendarId: 'primary',
+					timeMin: new Date().toISOString(),
+				});
+				console.log(res.result.items);
+			});
+		},
+	},
+	created: function() {
+		this.getEvents();
+	},
 };
 </script>
