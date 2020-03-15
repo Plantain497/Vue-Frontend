@@ -4,14 +4,8 @@
 			<dropdown></dropdown>
 		</div>
 		<div class="flex h-screen py-8 max-w-7xl sm:px-6 lg:px-8">
-			<todo-container
-				:todo-list="todoList"
-				v-on:sendTodoItemEvent="getTodo"
-			></todo-container>
-			<todo-description
-				:selected-todo="selectedTodo"
-				class="hidden md:block"
-			></todo-description>
+			<todo-container :todo-list="todoList" v-on:sendTodoItemEvent="getTodo"></todo-container>
+			<todo-description :selected-todo="selectedTodo" class="hidden min-w-1/2 md:block"></todo-description>
 		</div>
 	</div>
 </template>
@@ -35,8 +29,14 @@ export default {
 					description:
 						'Olive is hungry and needs her food RIGHT NOW ASDKJAHSKDHAKJSHDKAJSHDKASJHDAKSJDHAKSHDKAJSHDAKSJDHAKSJHDKAJSHDKJASHDAKSJHDKASJHDKJASHD',
 					id: 16472,
+					dueDate: new Date().toDateString(),
 				},
-				{ title: 'Do laundry', description: 'need underwear', id: 82716 },
+				{
+					title: 'Do laundry',
+					description: 'need underwear',
+					id: 82716,
+					dueDate: new Date().toDateString(),
+				},
 			],
 			selectedTodo: TodoItem,
 		};

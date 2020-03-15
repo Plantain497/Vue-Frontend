@@ -46,23 +46,23 @@ const router = new VueRouter({
 	routes,
 });
 
-router.beforeEach(async (to, from, next) => {
-	if (to.matched.some(record => record.meta.requiresAuth)) {
-		await Vue.nextTick();
-		const loggedIn = await router.app.$gapi.isAuthenticated();
-		// this route requires auth, check if logged in
-		// if not, redirect to login page.
-		if (!loggedIn) {
-			next({
-				path: '/login',
-				query: { redirect: to.fullPath },
-			});
-		} else {
-			next();
-		}
-	} else {
-		next(); // make sure to always call next()!
-	}
-});
+// router.beforeEach(async (to, from, next) => {
+// 	if (to.matched.some(record => record.meta.requiresAuth)) {
+// 		await Vue.nextTick();
+// 		const loggedIn = await router.app.$gapi.isAuthenticated();
+// 		// this route requires auth, check if logged in
+// 		// if not, redirect to login page.
+// 		if (!loggedIn) {
+// 			next({
+// 				path: '/login',
+// 				query: { redirect: to.fullPath },
+// 			});
+// 		} else {
+// 			next();
+// 		}
+// 	} else {
+// 		next(); // make sure to always call next()!
+// 	}
+// });
 
 export default router;

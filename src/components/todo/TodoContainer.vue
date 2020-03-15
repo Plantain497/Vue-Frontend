@@ -1,11 +1,13 @@
 <template>
 	<div class="w-full h-full bg-gray-100 md:w-1/2">
-		<div v-for="todo in todoList" :key="todo.title">
-			<todo-item
-				:title="todo.title"
-				:description="todo.description"
-				v-on:click="sendClickedTodoItem"
-			></todo-item>
+		<div>
+			<div v-for="todo in todoList" :key="todo.title">
+				<todo-item
+					:title="todo.title"
+					:description="todo.description"
+					v-on:click.native="sendClickedTodoItem(todo)"
+				></todo-item>
+			</div>
 		</div>
 	</div>
 </template>
@@ -22,9 +24,8 @@ export default {
 		},
 	},
 	methods: {
-		sendClickedTodoItem: function() {
-			console.log(this);
-			this.$emit('sendTodoItemEvent', this);
+		sendClickedTodoItem: function(todo) {
+			this.$emit('sendTodoItemEvent', todo);
 		},
 	},
 };

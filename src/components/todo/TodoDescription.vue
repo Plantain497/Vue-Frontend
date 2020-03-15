@@ -1,12 +1,9 @@
 <template>
 	<div class="h-full ml-10 mr-5 bg-gray-200 rounded-lg shadow-sm">
 		<div class="px-6 py-4">
-			<div class="mb-2 text-xl font-bold">The Coldest Sunset</div>
-			<p class="text-base text-gray-700">
-				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Voluptatibus
-				quia, nulla! Maiores et perferendis eaque, exercitationem praesentium
-				nihil.
-			</p>
+			<p class="text-xl font-bold break-words">{{ selectedTodo.title }}</p>
+			<p class="pb-4 text-gray-600 text-md">{{ selectedTodo.dueDate }}</p>
+			<p class="text-base text-gray-700 break-words">{{ selectedTodo.description }}</p>
 		</div>
 	</div>
 </template>
@@ -15,7 +12,9 @@ import TodoItem from '@/components/todo/TodoItem';
 export default {
 	name: 'TodoDescription',
 	props: {
-		selectedTodo: TodoItem,
+		selectedTodo: {
+			type: TodoItem,
+		},
 	},
 };
 </script>

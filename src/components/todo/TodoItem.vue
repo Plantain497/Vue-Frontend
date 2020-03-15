@@ -10,12 +10,8 @@
 		/>
 		<span class="w-full">
 			<div class="pl-6">
-				<p class="w-11/12 text-sm leading-5 text-gray-900 truncate">
-					{{ title }}
-				</p>
-				<p class="w-11/12 text-sm leading-5 text-gray-500 truncate">
-					{{ description }}
-				</p>
+				<p class="w-11/12 text-sm leading-5 text-gray-900 truncate">{{ title }}</p>
+				<p class="w-11/12 text-sm leading-5 text-gray-500 truncate">{{ description }}</p>
 			</div>
 		</span>
 	</div>
@@ -35,7 +31,7 @@ export default {
 			default: false,
 		},
 		dueDate: {
-			type: Date,
+			type: String,
 		},
 		assignees: {
 			type: Array,
