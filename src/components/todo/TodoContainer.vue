@@ -1,6 +1,6 @@
 <template>
 	<div class="w-full h-full bg-gray-100 md:w-1/2">
-		<div>
+		<div v-click-outside="resetSelectedTodoItem">
 			<div v-for="todo in todoList" :key="todo.title">
 				<todo-item
 					:title="todo.title"
@@ -26,6 +26,9 @@ export default {
 	methods: {
 		sendClickedTodoItem: function(todo) {
 			this.$emit('sendTodoItemEvent', todo);
+		},
+		resetSelectedTodoItem: function() {
+			this.$emit('sendTodoItemEvent', {});
 		},
 	},
 };
