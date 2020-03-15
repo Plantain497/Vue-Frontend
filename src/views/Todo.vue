@@ -8,6 +8,7 @@
 				:todo-list="todoList"
 				:today-view-enabled="todayViewEnabled"
 				:weekly-view-enabled="weeklyViewEnabled"
+				:todays-date="todaysDate"
 				v-on:sendTodoItemEvent="getTodo"
 			></todo-container>
 			<todo-description
@@ -43,12 +44,13 @@ export default {
 					title: 'Do laundry',
 					description: 'need underwear',
 					id: 82716,
-					dueDate: new Date().toDateString(),
+					// dueDate: new Date().toDateString(),
 				},
 			],
 			selectedTodo: TodoItem,
 			todayViewEnabled: true,
 			weeklyViewEnabled: false,
+			todaysDate: new Date().toDateString(),
 		};
 	},
 	methods: {

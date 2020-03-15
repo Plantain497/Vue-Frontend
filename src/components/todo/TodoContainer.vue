@@ -1,19 +1,20 @@
 <template>
 	<div class="w-full h-full bg-gray-100 md:w-1/2">
-		<div v-if="todayViewEnabled">
-			<p>TODAY VIEW ENABLED</p>
+		<div v-if="todayViewEnabled || weeklyViewEnabled">
+			<p class="border-b border-gray-300">Today, {{ todaysDate }}</p>
 			<div v-click-outside="resetSelectedTodoItem">
 				<div v-for="todo in todoList" :key="todo.title">
 					<todo-item
 						:title="todo.title"
 						:description="todo.description"
 						v-on:click.native="sendClickedTodoItem(todo)"
+						v-if="todo.dueDate == todaysDate"
 					></todo-item>
 				</div>
 			</div>
 		</div>
 		<div v-if="weeklyViewEnabled">
-			<p>WEEKLY VIEW ENABLED</p>
+			<p class="pt-6 border-b border-gray-300">WEEKLY VIEW ENABLED</p>
 			<div v-click-outside="resetSelectedTodoItem">
 				<div v-for="todo in todoList" :key="todo.title">
 					<todo-item
@@ -42,6 +43,9 @@ export default {
 		},
 		weeklyViewEnabled: {
 			type: Boolean,
+		},
+		todaysDate: {
+			type: String,
 		},
 	},
 	methods: {
