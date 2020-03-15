@@ -8,12 +8,11 @@
 	</div>
 </template>
 <script>
-import TodoItem from '@/components/todo/TodoItem';
 export default {
 	name: 'TodoDescription',
 	props: {
 		selectedTodo: {
-			type: TodoItem,
+			type: Object,
 		},
 	},
 };
