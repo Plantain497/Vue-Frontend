@@ -1,11 +1,19 @@
 <template>
 	<div class="px-2 mx-auto bg-gray-100 max-w-7xl sm:px-6 lg:px-8">
 		<div class="pt-8">
-			<dropdown></dropdown>
+			<dropdown v-on:changeViewStatusEvent="getViewStatus"></dropdown>
 		</div>
 		<div class="flex h-screen py-8 max-w-7xl sm:px-6 lg:px-8">
-			<todo-container :todo-list="todoList" v-on:sendTodoItemEvent="getTodo"></todo-container>
-			<todo-description :selected-todo="selectedTodo" class="hidden min-w-1/2 md:block"></todo-description>
+			<todo-container
+				:todo-list="todoList"
+				:today-view-enabled="todayViewEnabled"
+				:weekly-view-enabled="weeklyViewEnabled"
+				v-on:sendTodoItemEvent="getTodo"
+			></todo-container>
+			<todo-description
+				:selected-todo="selectedTodo"
+				class="hidden min-w-1/2 md:block"
+			></todo-description>
 		</div>
 	</div>
 </template>
@@ -39,11 +47,22 @@ export default {
 				},
 			],
 			selectedTodo: TodoItem,
+			todayViewEnabled: true,
+			weeklyViewEnabled: false,
 		};
 	},
 	methods: {
 		getTodo: function(todo) {
 			this.selectedTodo = todo;
+		},
+		getViewStatus: function(curr) {
+			if (curr === 'Today') {
+				this.todayViewEnabled = true;
+				this.weeklyViewEnabled = false;
+			} else if (curr === 'This Week') {
+				this.weeklyViewEnabled = true;
+				this.todayViewEnabled = false;
+			}
 		},
 	},
 };
