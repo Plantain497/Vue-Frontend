@@ -4,6 +4,10 @@ import './assets/tailwind.css';
 import router from './router';
 import vco from 'v-click-outside';
 import VueGAPI from 'vue-gapi';
+import { firestorePlugin } from 'vuefire';
+const fb = require('./firebaseConfig.js');
+
+Vue.use(firestorePlugin);
 
 Vue.use(vco);
 
@@ -20,7 +24,16 @@ Vue.use(VueGAPI, apiConfig);
 
 Vue.config.productionTip = false;
 
-new Vue({
-	router,
-	render: h => h(App),
-}).$mount('#app');
+//@ts-ignore
+let app;
+
+fb.auth.onAuthStateChanged(() => {
+	//@ts-ignore
+	if (!app) {
+		app = new Vue({
+			el: '#app',
+			router,
+			render: h => h(App),
+		});
+	}
+});

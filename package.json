@@ -15,7 +15,8 @@
 		"v-click-outside": "^3.0.1",
 		"vue": "^2.6.11",
 		"vue-gapi": "^0.1.2",
-		"vue-router": "^3.1.5"
+		"vue-router": "^3.1.5",
+		"vuefire": "^2.2.1"
 	},
 	"devDependencies": {
 		"@tailwindcss/custom-forms": "^0.2.1",

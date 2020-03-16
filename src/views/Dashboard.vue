@@ -5,13 +5,19 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import firebase from 'firebase';
 import HelloWorld from '@/components/HelloWorld.vue';
+import { getTodos } from '@/api/todo';
 
 export default {
 	name: 'Dashboard',
 	components: {
 		HelloWorld,
+	},
+	data: function() {
+		return {
+			currentUser: firebase.auth().currentUser,
+		};
 	},
 	methods: {
 		getEvents: async function() {
@@ -24,8 +30,10 @@ export default {
 			});
 		},
 	},
-	created: function() {
-		this.getEvents();
+	created() {
+		const todos = {};
+		getTodos(this.currentUser.uid, todos);
+		console.log(todos);
 	},
 };
 </script>

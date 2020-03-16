@@ -8,6 +8,7 @@
 	</button>
 </template>
 <script>
+import firebase from 'firebase';
 export default {
 	props: {
 		text: {
@@ -20,7 +21,24 @@ export default {
 	},
 	methods: {
 		authenticate: function() {
-			this.$gapi.login(() => this.$router.push('Dashboard'));
+			// this.$gapi.login(() => this.$router.push('Dashboard'));
+			this.$gapi.login(() => {
+				this.$gapi
+					.getGapiClient()
+					.then(async gapi => {
+						const idToken = gapi.auth2
+							.getAuthInstance()
+							.currentUser.get()
+							.getAuthResponse().id_token;
+						const credential = firebase.auth.GoogleAuthProvider.credential(
+							idToken,
+						);
+						return await firebase.auth().signInWithCredential(credential);
+					})
+					.then(() => {
+						this.$router.push('Dashboard');
+					});
+			});
 		},
 	},
 };
