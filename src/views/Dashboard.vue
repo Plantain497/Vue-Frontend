@@ -12,6 +12,11 @@ export default {
 	components: {
 		HelloWorld,
 	},
+	data: function() {
+		return {
+			currentUser: firebase.auth().currentUser,
+		};
+	},
 	methods: {
 		getEvents: async function() {
 			this.$gapi.getGapiClient().then(async gapi => {
@@ -22,26 +27,23 @@ export default {
 				console.log(res.result.items);
 			});
 		},
-		addTodo: async function(title, isComplete) {
-			const currentUser = await firebase.auth().currentUser;
-			if (currentUser) {
-				firebase
-					.firestore()
-					.collection('users')
-					.doc(firebase.auth().currentUser.uid)
-					.collection('todos')
-					.add({
-						title: title,
-						createdAt: new Date(),
-						isCompleted: isComplete,
-					});
-			}
+		addTodo: function(title, isComplete) {
+			firebase
+				.firestore()
+				.collection('users')
+				.doc(this.currentUser.uid)
+				.collection('todos')
+				.add({
+					title: title,
+					createdAt: new Date(),
+					isCompleted: isComplete,
+				});
 		},
 		getTodos: async function() {
 			let todosRef = await firebase
 				.firestore()
 				.collection('users')
-				.doc(firebase.auth().currentUser.uid)
+				.doc(this.currentUser.uid)
 				.collection('todos');
 			todosRef.onSnapshot(snap => {
 				this.todos = [];
@@ -54,8 +56,8 @@ export default {
 			});
 		},
 	},
-	// created: function() {
-	// 	this.uid = firebase.auth().currentUser.uid;
-	// },
+	created() {
+		this.getTodos();
+	},
 };
 </script>
