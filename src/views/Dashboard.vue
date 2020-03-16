@@ -40,7 +40,7 @@ export default {
 				});
 		},
 		getTodos: async function() {
-			let todosRef = await firebase
+			const todosRef = await firebase
 				.firestore()
 				.collection('users')
 				.doc(this.currentUser.uid)
@@ -48,12 +48,33 @@ export default {
 			todosRef.onSnapshot(snap => {
 				this.todos = [];
 				snap.forEach(doc => {
-					let todo = doc.data();
+					const todo = doc.data();
 					console.log(todo);
 					todo.id = doc.id;
 					this.todos.push(todo);
 				});
 			});
+		},
+		updateTodoItem(docId, e) {
+			const isChecked = e.target.checked;
+			firebase
+				.firestore()
+				.collection('users')
+				.doc(this.currentUser.uid)
+				.collection('todos')
+				.doc(docId)
+				.update({
+					isCompleted: isChecked,
+				});
+		},
+		deleteToDo(docId) {
+			firebase
+				.firestore()
+				.collection('users')
+				.doc(this.currentUser.uid)
+				.collection('todos')
+				.doc(docId)
+				.delete();
 		},
 	},
 	created() {

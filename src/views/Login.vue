@@ -83,6 +83,7 @@
 	</div>
 </template>
 <script>
+import firebase from 'firebase';
 export default {
 	methods: {
 		authenticate: function() {
