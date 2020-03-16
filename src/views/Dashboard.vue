@@ -5,9 +5,8 @@
 </template>
 
 <script>
-// @ is an alias to /src
+import firebase from 'firebase';
 import HelloWorld from '@/components/HelloWorld.vue';
-
 export default {
 	name: 'Dashboard',
 	components: {
@@ -23,9 +22,40 @@ export default {
 				console.log(res.result.items);
 			});
 		},
+		addTodo: async function(title, isComplete) {
+			const currentUser = await firebase.auth().currentUser;
+			if (currentUser) {
+				firebase
+					.firestore()
+					.collection('users')
+					.doc(firebase.auth().currentUser.uid)
+					.collection('todos')
+					.add({
+						title: title,
+						createdAt: new Date(),
+						isCompleted: isComplete,
+					});
+			}
+		},
+		getTodos: async function() {
+			let todosRef = await firebase
+				.firestore()
+				.collection('users')
+				.doc(firebase.auth().currentUser.uid)
+				.collection('todos');
+			todosRef.onSnapshot(snap => {
+				this.todos = [];
+				snap.forEach(doc => {
+					let todo = doc.data();
+					console.log(todo);
+					todo.id = doc.id;
+					this.todos.push(todo);
+				});
+			});
+		},
 	},
-	created: function() {
-		this.getEvents();
-	},
+	// created: function() {
+	// 	this.uid = firebase.auth().currentUser.uid;
+	// },
 };
 </script>
