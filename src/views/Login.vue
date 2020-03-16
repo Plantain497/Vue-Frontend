@@ -86,7 +86,23 @@
 export default {
 	methods: {
 		authenticate: function() {
-			this.$gapi.login(() => this.$router.push(this.$route.query.redirect));
+			this.$gapi.login(() => {
+				this.$gapi
+					.getGapiClient()
+					.then(async gapi => {
+						const idToken = gapi.auth2
+							.getAuthInstance()
+							.currentUser.get()
+							.getAuthResponse().id_token;
+						const credential = firebase.auth.GoogleAuthProvider.credential(
+							idToken,
+						);
+						return await firebase.auth().signInWithCredential(credential);
+					})
+					.then(() => {
+						this.$router.push(this.$route.query.redirect);
+					});
+			});
 		},
 		logout: function() {
 			this.$gapi.logout(() => this.$router.push('/'));
