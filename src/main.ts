@@ -4,21 +4,8 @@ import './assets/tailwind.css';
 import router from './router';
 import vco from 'v-click-outside';
 import VueGAPI from 'vue-gapi';
-import firebase from 'firebase';
 import { firestorePlugin } from 'vuefire';
-
-const firebaseConfig = {
-	apiKey: process.env.VUE_APP_APIKEY,
-	authDomain: `${process.env.VUE_APP_PROJECTID}.firebaseapp.com`,
-	databaseURL: `https://${process.env.VUE_APP_PROJECTID}.firebaseio.com`,
-	projectId: process.env.VUE_APP_PROJECTID,
-	storageBucket: `${process.env.VUE_APP_PROJECTID}.appspot.com`,
-	messagingSenderId: process.env.VUE_APP_MESSAGINGSENDERID,
-	appId: process.env.VUE_APP_APPID,
-	measurementId: process.env.VUE_APP_MEASUREMENTID,
-};
-
-firebase.initializeApp(firebaseConfig);
+const fb = require('./firebaseConfig.js');
 
 Vue.use(firestorePlugin);
 
@@ -37,7 +24,16 @@ Vue.use(VueGAPI, apiConfig);
 
 Vue.config.productionTip = false;
 
-new Vue({
-	router,
-	render: h => h(App),
-}).$mount('#app');
+//@ts-ignore
+let app;
+
+fb.auth.onAuthStateChanged(() => {
+	//@ts-ignore
+	if (!app) {
+		app = new Vue({
+			el: '#app',
+			router,
+			render: h => h(App),
+		});
+	}
+});
