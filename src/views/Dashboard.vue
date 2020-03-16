@@ -7,6 +7,8 @@
 <script>
 import firebase from 'firebase';
 import HelloWorld from '@/components/HelloWorld.vue';
+import { getTodos } from '@/api/todo';
+
 export default {
 	name: 'Dashboard',
 	components: {
@@ -27,58 +29,11 @@ export default {
 				console.log(res.result.items);
 			});
 		},
-		addTodo: function(title, isComplete) {
-			firebase
-				.firestore()
-				.collection('users')
-				.doc(this.currentUser.uid)
-				.collection('todos')
-				.add({
-					title: title,
-					createdAt: new Date(),
-					isCompleted: isComplete,
-				});
-		},
-		getTodos: async function() {
-			const todosRef = await firebase
-				.firestore()
-				.collection('users')
-				.doc(this.currentUser.uid)
-				.collection('todos');
-			todosRef.onSnapshot(snap => {
-				this.todos = [];
-				snap.forEach(doc => {
-					const todo = doc.data();
-					console.log(todo);
-					todo.id = doc.id;
-					this.todos.push(todo);
-				});
-			});
-		},
-		updateTodoItem(docId, e) {
-			const isChecked = e.target.checked;
-			firebase
-				.firestore()
-				.collection('users')
-				.doc(this.currentUser.uid)
-				.collection('todos')
-				.doc(docId)
-				.update({
-					isCompleted: isChecked,
-				});
-		},
-		deleteToDo(docId) {
-			firebase
-				.firestore()
-				.collection('users')
-				.doc(this.currentUser.uid)
-				.collection('todos')
-				.doc(docId)
-				.delete();
-		},
 	},
 	created() {
-		this.getTodos();
+		const todos = {};
+		getTodos(this.currentUser.uid, todos);
+		console.log(todos);
 	},
 };
 </script>
