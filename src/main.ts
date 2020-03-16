@@ -4,6 +4,10 @@ import './assets/tailwind.css';
 import router from './router';
 import vco from 'v-click-outside';
 import VueGAPI from 'vue-gapi';
+import './firebase';
+import { firestorePlugin } from 'vuefire';
+
+Vue.use(firestorePlugin);
 
 Vue.use(vco);
 
