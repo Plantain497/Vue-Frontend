@@ -18,7 +18,7 @@
 		</div>
 		<button
 			class="fixed flex justify-center bg-purple-400 rounded-full shadow-lg w-15 h-15 bottom-15 left-20 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue"
-			v-on:click="addButtonClicked = true"
+			v-on:click="addModalOpen = true"
 		>
 			<svg
 				width="36"
@@ -36,7 +36,10 @@
 				/>
 			</svg>
 		</button>
-		<add-todo-modal></add-todo-modal>
+		<add-todo-modal
+			v-on:changeAddModalOpenStatusEvent="changeAddModalStatus"
+			:open="addModalOpen"
+		></add-todo-modal>
 	</div>
 </template>
 <script>
@@ -51,7 +54,7 @@ export default {
 		Dropdown,
 		TodoContainer,
 		TodoDescription,
-		// AddTodoModal,
+		AddTodoModal,
 	},
 	data: function() {
 		return {
@@ -74,8 +77,7 @@ export default {
 			todayViewEnabled: true,
 			weeklyViewEnabled: false,
 			todaysDate: new Date().toDateString(),
-			addButtonClicked: false,
-			modal: false,
+			addModalOpen: false,
 		};
 	},
 	methods: {
@@ -91,8 +93,8 @@ export default {
 				this.todayViewEnabled = false;
 			}
 		},
-		toggleModal() {
-			this.modal = !this.modal;
+		changeAddModalStatus: function(open) {
+			this.addModalOpen = open;
 		},
 	},
 };
