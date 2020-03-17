@@ -16,6 +16,27 @@
 				class="hidden min-w-1/2 md:block"
 			></todo-description>
 		</div>
+		<button
+			class="fixed flex justify-center bg-purple-400 rounded-full shadow-lg w-15 h-15 bottom-15 left-20 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue"
+			v-on:click="addButtonClicked = true"
+		>
+			<svg
+				width="36"
+				height="36"
+				viewBox="0 0 24 24"
+				fill="none"
+				xmlns="http://www.w3.org/2000/svg"
+			>
+				<path
+					d="M12 4V20M20 12L4 12"
+					stroke="#4A5568"
+					stroke-width="1.5"
+					stroke-linecap="round"
+					stroke-linejoin="round"
+				/>
+			</svg>
+		</button>
+		<add-todo-modal></add-todo-modal>
 	</div>
 </template>
 <script>
@@ -23,12 +44,14 @@ import TodoItem from '@/components/todo/TodoItem';
 import TodoDescription from '@/components/todo/TodoDescription';
 import Dropdown from '@/components/dropdowns/Dropdown';
 import TodoContainer from '@/components/todo/TodoContainer';
+import AddTodoModal from '@/components/todo/AddTodoModal';
 export default {
 	name: 'Todo',
 	components: {
 		Dropdown,
 		TodoContainer,
 		TodoDescription,
+		// AddTodoModal,
 	},
 	data: function() {
 		return {
@@ -51,6 +74,8 @@ export default {
 			todayViewEnabled: true,
 			weeklyViewEnabled: false,
 			todaysDate: new Date().toDateString(),
+			addButtonClicked: false,
+			modal: false,
 		};
 	},
 	methods: {
@@ -65,6 +90,9 @@ export default {
 				this.weeklyViewEnabled = true;
 				this.todayViewEnabled = false;
 			}
+		},
+		toggleModal() {
+			this.modal = !this.modal;
 		},
 	},
 };
