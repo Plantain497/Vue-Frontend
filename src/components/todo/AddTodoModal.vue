@@ -27,7 +27,7 @@
 				class="overflow-hidden transition-all transform bg-white rounded-lg shadow-xl sm:max-w-lg sm:w-full"
 			>
 				<div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
-					<div class="sm:flex sm:items-start">
+					<div class="flex sm:flex sm:items-start">
 						<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
 							<!-- Title form -->
 							<input
@@ -48,8 +48,29 @@
 								:format="format"
 								:parseDate="parseDate"
 								:formatDate="formatDate"
-								:inputAttributes="{ size: 32 }"
+								:inputAttributes="{ size: 24 }"
 							></date-pick>
+
+							<input
+								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+								id="taskTitle"
+								type="text"
+								placeholder="Title"
+							/>
+
+							<input
+								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+								id="taskTitle"
+								type="text"
+								placeholder="Title"
+							/>
+
+							<input
+								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+								id="taskTitle"
+								type="text"
+								placeholder="Title"
+							/>
 
 							<!-- <div class="mt-2">
 								<p class="text-sm leading-5 text-gray-500">
