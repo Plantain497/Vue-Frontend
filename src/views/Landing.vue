@@ -1,7 +1,7 @@
 <template>
 	<div>
-		<LandingNavBar />
-		<Hero />
+		<landing-nav-bar />
+		<hero />
 	</div>
 </template>
 
