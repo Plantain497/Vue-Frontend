@@ -20,7 +20,7 @@
 				<div class="hidden sm:block sm:ml-6">
 					<div class="flex">
 						<large-nav-button
-							item-name="Product"
+							item-name="Plantain"
 							:inverted="true"
 							:current-selected="currentSelected"
 							@interface="handleClick"
@@ -54,7 +54,7 @@
 		<div class="sm:hidden" v-if="hamburgerOpen">
 			<div class="px-2 pt-2 pb-3">
 				<small-nav-button
-					item-name="Product"
+					item-name="Plantain"
 					:inverted="true"
 					:current-selected="currentSelected"
 					@interface="handleClick"
@@ -88,7 +88,7 @@ export default {
 	data() {
 		return {
 			hamburgerOpen: false,
-			currentSelected: 'Product',
+			currentSelected: 'Plantain',
 		};
 	},
 	components: {
