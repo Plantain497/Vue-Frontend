@@ -66,7 +66,7 @@
 					<button
 						class="relative block w-full overflow-hidden border-2 rounded-lg focus:outline-none focus:shadow-outline"
 					>
-						<img class="w-full" :src="image" alt="Plantain Demo" />
+						<img class="w-full h-64" :src="image" alt="Plantain Demo" />
 					</button>
 				</div>
 			</div>
