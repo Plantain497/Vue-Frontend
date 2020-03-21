@@ -30,6 +30,7 @@
 </template>
 <script>
 import GoogleSignInButton from '@/components/buttons/GoogleSignIn/GoogleSignInButton';
+
 export default {
 	components: {
 		GoogleSignInButton,
