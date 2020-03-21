@@ -1,5 +1,8 @@
 <template>
-	<div class="fixed inset-0 flex items-center justify-center px-4 pb-4" v-if="open">
+	<div
+		class="fixed inset-0 flex items-center justify-center h-auto px-4 pb-4"
+		v-if="open"
+	>
 		<transition
 			name="custom-background-transition"
 			enter-class="opacity-0"
@@ -43,13 +46,18 @@
 								id="dateSelector"
 								type="text"
 							>-->
-							<date-pick
+							<!-- <date-pick
 								v-model="date"
 								:format="format"
 								:parseDate="parseDate"
 								:formatDate="formatDate"
-								:inputAttributes="{ size: 24 }"
-							></date-pick>
+								:inputAttributes="{ size: 36 }"
+								class=""
+							></date-pick> -->
+							<input
+								type="date"
+								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+							/>
 
 							<input
 								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
@@ -88,14 +96,18 @@
 							v-on:click="sendOpenStatus"
 							type="button"
 							class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo sm:text-sm sm:leading-5"
-						>Add Task</button>
+						>
+							Add Task
+						</button>
 					</span>
 					<span class="flex w-full mt-3 rounded-md shadow-sm sm:mt-0 sm:w-auto">
 						<button
 							v-on:click="sendOpenStatus"
 							type="button"
 							class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-200 rounded-md shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline sm:text-sm sm:leading-5"
-						>Cancel</button>
+						>
+							Cancel
+						</button>
 					</span>
 				</div>
 			</div>
@@ -109,7 +121,7 @@ import 'vue-date-pick/dist/vueDatePick.css';
 
 export default {
 	name: 'AddTodoModal',
-	components: { DatePick },
+	// components: { DatePick },
 	props: {
 		open: {
 			type: Boolean,
