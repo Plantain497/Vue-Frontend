@@ -1,5 +1,5 @@
 <template>
-	<div class="max-w-screen-xl px-4 mx-auto mt-4 overflow-hidden sm:mt-8 sm:px-6 lg:px-8">
+	<div class="max-w-screen-xl px-4 mx-auto my-4 overflow-hidden sm:mt-8 sm:px-6 lg:px-8">
 		<div class="lg:grid lg:grid-cols-12 lg:gap-8">
 			<div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
 				<div
