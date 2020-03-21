@@ -3,9 +3,7 @@
 		class="flex items-center justify-center px-4 py-2 text-sm font-medium leading-5 text-white transition duration-150 ease-in-out border border-transparent rounded focus:outline-none focus:shadow-outline"
 		:class="classes"
 		v-on:click="authenticate"
-	>
-		{{ text }}
-	</button>
+	>{{ text }}</button>
 </template>
 <script>
 import firebase from 'firebase';

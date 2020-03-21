@@ -1,7 +1,5 @@
 <template>
-	<span :class="classObject" role="button" v-on:click="itemClicked">
-		{{ itemName }}
-	</span>
+	<span :class="classObject" role="button" v-on:click="itemClicked">{{ itemName }}</span>
 </template>
 
 <script>
@@ -29,7 +27,7 @@ export default {
 		classObject: function() {
 			const base = [
 				this.classes,
-				'px-3 py-2 text-sm font-medium leading-5 transition duration-150 ease-in-out rounded-md focus:outline-none',
+				'px-3 py-2 text-md font-medium leading-5 transition duration-150 ease-in-out rounded-md focus:outline-none',
 			];
 			if (this.inverted) {
 				if (this.itemName === this.currentSelected) {
