@@ -25,6 +25,7 @@
 				<div class="hidden md:block md:ml-10">
 					<large-nav-button
 						item-name="Plantain"
+						scroll-to="Plantain"
 						:inverted="true"
 						:current-selected="currentSelected"
 						@interface="handleClick"
@@ -32,6 +33,7 @@
 					/>
 					<large-nav-button
 						item-name="Features"
+						scroll-to="Features"
 						classes="ml-4"
 						:inverted="true"
 						:current-selected="currentSelected"
@@ -40,6 +42,7 @@
 					/>
 					<large-nav-button
 						item-name="Getting Started"
+						scroll-to="GettingStarted"
 						classes="ml-4"
 						:inverted="true"
 						:current-selected="currentSelected"
@@ -102,6 +105,7 @@
 						<div class="px-2 pt-2 pb-3">
 							<small-nav-button
 								item-name="Plantain"
+								scroll-to="Plantain"
 								:inverted="true"
 								:current-selected="currentSelected"
 								@interface="handleClick"
@@ -109,6 +113,7 @@
 							/>
 							<small-nav-button
 								item-name="Features"
+								scroll-to="Features"
 								classes="mt-1"
 								:inverted="true"
 								:current-selected="currentSelected"
@@ -117,6 +122,7 @@
 							/>
 							<small-nav-button
 								item-name="Getting Started"
+								scroll-to="GettingStarted"
 								classes="mt-1"
 								:inverted="true"
 								:current-selected="currentSelected"

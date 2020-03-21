@@ -1,7 +1,7 @@
 <template>
 	<div class="max-w-screen-xl px-4 py-12 mx-auto sm:px-6 lg:py-16 lg:px-8">
 		<h2
-			class="text-base font-semibold leading-6 tracking-wider text-center text-gray-600 uppercase text-md"
+			class="text-base font-semibold leading-6 tracking-wider text-center text-indigo-600 uppercase text-md"
 		>
 			Trusted by employees at
 		</h2>

@@ -1,5 +1,5 @@
 <template>
-	<div id="Features" class="pt-12 pb-56 bg-gray-100">
+	<div id="Features" class="py-12 bg-gray-100">
 		<div class="max-w-screen-xl px-4 mx-auto sm:px-6 lg:px-8">
 			<section-header
 				classes="lg:text-center"
