@@ -1,5 +1,10 @@
 <template>
-	<span :class="classObject" role="button" v-on:click="itemClicked">
+	<span
+		:class="classObject"
+		role="button"
+		v-on:click="itemClicked"
+		v-scroll-to="{ el: `#${itemName}`, offset: -200, onDone: onDone }"
+	>
 		{{ itemName }}
 	</span>
 </template>
@@ -23,6 +28,9 @@ export default {
 		inverted: {
 			type: Boolean,
 			default: false,
+		},
+		onDone: {
+			type: Function,
 		},
 	},
 	computed: {

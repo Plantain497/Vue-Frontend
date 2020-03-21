@@ -28,6 +28,7 @@
 						:inverted="true"
 						:current-selected="currentSelected"
 						@interface="handleClick"
+						:on-done="closeHamburger"
 					/>
 					<large-nav-button
 						item-name="Features"
@@ -35,6 +36,7 @@
 						:inverted="true"
 						:current-selected="currentSelected"
 						@interface="handleClick"
+						:on-done="closeHamburger"
 					/>
 					<large-nav-button
 						item-name="Getting Started"
@@ -42,6 +44,7 @@
 						:inverted="true"
 						:current-selected="currentSelected"
 						@interface="handleClick"
+						:on-done="closeHamburger"
 					/>
 				</div>
 			</div>
@@ -63,7 +66,11 @@
 			leave-class="scale-100 opacity-100"
 			leave-to-class="scale-95 opacity-0"
 		>
-			<div class="absolute inset-x-0 top-0 p-2 md:hidden" v-if="hamburgerOpen">
+			<div
+				class="absolute inset-x-0 top-0 p-2 md:hidden"
+				v-if="hamburgerOpen"
+				v-click-outside="closeHamburger"
+			>
 				<div class="transition origin-top-right transform rounded-lg shadow-md">
 					<div class="overflow-hidden bg-white rounded-lg shadow-xs">
 						<div class="flex items-center justify-between px-5 pt-4">
@@ -98,6 +105,7 @@
 								:inverted="true"
 								:current-selected="currentSelected"
 								@interface="handleClick"
+								:on-done="closeHamburger"
 							/>
 							<small-nav-button
 								item-name="Features"
@@ -105,6 +113,7 @@
 								:inverted="true"
 								:current-selected="currentSelected"
 								@interface="handleClick"
+								:on-done="closeHamburger"
 							/>
 							<small-nav-button
 								item-name="Getting Started"
@@ -112,6 +121,7 @@
 								:inverted="true"
 								:current-selected="currentSelected"
 								@interface="handleClick"
+								:on-done="closeHamburger"
 							/>
 						</div>
 						<landing-mini-button
@@ -146,8 +156,11 @@ export default {
 		SmallNavButton,
 	},
 	methods: {
-		handleClick(newSelected) {
+		handleClick: function(newSelected) {
 			this.currentSelected = newSelected;
+		},
+		closeHamburger: async function() {
+			this.hamburgerOpen = false;
 		},
 	},
 };
