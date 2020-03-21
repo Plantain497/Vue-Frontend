@@ -1,5 +1,7 @@
 <template>
-	<nav class="max-w-screen-xl px-2 mx-auto mt-2 font-sans antialiased bg-gray-100 sm:px-6 lg:px-8">
+	<nav
+		class="max-w-screen-xl px-2 pt-2 mx-auto mt-2 font-sans antialiased bg-gray-100 sm:px-6 lg:px-8"
+	>
 		<div class="relative flex items-center justify-between h-16">
 			<div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
 				<button
