@@ -3,7 +3,7 @@
 		:class="classObject"
 		role="button"
 		v-on:click="itemClicked"
-		v-scroll-to="{ el: `#${itemName}`, offset: -200, onDone: onDone }"
+		v-scroll-to="{ el: `#${scrollTo}`, offset: -200, onDone: onDone }"
 	>
 		{{ itemName }}
 	</span>
@@ -16,6 +16,9 @@ export default {
 			type: String,
 			required: true,
 			default: '',
+		},
+		scrollTo: {
+			type: String,
 		},
 		currentSelected: {
 			type: String,
