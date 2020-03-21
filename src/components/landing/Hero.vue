@@ -1,5 +1,5 @@
 <template>
-	<div class="max-w-screen-xl px-4 mx-auto mt-8 overflow-hidden sm:mt-12 sm:px-6 lg:px-8">
+	<div class="max-w-screen-xl px-4 mx-auto mt-4 overflow-hidden sm:mt-8 sm:px-6 lg:px-8">
 		<div class="lg:grid lg:grid-cols-12 lg:gap-8">
 			<div class="sm:text-center md:max-w-2xl md:mx-auto lg:col-span-6 lg:text-left">
 				<div
@@ -56,7 +56,7 @@
 							height="20"
 							patternUnits="userSpaceOnUse"
 						>
-							<rect x="0" y="0" width="4" height="4" class="text-gray-200" fill="currentColor" />
+							<rect x="0" y="0" width="4" height="4" class="text-gray-300" fill="currentColor" />
 						</pattern>
 					</defs>
 
