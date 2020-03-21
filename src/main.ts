@@ -6,8 +6,11 @@ import vco from 'v-click-outside';
 import VueGAPI from 'vue-gapi';
 import { firestorePlugin } from 'vuefire';
 const fb = require('./firebaseConfig.js');
+const VueScrollTo = require('vue-scrollto');
 
 Vue.use(firestorePlugin);
+
+Vue.use(VueScrollTo);
 
 Vue.use(vco);
 

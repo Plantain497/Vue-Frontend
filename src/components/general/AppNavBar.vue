@@ -189,7 +189,7 @@
 	</nav>
 </template>
 <script>
-import Hamburger from '@/components/buttons/Hamburger';
+import Hamburger from '@/components/buttons/Hamburger/Hamburger';
 export default {
 	components: {
 		Hamburger,

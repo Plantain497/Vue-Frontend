@@ -1,5 +1,12 @@
 <template>
-	<span :class="classObject" role="button" v-on:click="itemClicked">{{ itemName }}</span>
+	<span
+		:class="classObject"
+		role="button"
+		v-on:click="itemClicked"
+		v-scroll-to="{ el: `#${itemName}`, offset: -25, onDone: onDone }"
+	>
+		{{ itemName }}
+	</span>
 </template>
 
 <script>
@@ -22,12 +29,15 @@ export default {
 			type: Boolean,
 			default: false,
 		},
+		onDone: {
+			type: Function,
+		},
 	},
 	computed: {
 		classObject: function() {
 			const base = [
 				this.classes,
-				'px-3 py-2 text-md font-medium leading-5 transition duration-150 ease-in-out rounded-md focus:outline-none',
+				'block px-3 py-2 text-base font-medium transition duration-150 ease-in-out rounded-md',
 			];
 			if (this.inverted) {
 				if (this.itemName === this.currentSelected) {
@@ -36,16 +46,18 @@ export default {
 					);
 				} else {
 					base.push(
-						'text-gray-500 focus:bg-gray-200 focus:text-purple-700 hover:bg-gray-200 hover:text-purple-700',
+						'text-gray-700 focus:bg-gray-200 focus:text-purple-700 hover:bg-gray-200 hover:text-purple-700',
 					);
 				}
 			} else {
 				if (this.itemName === this.currentSelected) {
 					base.push(
-						'text-white bg-gray-900 focus:bg-gray-700 hover:bg-gray-700',
+						'text-white bg-gray-900 focus:outline-none focus:text-white focus:bg-gray-700',
 					);
 				} else {
-					base.push('text-gray-300 hover:text-white focus:text-white');
+					base.push(
+						'text-gray-300 hover:text-white hover:bg-gray-700 focus:outline-none focus:text-white focus:bg-gray-700',
+					);
 				}
 			}
 
