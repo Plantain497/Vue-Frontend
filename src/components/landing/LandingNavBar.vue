@@ -27,7 +27,7 @@
 						href="#"
 						class="font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
 					>
-						Product
+						Plantain
 					</a>
 					<a
 						href="#"
@@ -95,7 +95,7 @@
 								href="#"
 								class="block px-3 py-2 text-base font-medium text-gray-700 transition duration-150 ease-in-out rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50"
 							>
-								Product
+								Plantain
 							</a>
 							<a
 								href="#"
@@ -110,14 +110,9 @@
 								Getting Started
 							</a>
 						</div>
-						<div>
-							<a
-								href="#"
-								class="block w-full px-5 py-3 font-medium text-center text-indigo-600 transition duration-150 ease-in-out bg-gray-50 hover:bg-gray-100 hover:text-indigo-700 focus:outline-none focus:bg-gray-100 focus:text-indigo-700"
-							>
-								Log in
-							</a>
-						</div>
+						<landing-mini-button
+							classes="text-indigo-600 bg-gray-50 hover:bg-gray-100 hover:text-indigo-700 focus:bg-gray-100 focus:text-indigo-700"
+						/>
 					</div>
 				</div>
 			</div>
@@ -127,9 +122,8 @@
 
 <script>
 import ThreeLines from '@/components/buttons/Hamburger/ThreeLines';
-import LargeNavButton from '@/components/buttons/LargeNavButton.vue';
-import GoogleSignInButton from '@/components/buttons/GoogleSignInButton.vue';
-import SmallNavButton from '@/components/buttons/SmallNavButton';
+import GoogleSignInButton from '@/components/buttons/GoogleSignIn/GoogleSignInButton.vue';
+import LandingMiniButton from '@/components/buttons/GoogleSignIn/LandingMiniButton.vue';
 
 export default {
 	data() {
@@ -140,9 +134,8 @@ export default {
 	},
 	components: {
 		ThreeLines,
-		// 	LargeNavButton,
 		GoogleSignInButton,
-		// 	SmallNavButton,
+		LandingMiniButton,
 	},
 	methods: {
 		handleClick(newSelected) {
