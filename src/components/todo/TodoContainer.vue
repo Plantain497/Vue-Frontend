@@ -1,7 +1,7 @@
 <template>
 	<div class="w-full h-full bg-gray-100 md:w-1/2">
 		<div v-if="todayViewEnabled || weeklyViewEnabled">
-			<p class="border-b border-gray-300">Today, {{ todaysDate }}</p>
+			<p class="pb-1 border-b border-gray-300">Today, {{ todaysDate }}</p>
 			<div v-click-outside="resetSelectedTodoItem">
 				<div v-for="todo in todoList" :key="todo.title">
 					<todo-item
