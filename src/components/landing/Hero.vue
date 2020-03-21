@@ -1,6 +1,6 @@
 <template>
 	<div
-		class="max-w-screen-xl px-4 mx-auto my-4 overflow-hidden sm:mt-8 sm:px-6 lg:px-8"
+		class="max-w-screen-xl px-4 mx-auto mt-4 overflow-hidden sm:mb-8 sm:mt-8 sm:px-6 lg:px-8"
 	>
 		<div class="lg:grid lg:grid-cols-12 lg:gap-8">
 			<div
@@ -56,7 +56,7 @@
 				class="relative pb-16 mt-12 sm:max-w-lg sm:mx-auto lg:mt-0 lg:max-w-none lg:mx-0 lg:col-span-6 lg:flex lg:items-center"
 			>
 				<svg
-					class="absolute top-0 origin-top transform scale-75 -translate-x-1/2 -translate-y-8 left-1/2 sm:scale-100"
+					class="absolute top-0 origin-top transform scale-75 -translate-x-1/2 -translate-y-8 left-1/2 sm:scale-100 md:-translate-y-0"
 					width="640"
 					height="784"
 					fill="none"
@@ -83,8 +83,8 @@
 					</defs>
 
 					<rect
-						x="118"
-						width="404"
+						x="102"
+						width="480"
 						height="784"
 						fill="url(#4f4f415c-a0e9-44c2-9601-6ded5a34a13e)"
 					/>
@@ -93,7 +93,7 @@
 					<button
 						class="relative block w-full overflow-hidden border-2 rounded-lg focus:outline-none focus:shadow-outline"
 					>
-						<img class="w-full h-64" :src="image" alt="Plantain Demo" />
+						<img class="w-full" :src="image" alt="Plantain Demo" />
 					</button>
 				</div>
 			</div>
