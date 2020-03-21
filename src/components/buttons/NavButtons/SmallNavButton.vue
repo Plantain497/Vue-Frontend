@@ -38,7 +38,7 @@ export default {
 					);
 				} else {
 					base.push(
-						'text-gray-500 focus:bg-gray-200 focus:text-purple-700 hover:bg-gray-200 hover:text-purple-700',
+						'text-gray-700 focus:bg-gray-200 focus:text-purple-700 hover:bg-gray-200 hover:text-purple-700',
 					);
 				}
 			} else {

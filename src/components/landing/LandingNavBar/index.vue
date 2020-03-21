@@ -23,24 +23,26 @@
 					</div>
 				</div>
 				<div class="hidden md:block md:ml-10">
-					<a
-						href="#"
-						class="font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
-					>
-						Plantain
-					</a>
-					<a
-						href="#"
-						class="ml-10 font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
-					>
-						Features
-					</a>
-					<a
-						href="#"
-						class="ml-10 font-medium text-gray-500 transition duration-150 ease-in-out hover:text-gray-900 focus:outline-none focus:text-gray-900"
-					>
-						Getting Started
-					</a>
+					<large-nav-button
+						item-name="Plantain"
+						:inverted="true"
+						:current-selected="currentSelected"
+						@interface="handleClick"
+					/>
+					<large-nav-button
+						item-name="Features"
+						classes="ml-4"
+						:inverted="true"
+						:current-selected="currentSelected"
+						@interface="handleClick"
+					/>
+					<large-nav-button
+						item-name="Getting Started"
+						classes="ml-4"
+						:inverted="true"
+						:current-selected="currentSelected"
+						@interface="handleClick"
+					/>
 				</div>
 			</div>
 			<div class="hidden text-right md:block">
@@ -91,24 +93,26 @@
 							</div>
 						</div>
 						<div class="px-2 pt-2 pb-3">
-							<a
-								href="#"
-								class="block px-3 py-2 text-base font-medium text-gray-700 transition duration-150 ease-in-out rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50"
-							>
-								Plantain
-							</a>
-							<a
-								href="#"
-								class="block px-3 py-2 mt-1 text-base font-medium text-gray-700 transition duration-150 ease-in-out rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50"
-							>
-								Features
-							</a>
-							<a
-								href="#"
-								class="block px-3 py-2 mt-1 text-base font-medium text-gray-700 transition duration-150 ease-in-out rounded-md hover:text-gray-900 hover:bg-gray-50 focus:outline-none focus:text-gray-900 focus:bg-gray-50"
-							>
-								Getting Started
-							</a>
+							<small-nav-button
+								item-name="Plantain"
+								:inverted="true"
+								:current-selected="currentSelected"
+								@interface="handleClick"
+							/>
+							<small-nav-button
+								item-name="Features"
+								classes="mt-1"
+								:inverted="true"
+								:current-selected="currentSelected"
+								@interface="handleClick"
+							/>
+							<small-nav-button
+								item-name="Getting Started"
+								classes="mt-1"
+								:inverted="true"
+								:current-selected="currentSelected"
+								@interface="handleClick"
+							/>
 						</div>
 						<landing-mini-button
 							classes="text-indigo-600 bg-gray-50 hover:bg-gray-100 hover:text-indigo-700 focus:bg-gray-100 focus:text-indigo-700"
@@ -124,6 +128,8 @@
 import ThreeLines from '@/components/buttons/Hamburger/ThreeLines';
 import GoogleSignInButton from '@/components/buttons/GoogleSignIn/GoogleSignInButton.vue';
 import LandingMiniButton from '@/components/buttons/GoogleSignIn/LandingMiniButton.vue';
+import LargeNavButton from '@/components/buttons/NavButtons/LargeNavButton';
+import SmallNavButton from '@/components/buttons/NavButtons/SmallNavButton';
 
 export default {
 	data() {
@@ -136,6 +142,8 @@ export default {
 		ThreeLines,
 		GoogleSignInButton,
 		LandingMiniButton,
+		LargeNavButton,
+		SmallNavButton,
 	},
 	methods: {
 		handleClick(newSelected) {

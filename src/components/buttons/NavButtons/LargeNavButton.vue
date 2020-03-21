@@ -1,5 +1,7 @@
 <template>
-	<span :class="classObject" role="button" v-on:click="itemClicked">{{ itemName }}</span>
+	<span :class="classObject" role="button" v-on:click="itemClicked">
+		{{ itemName }}
+	</span>
 </template>
 
 <script>
