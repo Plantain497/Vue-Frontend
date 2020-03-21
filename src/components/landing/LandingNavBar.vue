@@ -1,5 +1,5 @@
 <template>
-	<div class="relative pt-6 pb-16 md:pb-20 lg:pb-24 xl:pb-32">
+	<div class="relative pt-6 pb-4 lg:pb-6">
 		<nav
 			class="relative flex items-center justify-between max-w-screen-xl px-4 mx-auto sm:px-6"
 		>
