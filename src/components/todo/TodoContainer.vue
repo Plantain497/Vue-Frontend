@@ -14,7 +14,7 @@
 			</div>
 		</div>
 		<div v-if="weeklyViewEnabled">
-			<p class="pt-6 border-b border-gray-300">WEEKLY VIEW ENABLED</p>
+			<p class="pt-6 pb-1 border-b border-gray-300">WEEKLY VIEW ENABLED</p>
 			<div v-click-outside="resetSelectedTodoItem">
 				<div v-for="todo in todoList" :key="todo.title">
 					<todo-item
