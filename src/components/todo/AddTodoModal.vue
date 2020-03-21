@@ -33,60 +33,26 @@
 					<div class="flex sm:flex sm:items-start">
 						<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
 							<!-- Title form -->
-							<input
+							<FormulateInput
 								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-								id="taskTitle"
 								type="text"
 								placeholder="Title"
+								v-model="taskTitle"
 							/>
 
-							<!-- Due date selector here!! -->
-							<!-- <input
-								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-								id="dateSelector"
-								type="text"
-							>-->
-							<!-- <date-pick
-								v-model="date"
-								:format="format"
-								:parseDate="parseDate"
-								:formatDate="formatDate"
-								:inputAttributes="{ size: 36 }"
-								class=""
-							></date-pick> -->
-							<input
+							<!-- Due date selector -->
+							<FormulateInput
 								type="date"
-								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+								class="w-auto px-3 py-2 mb-4 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 							/>
 
+							<!-- Description form -->
 							<input
 								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-								id="taskTitle"
+								id="taskDescription"
 								type="text"
-								placeholder="Title"
+								placeholder="Description of task"
 							/>
-
-							<input
-								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-								id="taskTitle"
-								type="text"
-								placeholder="Title"
-							/>
-
-							<input
-								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-								id="taskTitle"
-								type="text"
-								placeholder="Title"
-							/>
-
-							<!-- <div class="mt-2">
-								<p class="text-sm leading-5 text-gray-500">
-									Details about your task go here!
-								</p>
-							</div>-->
-
-							<!-- Description form here! -->
 						</div>
 					</div>
 				</div>
@@ -115,13 +81,12 @@
 	</div>
 </template>
 <script>
-import DatePick from 'vue-date-pick';
-import fecha from 'fecha';
-import 'vue-date-pick/dist/vueDatePick.css';
-
+import FormulateInput from '@braid/vue-formulate/src/FormulateInput.vue';
 export default {
 	name: 'AddTodoModal',
-	// components: { DatePick },
+	components: {
+		FormulateInput,
+	},
 	props: {
 		open: {
 			type: Boolean,
@@ -130,19 +95,23 @@ export default {
 	},
 	data: function() {
 		return {
-			format: 'dddd MMMM Do, YYYY',
-			date: fecha.format(new Date(), 'dddd MMMM Do, YYYY'),
+			taskTitle: 'Title',
+			taskDescription: String,
+			taskDate: Object,
+			taskComplete: false,
 		};
 	},
 	methods: {
 		sendOpenStatus: function() {
 			this.$emit('changeAddModalOpenStatusEvent', false);
 		},
-		parseDate(dateString, format) {
-			return fecha.parse(dateString, format);
+		sendTaskData: function() {
+			uid = 'ashdjakshdakjshd';
+			addTodo(uid, title, description, date, completed);
 		},
-		formatDate(dateObj, format) {
-			return fecha.format(dateObj, format);
+		saveTaskTitle: function() {
+			this.taskTitle = this.innerText;
+			alert(this.taskTitle);
 		},
 	},
 };
