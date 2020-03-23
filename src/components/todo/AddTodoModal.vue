@@ -34,15 +34,19 @@
 						<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
 							<!-- Title form -->
 							<formulate-input
-								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+								class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 								type="text"
+								name="title"
 								v-model="taskTitle"
+								placeholder="Title"
+								validate="required|title"
 							/>
 
 							<!-- Due date selector -->
 							<formulate-input
 								type="date"
-								class="w-auto px-3 py-2 mb-4 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+								class="w-full px-3 py-2 mb-4 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+								v-model="taskDate"
 							/>
 
 							<!-- Description form -->
@@ -50,7 +54,8 @@
 								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 								id="taskDescription"
 								type="text"
-								placeholder="Description of task"
+								placeholder="Description"
+								v-model="taskDescription"
 							/>
 						</div>
 					</div>
@@ -58,7 +63,7 @@
 				<div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
 					<span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
 						<button
-							v-on:click="sendOpenStatus"
+							v-on:click="addTaskAndClose"
 							type="button"
 							class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo sm:text-sm sm:leading-5"
 						>
@@ -94,7 +99,7 @@ export default {
 	},
 	data: function() {
 		return {
-			taskTitle: 'Title',
+			taskTitle: '',
 			taskDescription: '',
 			taskDate: {},
 			taskComplete: false,
@@ -104,14 +109,11 @@ export default {
 		sendOpenStatus: function() {
 			this.$emit('changeAddModalOpenStatusEvent', false);
 		},
-		sendTaskData: function() {
+		addTaskAndClose: function() {
 			uid = 'ashdjakshdakjshd';
-			addTodo(uid, title, description, date, completed);
+			addTodo(uid, this.taskTitle, this.taskDescription, this.taskDate, false);
+			sendOpenStatus();
 		},
-		// saveTaskTitle: function() {
-		// 	this.taskTitle = this.innerText;
-		// 	alert(this.taskTitle);
-		// },
 	},
 };
 </script>
