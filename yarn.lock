@@ -2697,6 +2697,16 @@ cliui@^6.0.0:
     strip-ansi "^6.0.0"
     wrap-ansi "^6.2.0"
 
+clone-deep@^3.0.1:
+  version "3.0.1"
+  resolved "https://registry.yarnpkg.com/clone-deep/-/clone-deep-3.0.1.tgz#7d1a4b88a3cf0bc2da84696ba712b349a6506a44"
+  integrity sha512-kWn5hGUnIA4algk62xJIp9jxQZ8DxSPg9ktkkK1WxRGhU/0GKZBekYJHXAXaZKMpxoq/7R4eygeIl9Cf7si+bA==
+  dependencies:
+    for-own "^1.0.0"
+    is-plain-object "^2.0.4"
+    kind-of "^6.0.2"
+    shallow-clone "^2.0.2"
+
 clone@^1.0.2:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/clone/-/clone-1.0.4.tgz#da309cc263df15994c688ca902179ca3c7cd7c7e"
@@ -4237,10 +4247,17 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "^3.0.0"
 
-for-in@^1.0.2:
+for-in@^1.0.1, for-in@^1.0.2:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-1.0.2.tgz#81068d295a8142ec0ac726c6e2200c30fb6d5e80"
   integrity sha1-gQaNKVqBQuwKxybG4iAMMPttXoA=
+
+for-own@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/for-own/-/for-own-1.0.0.tgz#c63332f415cedc4b04dbfe70cf836494c53cb44b"
+  integrity sha1-xjMy9BXO3EsE2/5wz4NklMU8tEs=
+  dependencies:
+    for-in "^1.0.1"
 
 forever-agent@~0.6.1:
   version "0.6.1"
@@ -5169,7 +5186,7 @@ is-extendable@^0.1.0, is-extendable@^0.1.1:
   resolved "https://registry.yarnpkg.com/is-extendable/-/is-extendable-0.1.1.tgz#62b110e289a471418e3ec36a617d472e301dfc89"
   integrity sha1-YrEQ4omkcUGOPsNqYX1HLjAd/Ik=
 
-is-extendable@^1.0.1:
+is-extendable@^1.0.0, is-extendable@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/is-extendable/-/is-extendable-1.0.1.tgz#a7470f9e426733d81bd81e1155264e3a3507cab4"
   integrity sha512-arnXMxT1hhoKo9k1LZdmlNyJdDDfy2v0fXjFlmok4+i8ul/6WlbVge9bhM74OpNPQPMGUToDtz+KXa1PneJxOA==
@@ -6031,6 +6048,14 @@ mixin-deep@^1.2.0:
     for-in "^1.0.2"
     is-extendable "^1.0.1"
 
+mixin-object@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/mixin-object/-/mixin-object-3.0.0.tgz#55091196c9cf744f4c7956fb7021da38c736c440"
+  integrity sha512-RsUqTd3DyF9+UPqhLzJIWwGm4ZGIPYOu6WcQhQuBqqVBGhc6LOC8LrFk9KD7PvVwmqri45IJT88WLrNNrMWjxg==
+  dependencies:
+    for-in "^1.0.2"
+    is-extendable "^1.0.0"
+
 mkdirp@0.5.1, mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.1:
   version "0.5.1"
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
@@ -6102,7 +6127,7 @@ nan@^2.12.1, nan@^2.13.2:
   resolved "https://registry.yarnpkg.com/nan/-/nan-2.14.0.tgz#7818f722027b2459a86f0295d434d1fc2336c52c"
   integrity sha512-INOFj37C7k3AfaNTtX8RhsTw7qRy7eLET14cROi9+5HAVbbHuIWUHEauBv5qT4Av2tWasiTY1Jw6puUNqRJXQg==
 
-nanoid@^2.1.11:
+nanoid@^2.1.0, nanoid@^2.1.11:
   version "2.1.11"
   resolved "https://registry.yarnpkg.com/nanoid/-/nanoid-2.1.11.tgz#ec24b8a758d591561531b4176a01e3ab4f0f0280"
   integrity sha512-s/snB+WGm6uwi0WjsZdaVcuf3KJXlfGl2LcxgwkEwJF0D/BWzVWAZW/XY4bFaiR7s0Jk3FPvlnepg1H1b1UwlA==
@@ -8005,6 +8030,15 @@ sha.js@^2.4.0, sha.js@^2.4.8:
     inherits "^2.0.1"
     safe-buffer "^5.0.1"
 
+shallow-clone@^2.0.2:
+  version "2.0.2"
+  resolved "https://registry.yarnpkg.com/shallow-clone/-/shallow-clone-2.0.2.tgz#7f6e9cf3b64e37d5f4afb0f648a0204da556b872"
+  integrity sha512-2o81AG/RpLTAG/ZXQekPtH/6yTffzKlJ+i6UhtVTtnP6zWQaNo9vt6LI28bhZLSesB12VQSfJYtXopTogVBveg==
+  dependencies:
+    is-extendable "^1.0.1"
+    kind-of "^6.0.2"
+    mixin-object "^3.0.0"
+
 shebang-command@^1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/shebang-command/-/shebang-command-1.2.0.tgz#44aac65b695b03398968c39f363fee5deafdf1ea"
@@ -8033,6 +8067,13 @@ shell-quote@^1.6.1:
   version "1.7.2"
   resolved "https://registry.yarnpkg.com/shell-quote/-/shell-quote-1.7.2.tgz#67a7d02c76c9da24f99d20808fcaded0e0e04be2"
   integrity sha512-mRz/m/JVscCrkMyPqHc/bczi3OQHkLTqXHEFu0zDhK/qfv3UcOA4SVmRCLmos4bhjr9ekVQubj/R7waKapmiQg==
+
+shortid@^2.2.8:
+  version "2.2.15"
+  resolved "https://registry.yarnpkg.com/shortid/-/shortid-2.2.15.tgz#2b902eaa93a69b11120373cd42a1f1fe4437c122"
+  integrity sha512-5EaCy2mx2Jgc/Fdn9uuDuNIIfWBpzY4XIlhoqtXF6qsf+/+SGZ+FxDdX/ZsMZiWupIWNqAEmiNY4RC+LSmCeOw==
+  dependencies:
+    nanoid "^2.1.0"
 
 signal-exit@^3.0.0, signal-exit@^3.0.2:
   version "3.0.2"
@@ -9094,6 +9135,14 @@ vue-eslint-parser@^7.0.0:
     espree "^6.1.2"
     esquery "^1.0.1"
     lodash "^4.17.15"
+
+vue-formulate@^0.12.1:
+  version "0.12.1"
+  resolved "https://registry.yarnpkg.com/vue-formulate/-/vue-formulate-0.12.1.tgz#bcf8120feb88a50919bdc57640ae234deba16eb5"
+  integrity sha512-4AvPqE4D80xPKi0ZKyOBxHwOt4T2H8q7DcfAUD5PMfdvGq23MfY1KYql3joobAKVczI0xn66iXhlyuJ6edfC9w==
+  dependencies:
+    clone-deep "^3.0.1"
+    shortid "^2.2.8"
 
 vue-gapi@^0.1.2:
   version "0.1.2"
