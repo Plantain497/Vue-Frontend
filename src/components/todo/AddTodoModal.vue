@@ -33,14 +33,25 @@
 					<div class="flex sm:flex sm:items-start">
 						<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
 							<!-- Title form -->
-							<formulate-input
-								class="w-full px-3 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-								type="text"
-								name="title"
-								v-model="taskTitle"
-								placeholder="Title"
-								validate="required|title"
-							/>
+							<div class="pb-4">
+								<label
+									for="title"
+									class="block text-sm font-medium leading-5 text-gray-700"
+								>
+									Todo Title
+								</label>
+								<div class="relative mt-1 rounded-md shadow-sm">
+									<formulate-input
+										id="title"
+										class="block w-full form-input sm:text-sm sm:leading-5"
+										type="text"
+										name="title"
+										v-model="taskTitle"
+										placeholder="Title"
+										validate="required|title"
+									/>
+								</div>
+							</div>
 
 							<!-- Due date selector -->
 							<formulate-input

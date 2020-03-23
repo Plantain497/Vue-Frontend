@@ -2,6 +2,7 @@ const autoprefixer = require('autoprefixer');
 const cssnano = require('cssnano');
 const tailwindcss = require('tailwindcss');
 const postcssPurgecss = require('@fullhuman/postcss-purgecss');
+const postCSSExtend = require('postcss-extend');
 
 const purgecss = postcssPurgecss({
 	content: ['./public/**/*.html', './src/**/*.vue'],
@@ -16,6 +17,7 @@ const purgecss = postcssPurgecss({
 module.exports = {
 	plugins: [
 		tailwindcss,
+		postCSSExtend,
 		autoprefixer,
 		// purgecss,
 		cssnano,
