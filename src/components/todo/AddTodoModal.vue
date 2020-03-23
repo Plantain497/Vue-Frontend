@@ -33,21 +33,20 @@
 					<div class="flex sm:flex sm:items-start">
 						<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
 							<!-- Title form -->
-							<FormulateInput
+							<formulate-input
 								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 								type="text"
-								placeholder="Title"
 								v-model="taskTitle"
 							/>
 
 							<!-- Due date selector -->
-							<FormulateInput
+							<formulate-input
 								type="date"
 								class="w-auto px-3 py-2 mb-4 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 							/>
 
 							<!-- Description form -->
-							<input
+							<formulate-input
 								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 								id="taskDescription"
 								type="text"
@@ -96,8 +95,8 @@ export default {
 	data: function() {
 		return {
 			taskTitle: 'Title',
-			taskDescription: String,
-			taskDate: Object,
+			taskDescription: '',
+			taskDate: {},
 			taskComplete: false,
 		};
 	},
