@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import App from './App.vue';
-import './assets/tailwind.css';
+import './assets/tailwind.scss';
+import './assets/form-style/form_theme.scss';
 import router from './router';
 import vco from 'v-click-outside';
 import VueGAPI from 'vue-gapi';
