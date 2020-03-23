@@ -36,7 +36,6 @@
 							<formulate-input
 								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 								type="text"
-								placeholder="Title"
 								v-model="taskTitle"
 							/>
 
@@ -47,7 +46,7 @@
 							/>
 
 							<!-- Description form -->
-							<input
+							<formulate-input
 								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
 								id="taskDescription"
 								type="text"
@@ -96,8 +95,8 @@ export default {
 	data: function() {
 		return {
 			taskTitle: 'Title',
-			taskDescription: String,
-			taskDate: Object,
+			taskDescription: '',
+			taskDate: {},
 			taskComplete: false,
 		};
 	},

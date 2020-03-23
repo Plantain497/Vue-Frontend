@@ -4,9 +4,13 @@ import './assets/tailwind.css';
 import router from './router';
 import vco from 'v-click-outside';
 import VueGAPI from 'vue-gapi';
+import VueFormulate from '@braid/vue-formulate';
 import { firestorePlugin } from 'vuefire';
+
 const fb = require('./firebaseConfig.js');
 const VueScrollTo = require('vue-scrollto');
+
+Vue.use(VueFormulate);
 
 Vue.use(firestorePlugin);
 
