@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from 'firebase/firestore';
 
 // This function still needs work since we probably have to talk about what "updating" means
 const updateTodo = function(uid, docId, checked) {

@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import firebase from 'firebase';
+import { auth } from '@/firebaseConfig';
 import HelloWorld from '@/components/HelloWorld.vue';
 import { getTodos } from '@/api/todo';
 
@@ -16,7 +16,7 @@ export default {
 	},
 	data: function() {
 		return {
-			currentUser: firebase.auth().currentUser,
+			currentUser: auth.currentUser,
 		};
 	},
 	methods: {

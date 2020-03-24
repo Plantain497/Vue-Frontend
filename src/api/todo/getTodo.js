@@ -1,4 +1,4 @@
-import firebase from 'firebase';
+import firebase from 'firebase/firestore';
 
 const getTodos = async function(uid, todos) {
 	const todosRef = await firebase
