@@ -127,19 +127,27 @@ export default {
 			this.$emit('changeAddModalOpenStatusEvent', false);
 		},
 		addTaskAndClose: function() {
-			this.uid = this.getUID();
+			this.getUID();
 			// addTodo(uid, this.taskTitle, this.taskDescription, this.taskDate, false);
 			this.sendOpenStatus();
 		},
 		getUID: function() {
-			this.$gapi.getGapiClient().then(gapi => {
-				this.basicProfile = gapi.auth2
-					.getAuthInstance()
-					.currentUser.get()
-					.getBasicProfile();
-			});
+			// this.$gapi.getGapiClient().then(gapi => {
+			// 	this.basicProfile = gapi.auth2
+			// 		.getAuthInstance()
+			// 		.currentUser.get()
+			// 		.getBasicProfile();
+			// });
 			console.log(this.basicProfile.uid);
 		},
+	},
+	created: function() {
+		this.$gapi.getGapiClient().then(gapi => {
+			this.basicProfile = gapi.auth2
+				.getAuthInstance()
+				.currentUser.get()
+				.getBasicProfile();
+		});
 	},
 };
 </script>
