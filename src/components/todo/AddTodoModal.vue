@@ -32,33 +32,46 @@
 				<div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
 					<div class="flex sm:flex sm:items-start">
 						<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-							<formulate-form>
-								<!-- Title form -->
-								<formulate-input
-									class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									type="text"
-									name="title"
-									v-model="taskTitle"
-									placeholder="Title"
-									validation="required"
-								/>
+							<!-- Title form -->
+							<formulate-input
+								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
+								type="text"
+								name="title"
+								v-model="taskTitle"
+								placeholder="Title"
+								validation="required"
+							/>
 
-								<!-- Due date selector -->
+							<!-- Due date selector -->
+							<div class="flex items-center">
+								<svg
+									fill="none"
+									stroke="currentColor"
+									stroke-linecap="round"
+									stroke-linejoin="round"
+									stroke-width="2"
+									viewBox="0 0 24 24"
+									class="w-16 h-16 px-3 py-2 text-gray-600"
+								>
+									<path
+										d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
+									></path>
+								</svg>
 								<formulate-input
 									type="date"
-									class="w-full px-3 py-2 mb-4 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+									class="w-full py-2 mb-4 text-sm leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
 									v-model="taskDate"
 								/>
+							</div>
 
-								<!-- Description form -->
-								<formulate-input
-									class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
-									id="taskDescription"
-									type="text"
-									placeholder="Description"
-									v-model="taskDescription"
-								/>
-							</formulate-form>
+							<!-- Description form -->
+							<formulate-input
+								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
+								id="taskDescription"
+								type="text"
+								placeholder="Description"
+								v-model="taskDescription"
+							/>
 						</div>
 					</div>
 				</div>
@@ -93,7 +106,6 @@ export default {
 	name: 'AddTodoModal',
 	components: {
 		FormulateInput,
-		FormulateForm,
 	},
 	props: {
 		open: {
@@ -107,7 +119,7 @@ export default {
 			taskDescription: '',
 			taskDate: {},
 			taskComplete: false,
-			uid: 0,
+			basicProfile: {},
 		};
 	},
 	methods: {
@@ -115,7 +127,7 @@ export default {
 			this.$emit('changeAddModalOpenStatusEvent', false);
 		},
 		addTaskAndClose: function() {
-			uid = this.getUID();
+			this.uid = this.getUID();
 			// addTodo(uid, this.taskTitle, this.taskDescription, this.taskDate, false);
 			this.sendOpenStatus();
 		},
@@ -126,8 +138,7 @@ export default {
 					.currentUser.get()
 					.getBasicProfile();
 			});
-			this.uid = prof.uid;
-			alert(prof.uid);
+			console.log(this.basicProfile.uid);
 		},
 	},
 };
