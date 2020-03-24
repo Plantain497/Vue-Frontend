@@ -32,34 +32,33 @@
 				<div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
 					<div class="flex sm:flex sm:items-start">
 						<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-							<!-- Title form -->
+							<formulate-form>
+								<!-- Title form -->
+								<formulate-input
+									class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+									type="text"
+									name="title"
+									v-model="taskTitle"
+									placeholder="Title"
+									validation="required"
+								/>
 
-							<formulate-input
-								id="title"
-								class="block w-full sm:text-sm sm:leading-5"
-								type="text"
-								name="title"
-								v-model="taskTitle"
-								placeholder="Title"
-								validate="required|title"
-							/>
+								<!-- Due date selector -->
+								<formulate-input
+									type="date"
+									class="w-full px-3 py-2 mb-4 text-sm leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+									v-model="taskDate"
+								/>
 
-							<formulate-input
-								id="title"
-								class="block w-full sm:text-sm sm:leading-5"
-								type="date"
-								name="date"
-								v-model="taskDate"
-							/>
-
-							<!-- Description form -->
-							<formulate-input
-								class="block w-full sm:text-sm sm:leading-5"
-								id="taskDescription"
-								type="text"
-								placeholder="Description"
-								v-model="taskDescription"
-							/>
+								<!-- Description form -->
+								<formulate-input
+									class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline"
+									id="taskDescription"
+									type="text"
+									placeholder="Description"
+									v-model="taskDescription"
+								/>
+							</formulate-form>
 						</div>
 					</div>
 				</div>
@@ -89,10 +88,12 @@
 </template>
 <script>
 import FormulateInput from '@braid/vue-formulate/src/FormulateInput.vue';
+import FormulateForm from '@braid/vue-formulate/src/FormulateForm';
 export default {
 	name: 'AddTodoModal',
 	components: {
 		FormulateInput,
+		FormulateForm,
 	},
 	props: {
 		open: {
@@ -106,6 +107,7 @@ export default {
 			taskDescription: '',
 			taskDate: {},
 			taskComplete: false,
+			uid: 0,
 		};
 	},
 	methods: {
@@ -113,9 +115,19 @@ export default {
 			this.$emit('changeAddModalOpenStatusEvent', false);
 		},
 		addTaskAndClose: function() {
-			uid = 'ashdjakshdakjshd';
-			addTodo(uid, this.taskTitle, this.taskDescription, this.taskDate, false);
-			sendOpenStatus();
+			uid = this.getUID();
+			// addTodo(uid, this.taskTitle, this.taskDescription, this.taskDate, false);
+			this.sendOpenStatus();
+		},
+		getUID: function() {
+			this.$gapi.getGapiClient().then(gapi => {
+				this.basicProfile = gapi.auth2
+					.getAuthInstance()
+					.currentUser.get()
+					.getBasicProfile();
+			});
+			this.uid = prof.uid;
+			alert(prof.uid);
 		},
 	},
 };
