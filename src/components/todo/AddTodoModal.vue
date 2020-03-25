@@ -29,12 +29,17 @@
 			<div
 				class="overflow-hidden transition-all transform bg-white rounded-lg shadow-xl sm:max-w-lg sm:w-full"
 			>
-				<div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
+				<div class="px-4 py-4 bg-white sm:p-6 sm:pb-4">
+					<h2
+						class="pb-2 text-base font-bold leading-7 text-gray-900 sm:text-xl sm:leading-9 sm:truncate"
+					>
+						New Task
+					</h2>
 					<div class="flex sm:flex sm:items-start">
-						<div class="w-full mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+						<div class="w-full mt-3 text-center sm:mt-0 sm:text-left">
 							<!-- Title form -->
 							<formulate-input
-								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
+								class="w-full py-2 leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
 								type="text"
 								name="title"
 								v-model="taskTitle"
@@ -43,7 +48,7 @@
 							/>
 
 							<!-- Due date selector -->
-							<div class="flex items-center w-full px-3 py-2 mb-4">
+							<div class="flex items-center w-full py-2 mb-4">
 								<svg
 									fill="none"
 									stroke="currentColor"
@@ -59,14 +64,14 @@
 								</svg>
 								<formulate-input
 									type="date"
-									class="w-full py-2 mb-4 text-sm leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
+									class="w-full py-2 text-sm leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
 									v-model="taskDate"
 								/>
 							</div>
 
 							<!-- Description form -->
 							<formulate-input
-								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
+								class="w-full py-2 leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
 								id="taskDescription"
 								type="text"
 								placeholder="Description"
@@ -129,18 +134,22 @@ export default {
 		sendOpenStatus: function() {
 			this.$emit('changeAddModalOpenStatusEvent', false);
 		},
+		dateShift: function(date) {
+			return new Date(date.getTime() - date.getTimezoneOffset() * -60000);
+		},
 		addTaskAndClose: function() {
 			this.uid = auth.currentUser.uid;
 
-			var date = null;
+			let date = null;
 			if (this.taskDate == null) {
+				const dateTemp = new Date();
+				date = this.dateShift(dateTemp);
 				addTodo(this.uid, this.taskTitle, this.taskDescription, null, false);
+			} else {
+				const dateTemp = new Date(this.taskDate);
+				date = this.dateShift(dateTemp);
+				addTodo(this.uid, this.taskTitle, this.taskDescription, date, false);
 			}
-			const dateTemp = new Date(this.taskDate);
-			date = new Date(
-				dateTemp.getTime() - dateTemp.getTimezoneOffset() * -60000,
-			);
-			addTodo(this.uid, this.taskTitle, this.taskDescription, date, false);
 			this.sendOpenStatus();
 		},
 	},

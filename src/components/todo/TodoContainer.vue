@@ -44,7 +44,6 @@
 import { compareAsc, format, fromUnixTime, addDays } from 'date-fns';
 import TodoItem from '@/components/todo/TodoItem';
 import TodoDeleteModal from '@/components/todo/TodoDeleteModal';
-// import { deleteToDo } from '@/api/todo';
 export default {
 	name: 'TodoContainer',
 	components: {
