@@ -72,7 +72,7 @@
 	</div>
 </template>
 <script>
-import firebase from 'firebase/auth';
+import { auth, authProvider } from '@/firebaseConfig';
 export default {
 	methods: {
 		authenticate: function() {
@@ -84,10 +84,8 @@ export default {
 							.getAuthInstance()
 							.currentUser.get()
 							.getAuthResponse().id_token;
-						const credential = firebase.auth.GoogleAuthProvider.credential(
-							idToken,
-						);
-						return await firebase.auth().signInWithCredential(credential);
+						const credential = authProvider.credential(idToken);
+						return await auth.signInWithCredential(credential);
 					})
 					.then(() => {
 						this.$router.push(this.$route.query.redirect);

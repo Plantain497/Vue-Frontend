@@ -1,9 +1,7 @@
-import firebase from 'firebase/firestore';
+import { db } from '@/firebaseConfig';
 
 const deleteToDo = function(uid, docId) {
-	firebase
-		.firestore()
-		.collection('users')
+	db.collection('users')
 		.doc(uid)
 		.collection('todos')
 		.doc(docId)
