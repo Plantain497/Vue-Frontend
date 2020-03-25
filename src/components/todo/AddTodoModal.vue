@@ -136,7 +136,10 @@ export default {
 			if (this.taskDate == null) {
 				addTodo(this.uid, this.taskTitle, this.taskDescription, null, false);
 			}
-			date = new Date(this.taskDate);
+			const dateTemp = new Date(this.taskDate);
+			date = new Date(
+				dateTemp.getTime() - dateTemp.getTimezoneOffset() * -60000,
+			);
 			addTodo(this.uid, this.taskTitle, this.taskDescription, date, false);
 			this.sendOpenStatus();
 		},
