@@ -7,7 +7,6 @@
 <script>
 import { auth } from '@/firebaseConfig';
 import HelloWorld from '@/components/HelloWorld.vue';
-import { getTodos } from '@/api/todo';
 
 export default {
 	name: 'Dashboard',
@@ -29,11 +28,6 @@ export default {
 				console.log(res.result.items);
 			});
 		},
-	},
-	created() {
-		const todos = {};
-		getTodos(this.currentUser.uid, todos);
-		console.log(todos);
 	},
 };
 </script>

@@ -60,17 +60,20 @@ export default {
 	},
 	data: function() {
 		return {
-			todoList: [],
+			todoList: {},
 			selectedTodo: TodoItem,
 			todayViewEnabled: true,
 			weeklyViewEnabled: false,
-			todaysDate: new Date().toDateString(),
+			todaysDate: new Date(),
 			addModalOpen: false,
 		};
 	},
 	methods: {
 		getTodo: function(todo) {
 			this.selectedTodo = todo;
+		},
+		addToTodoList: function(id, todo) {
+			this.todoList[id] = todo;
 		},
 		getViewStatus: function(curr) {
 			if (curr === 'Today') {
@@ -86,7 +89,7 @@ export default {
 		},
 	},
 	created() {
-		getTodos(auth.currentUser.uid, this.todoList);
+		getTodos(auth.currentUser.uid, this.addToTodoList);
 	},
 };
 </script>

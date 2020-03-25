@@ -1,8 +1,6 @@
-import {
-	db
-} from '@/firebaseConfig';
+import { db } from '@/firebaseConfig';
 
-const getTodos = async function (uid, todos) {
+const getTodos = async function(uid, todoCallback) {
 	const todosRef = await db
 		.collection('users')
 		.doc(uid)
@@ -11,11 +9,9 @@ const getTodos = async function (uid, todos) {
 		snap.forEach(doc => {
 			const todo = doc.data();
 			const id = doc.id;
-			todos[id] = todo;
+			todoCallback(id, todo);
 		});
 	});
 };
 
-export {
-	getTodos
-};
+export { getTodos };

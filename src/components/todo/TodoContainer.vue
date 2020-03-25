@@ -1,14 +1,16 @@
 <template>
 	<div class="w-full h-full bg-gray-100 md:w-1/2">
 		<div v-if="todayViewEnabled || weeklyViewEnabled">
-			<p class="pb-1 border-b border-gray-300">Today, {{ todaysDate }}</p>
+			<p class="pb-1 border-b border-gray-300">
+				Today: {{ formatDate(todaysDate) }}
+			</p>
 			<div v-click-outside="resetSelectedTodoItem">
-				<div v-for="todo in todoList" :key="todo.title">
+				<div v-for="(todo, id) in todoList" :key="id">
 					<todo-item
 						:title="todo.title"
 						:description="todo.description"
 						v-on:click.native="sendClickedTodoItem(todo)"
-						v-if="todo.dueDate == todaysDate"
+						v-if="compareTodoDueDate(todo.dueDate)"
 					></todo-item>
 				</div>
 			</div>
@@ -28,6 +30,7 @@
 	</div>
 </template>
 <script>
+import { compareAsc, format, fromUnixTime } from 'date-fns';
 import TodoItem from '@/components/todo/TodoItem';
 export default {
 	name: 'TodoContainer',
@@ -36,7 +39,7 @@ export default {
 	},
 	props: {
 		todoList: {
-			type: Array,
+			type: Object,
 		},
 		todayViewEnabled: {
 			type: Boolean,
@@ -45,7 +48,7 @@ export default {
 			type: Boolean,
 		},
 		todaysDate: {
-			type: String,
+			type: Date,
 		},
 	},
 	methods: {
@@ -54,6 +57,23 @@ export default {
 		},
 		resetSelectedTodoItem: function() {
 			this.$emit('sendTodoItemEvent', {});
+		},
+		dateFormat: function(newDate) {
+			return newDate.toDateString();
+		},
+		dueDateConvert: function(dueDate) {
+			return new Date(dueDate * 1000);
+		},
+		formatDate: function(date) {
+			return format(date, 'PPP');
+		},
+		fromUnixTime: fromUnixTime,
+		compareAsc: compareAsc,
+		compareTodoDueDate: function(date) {
+			return (
+				this.formatDate(fromUnixTime(date.seconds)) ===
+				this.formatDate(this.todaysDate)
+			);
 		},
 	},
 };

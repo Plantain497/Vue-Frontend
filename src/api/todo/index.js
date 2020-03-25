@@ -1,4 +1,4 @@
-export * from './getTodo';
+export * from './getTodos';
 export * from './addTodo';
 export * from './deleteTodo';
 export * from './updateTodo';
