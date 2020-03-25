@@ -38,17 +38,30 @@
 					<div class="flex sm:flex sm:items-start">
 						<div class="w-full mt-3 text-center sm:mt-0 sm:text-left">
 							<!-- Title form -->
+							<label
+								for="addTodoTitle"
+								class="block pt-2 text-sm font-medium leading-5 text-gray-600"
+							>
+								Title
+							</label>
 							<formulate-input
-								class="w-full py-2 leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
+								class="w-full pt-1 pb-2 leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
 								type="text"
 								name="title"
+								id="addTodoTitle"
 								v-model="taskTitle"
 								placeholder="Title"
 								validation="required"
 							/>
 
 							<!-- Due date selector -->
-							<div class="flex items-center w-full py-2 mb-4">
+							<label
+								for="addTodoDate"
+								class="block pt-2 text-sm font-medium leading-5 text-gray-600"
+							>
+								Due Date
+							</label>
+							<div id="addTodoDate" class="flex items-center w-full pb-2">
 								<svg
 									fill="none"
 									stroke="currentColor"
@@ -70,8 +83,14 @@
 							</div>
 
 							<!-- Description form -->
+							<label
+								for="taskDescription"
+								class="block text-sm font-medium leading-5 text-gray-600"
+							>
+								Description
+							</label>
 							<formulate-input
-								class="w-full py-2 leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
+								class="w-full pt-1 pb-2 leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
 								id="taskDescription"
 								type="text"
 								placeholder="Description"
