@@ -1,5 +1,8 @@
 <template>
 	<div class="w-full h-full bg-gray-100 md:w-1/2">
+		<div v-if="show">
+			<todo-delete-modal @closeModal="handleCloseModal" :id="idToDelete" />
+		</div>
 		<div v-if="todayViewEnabled || weeklyViewEnabled">
 			<p class="pb-1 border-b border-gray-300">
 				Today, {{ formatDate(todaysDate) }}
@@ -7,9 +10,11 @@
 			<div v-click-outside="resetSelectedTodoItem">
 				<div v-for="(todo, id) in todoList" :key="id">
 					<todo-item
+						:id="id"
 						:title="todo.title"
 						:description="todo.description"
 						v-on:click.native="sendClickedTodoItem(todo)"
+						@deleteTodoId="deleteTodo"
 						v-if="compareTodoDueDate(todo.dueDate)"
 					></todo-item>
 				</div>
@@ -21,9 +26,10 @@
 					{{ longFormatDate(date) }}
 				</p>
 				<div v-click-outside="resetSelectedTodoItem">
-					<div v-for="todo in todoList" :key="todo.title">
+					<div v-for="(todo, id) in todoList" :key="id">
 						<todo-item
 							v-if="compareTwoDates(todo.dueDate, date)"
+              @deleteTodoId="deleteTodo"
 							:title="todo.title"
 							:description="todo.description"
 							v-on:click.native="sendClickedTodoItem(todo)"
@@ -37,10 +43,19 @@
 <script>
 import { compareAsc, format, fromUnixTime, addDays } from 'date-fns';
 import TodoItem from '@/components/todo/TodoItem';
+import TodoDeleteModal from '@/components/todo/TodoDeleteModal';
+// import { deleteToDo } from '@/api/todo';
 export default {
 	name: 'TodoContainer',
 	components: {
 		TodoItem,
+		TodoDeleteModal,
+	},
+	data: function() {
+		return {
+			show: false,
+			idToDelete: '',
+		};
 	},
 	props: {
 		todoList: {
@@ -62,6 +77,13 @@ export default {
 		};
 	},
 	methods: {
+		deleteTodo: function(id) {
+			this.idToDelete = id;
+			this.show = true;
+		},
+		handleCloseModal: function() {
+			this.show = false;
+		},
 		sendClickedTodoItem: function(todo) {
 			this.$emit('sendTodoItemEvent', todo);
 		},
@@ -81,7 +103,6 @@ export default {
 			return format(date, 'PPPP');
 		},
 		fromUnixTime: fromUnixTime,
-		compareAsc: compareAsc,
 		compareTodoDueDate: function(date) {
 			if (date == null) {
 				return false;
