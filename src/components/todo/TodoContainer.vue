@@ -70,10 +70,14 @@ export default {
 		fromUnixTime: fromUnixTime,
 		compareAsc: compareAsc,
 		compareTodoDueDate: function(date) {
-			return (
-				this.formatDate(fromUnixTime(date.seconds)) ===
-				this.formatDate(this.todaysDate)
-			);
+			if (date == null) {
+				return false;
+			} else {
+				return (
+					this.formatDate(fromUnixTime(date.seconds)) ===
+					this.formatDate(this.todaysDate)
+				);
+			}
 		},
 	},
 };
