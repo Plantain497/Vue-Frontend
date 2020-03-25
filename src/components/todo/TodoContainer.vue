@@ -30,7 +30,7 @@
 	</div>
 </template>
 <script>
-import { compareAsc, format, fromUnixTime } from 'date-fns';
+import { format, fromUnixTime } from 'date-fns';
 import TodoItem from '@/components/todo/TodoItem';
 export default {
 	name: 'TodoContainer',
@@ -68,7 +68,6 @@ export default {
 			return format(date, 'PPP');
 		},
 		fromUnixTime: fromUnixTime,
-		compareAsc: compareAsc,
 		compareTodoDueDate: function(date) {
 			if (date == null) {
 				return false;
