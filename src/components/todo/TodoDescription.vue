@@ -1,5 +1,5 @@
 <template>
-	<div class="h-full ml-10 mr-5 rounded-lg">
+	<div class="w-1/2 h-full mr-5 bg-gray-200 rounded-lg">
 		<div class="px-6 py-4">
 			<p class="text-xl font-bold break-words">{{ selectedTodo.title }}</p>
 			<p class="pb-4 text-gray-600 text-md">
