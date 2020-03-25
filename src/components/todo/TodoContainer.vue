@@ -29,7 +29,7 @@
 					<div v-for="(todo, id) in todoList" :key="id">
 						<todo-item
 							v-if="compareTwoDates(todo.dueDate, date)"
-              @deleteTodoId="deleteTodo"
+							@deleteTodoId="deleteTodo"
 							:title="todo.title"
 							:description="todo.description"
 							v-on:click.native="sendClickedTodoItem(todo)"
