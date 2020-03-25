@@ -12,6 +12,7 @@
 				v-on:sendTodoItemEvent="getTodo"
 			></todo-container>
 			<todo-description
+				v-if="Object.keys(selectedTodo).length"
 				:selected-todo="selectedTodo"
 				class="hidden min-w-1/2 md:block"
 			></todo-description>
@@ -61,7 +62,7 @@ export default {
 	data: function() {
 		return {
 			todoList: {},
-			selectedTodo: TodoItem,
+			selectedTodo: {},
 			todayViewEnabled: true,
 			weeklyViewEnabled: false,
 			todaysDate: new Date(),
