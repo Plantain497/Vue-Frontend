@@ -43,7 +43,7 @@
 							/>
 
 							<!-- Due date selector -->
-							<div class="flex items-center w-full">
+							<div class="flex items-center w-full px-3 py-2 mb-4">
 								<svg
 									fill="none"
 									stroke="currentColor"
@@ -51,7 +51,7 @@
 									stroke-linejoin="round"
 									stroke-width="2"
 									viewBox="0 0 24 24"
-									class="w-16 h-16 px-3 py-2 text-gray-600"
+									class="w-12 h-12 pr-3 text-gray-600"
 								>
 									<path
 										d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"

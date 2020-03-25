@@ -5,7 +5,7 @@
 		</div>
 		<div v-if="todayViewEnabled || weeklyViewEnabled">
 			<p class="pb-1 border-b border-gray-300">
-				Today: {{ formatDate(todaysDate) }}
+				Today, {{ formatDate(todaysDate) }}
 			</p>
 			<div v-click-outside="resetSelectedTodoItem">
 				<div v-for="(todo, id) in todoList" :key="id">
@@ -21,21 +21,27 @@
 			</div>
 		</div>
 		<div v-if="weeklyViewEnabled">
-			<p class="pt-6 pb-1 border-b border-gray-300">WEEKLY VIEW ENABLED</p>
-			<div v-click-outside="resetSelectedTodoItem">
-				<div v-for="(todo, id) in todoList" :key="id">
-					<todo-item
-						:title="todo.title"
-						:description="todo.description"
-						v-on:click.native="sendClickedTodoItem(todo)"
-					></todo-item>
+			<div v-for="date in thisWeekDates" :key="date">
+				<p class="pt-6 pb-1 border-b border-gray-300">
+					{{ longFormatDate(date) }}
+				</p>
+				<div v-click-outside="resetSelectedTodoItem">
+					<div v-for="(todo, id) in todoList" :key="id">
+						<todo-item
+							v-if="compareTwoDates(todo.dueDate, date)"
+              @deleteTodoId="deleteTodo"
+							:title="todo.title"
+							:description="todo.description"
+							v-on:click.native="sendClickedTodoItem(todo)"
+						></todo-item>
+					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 </template>
 <script>
-import { format, fromUnixTime } from 'date-fns';
+import { compareAsc, format, fromUnixTime, addDays } from 'date-fns';
 import TodoItem from '@/components/todo/TodoItem';
 import TodoDeleteModal from '@/components/todo/TodoDeleteModal';
 // import { deleteToDo } from '@/api/todo';
@@ -65,6 +71,11 @@ export default {
 			type: Date,
 		},
 	},
+	data: function() {
+		return {
+			thisWeekDates: [],
+		};
+	},
 	methods: {
 		deleteTodo: function(id) {
 			this.idToDelete = id;
@@ -88,6 +99,9 @@ export default {
 		formatDate: function(date) {
 			return format(date, 'PPP');
 		},
+		longFormatDate: function(date) {
+			return format(date, 'PPPP');
+		},
 		fromUnixTime: fromUnixTime,
 		compareTodoDueDate: function(date) {
 			if (date == null) {
@@ -99,6 +113,22 @@ export default {
 				);
 			}
 		},
+		compareTwoDates: function(d1, d2) {
+			if (d1 == null || d2 == null) {
+				return false;
+			} else {
+				console.log('date 1 ' + d1);
+				console.log('date 2 ' + d2);
+				return (
+					this.formatDate(fromUnixTime(d1.seconds)) === this.formatDate(d2)
+				);
+			}
+		},
+	},
+	created() {
+		for (var i = 1; i < 8; ++i) {
+			this.thisWeekDates.push(addDays(this.todaysDate, i));
+		}
 	},
 };
 </script>
