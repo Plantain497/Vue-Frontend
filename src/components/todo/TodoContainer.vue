@@ -1,6 +1,6 @@
 <template>
 	<div class="w-full h-full bg-gray-100 md:w-1/2">
-		<div v-if="show">
+		<div v-if="showDeleteModal">
 			<todo-delete-modal @closeModal="handleCloseModal" :id="idToDelete" />
 		</div>
 		<div v-if="todayViewEnabled || weeklyViewEnabled">
@@ -51,12 +51,6 @@ export default {
 		TodoItem,
 		TodoDeleteModal,
 	},
-	data: function() {
-		return {
-			show: false,
-			idToDelete: '',
-		};
-	},
 	props: {
 		todoList: {
 			type: Object,
@@ -73,16 +67,18 @@ export default {
 	},
 	data: function() {
 		return {
+			showDeleteModal: false,
+			idToDelete: '',
 			thisWeekDates: [],
 		};
 	},
 	methods: {
 		deleteTodo: function(id) {
 			this.idToDelete = id;
-			this.show = true;
+			this.showDeleteModal = true;
 		},
 		handleCloseModal: function() {
-			this.show = false;
+			this.showDeleteModal = false;
 		},
 		sendClickedTodoItem: function(todo) {
 			this.$emit('sendTodoItemEvent', todo);
