@@ -1,6 +1,6 @@
-import firebase from 'firebase/firestore';
+import firebase from 'firebase';
 
-const deleteToDo = function(uid, docId) {
+const deleteToDo = function (uid, docId) {
 	firebase
 		.firestore()
 		.collection('users')
@@ -10,4 +10,6 @@ const deleteToDo = function(uid, docId) {
 		.delete();
 };
 
-export { deleteToDo };
+export {
+	deleteToDo
+};

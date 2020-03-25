@@ -48,6 +48,8 @@ import TodoDescription from '@/components/todo/TodoDescription';
 import Dropdown from '@/components/dropdowns/Dropdown';
 import TodoContainer from '@/components/todo/TodoContainer';
 import AddTodoModal from '@/components/todo/AddTodoModal';
+import { auth } from '@/firebaseConfig';
+import { getTodos } from '@/api/todo';
 export default {
 	name: 'Todo',
 	components: {
@@ -58,26 +60,7 @@ export default {
 	},
 	data: function() {
 		return {
-			todoList: [
-				{
-					title: 'Start Sprint Planning',
-					description: 'Focus on building outreach infrastructure',
-					id: 16472,
-					dueDate: new Date().toDateString(),
-				},
-				{
-					title: 'Build Lead Presentation Deck',
-					description: 'Identify success criterium and assess risk',
-					id: 16472,
-					dueDate: new Date().toDateString(),
-				},
-				{
-					title: 'Do laundry',
-					description: 'need underwear',
-					id: 82716,
-					// dueDate: new Date().toDateString(),
-				},
-			],
+			todoList: [],
 			selectedTodo: TodoItem,
 			todayViewEnabled: true,
 			weeklyViewEnabled: false,
@@ -101,6 +84,9 @@ export default {
 		changeAddModalStatus: function(open) {
 			this.addModalOpen = open;
 		},
+	},
+	created() {
+		getTodos(auth.currentUser.uid, this.todoList);
 	},
 };
 </script>

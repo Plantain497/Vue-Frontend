@@ -1,6 +1,6 @@
-import firebase from 'firebase/firestore';
+import firebase from 'firebase';
 
-const getTodos = async function(uid, todos) {
+const getTodos = async function (uid, todos) {
 	const todosRef = await firebase
 		.firestore()
 		.collection('users')
@@ -15,4 +15,6 @@ const getTodos = async function(uid, todos) {
 	});
 };
 
-export { getTodos };
+export {
+	getTodos
+};

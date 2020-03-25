@@ -3,10 +3,12 @@
 		class="block w-full px-5 py-3 font-medium text-center transition duration-150 ease-in-out focus:outline-none"
 		:class="classes"
 		v-on:click="authenticate"
-	>{{ text }}</button>
+	>
+		{{ text }}
+	</button>
 </template>
 <script>
-import firebase from 'firebase/auth';
+import firebase from 'firebase';
 export default {
 	props: {
 		text: {

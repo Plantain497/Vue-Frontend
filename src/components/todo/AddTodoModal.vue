@@ -31,7 +31,7 @@
 			>
 				<div class="px-4 pt-5 pb-4 bg-white sm:p-6 sm:pb-4">
 					<div class="flex sm:flex sm:items-start">
-						<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
+						<div class="w-full mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
 							<!-- Title form -->
 							<formulate-input
 								class="w-full px-3 py-2 mb-4 leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
@@ -43,7 +43,7 @@
 							/>
 
 							<!-- Due date selector -->
-							<div class="flex items-center">
+							<div class="flex items-center w-full">
 								<svg
 									fill="none"
 									stroke="currentColor"
@@ -79,8 +79,9 @@
 					<span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
 						<button
 							v-on:click="addTaskAndClose"
+							:disabled="taskTitle === ''"
 							type="button"
-							class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo sm:text-sm sm:leading-5"
+							class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo sm:text-sm sm:leading-5 disabled:opacity-50"
 						>
 							Add Task
 						</button>
@@ -102,6 +103,8 @@
 <script>
 import FormulateInput from '@braid/vue-formulate/src/FormulateInput.vue';
 import FormulateForm from '@braid/vue-formulate/src/FormulateForm';
+import { addTodo } from '@/api/todo';
+import { auth } from '@/firebaseConfig';
 export default {
 	name: 'AddTodoModal',
 	components: {
@@ -117,9 +120,9 @@ export default {
 		return {
 			taskTitle: '',
 			taskDescription: '',
-			taskDate: {},
+			taskDate: null,
 			taskComplete: false,
-			basicProfile: {},
+			uid: '',
 		};
 	},
 	methods: {
@@ -127,27 +130,16 @@ export default {
 			this.$emit('changeAddModalOpenStatusEvent', false);
 		},
 		addTaskAndClose: function() {
-			this.getUID();
-			// addTodo(uid, this.taskTitle, this.taskDescription, this.taskDate, false);
+			this.uid = auth.currentUser.uid;
+
+			var date = null;
+			if (this.taskDate == null) {
+				addTodo(this.uid, this.taskTitle, this.taskDescription, null, false);
+			}
+			date = new Date(this.taskDate);
+			addTodo(this.uid, this.taskTitle, this.taskDescription, date, false);
 			this.sendOpenStatus();
 		},
-		getUID: function() {
-			// this.$gapi.getGapiClient().then(gapi => {
-			// 	this.basicProfile = gapi.auth2
-			// 		.getAuthInstance()
-			// 		.currentUser.get()
-			// 		.getBasicProfile();
-			// });
-			console.log(this.basicProfile.uid);
-		},
-	},
-	created: function() {
-		this.$gapi.getGapiClient().then(gapi => {
-			this.basicProfile = gapi.auth2
-				.getAuthInstance()
-				.currentUser.get()
-				.getBasicProfile();
-		});
 	},
 };
 </script>

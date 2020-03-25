@@ -1,6 +1,6 @@
-import firebase from 'firebase/firestore';
+import firebase from 'firebase';
 
-const addTodo = function(uid, title, description, dueDate, isComplete) {
+const addTodo = function (uid, title, description, dueDate, isComplete) {
 	firebase
 		.firestore()
 		.collection('users')
@@ -10,9 +10,11 @@ const addTodo = function(uid, title, description, dueDate, isComplete) {
 			title: title,
 			description: description,
 			updatedAt: new Date(),
-			dueDate: date,
+			dueDate: dueDate,
 			isCompleted: isComplete,
 		});
 };
 
-export { addTodo };
+export {
+	addTodo
+};
