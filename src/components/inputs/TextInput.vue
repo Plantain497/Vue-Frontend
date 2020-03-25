@@ -1,0 +1,53 @@
+<template>
+	<div>
+		<input
+			:aria-label="inputAriaLabel"
+			class="block w-full px-3 py-3 text-base leading-6 placeholder-gray-500 transition duration-150 ease-in-out border border-gray-300 rounded-md shadow-sm appearance-none focus:outline-none focus:placeholder-gray-400 focus:shadow-outline focus:border-blue-300 sm:flex-1"
+			:class="{
+				'border-red-300 text-red-900 placeholder-red-500 focus:border-red-300 focus:shadow-outline-red': error,
+				'border-gray-300 placeholder-gray-500 focus:border-blue-300 focus:shadow-outline': !error
+			}"
+			:placeholder="placeholder"
+			v-model="content"
+			v-on:input="updateValue"
+		/>
+		<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none" v-if="error">
+			<svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
+				<path
+					fill-rule="evenodd"
+					d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7 4a1 1 0 11-2 0 1 1 0 012 0zm-1-9a1 1 0 00-1 1v4a1 1 0 102 0V6a1 1 0 00-1-1z"
+					clip-rule="evenodd"
+				/>
+			</svg>
+		</div>
+	</div>
+</template>
+<script>
+export default {
+	data: function() {
+		return {
+			content: '',
+		};
+	},
+	props: {
+		inputAriaLabel: {
+			type: String,
+			required: true,
+		},
+		placeholder: {
+			type: String,
+		},
+		label: {
+			type: String,
+		},
+		error: {
+			type: Boolean,
+		},
+	},
+	methods: {
+		updateValue: function() {
+			this.$emit('input', this.content);
+		},
+	},
+};
+</script>
