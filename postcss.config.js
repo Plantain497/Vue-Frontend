@@ -19,8 +19,8 @@ module.exports = {
 		tailwindcss,
 		postCSSExtend,
 		autoprefixer,
-		// purgecss,
+		purgecss,
 		cssnano,
-		...(process.env.NODE_ENV === 'production' ? [purgecss] : []),
+		// ...(process.env.NODE_ENV === 'production' ? [purgecss] : []),
 	],
 };

@@ -1,14 +1,8 @@
-$formulate-font-stack: 'Inter var',
--apple-system,
-BlinkMacSystemFont,
-'Segoe UI',
-Roboto,
-Helvetica,
-Arial,
-sans-serif,
-'Apple Color Emoji',
-'Segoe UI Emoji',
-'Segoe UI Symbol';
+/* purgecss start ignore */
+
+$formulate-font-stack: 'Inter var', -apple-system, BlinkMacSystemFont,
+	'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji',
+	'Segoe UI Emoji', 'Segoe UI Symbol';
 
 $formulate-gray: #efefef;
 $formulate-gray-d: #cecece;
@@ -376,7 +370,7 @@ $formulate-white: #ffffff;
 			}
 
 			input[type='checkbox']:checked {
-				&~.formulate-input-element-decorator {
+				& ~ .formulate-input-element-decorator {
 					border-color: $formulate-green;
 
 					&::before {
@@ -387,7 +381,7 @@ $formulate-white: #ffffff;
 			}
 
 			input[type='radio']:checked {
-				&~.formulate-input-element-decorator {
+				& ~ .formulate-input-element-decorator {
 					border-color: $formulate-green;
 
 					&::before {
@@ -397,7 +391,7 @@ $formulate-white: #ffffff;
 			}
 
 			input:focus {
-				&~.formulate-input-element-decorator {
+				& ~ .formulate-input-element-decorator {
 					border-color: $formulate-green;
 				}
 			}
@@ -413,8 +407,8 @@ $formulate-white: #ffffff;
 	}
 
 	&[data-classification='group'] {
-		&>.formulate-input-wrapper {
-			&>.formulate-input-label {
+		& > .formulate-input-wrapper {
+			& > .formulate-input-label {
 				margin-bottom: 0.5em;
 			}
 		}
@@ -482,7 +476,7 @@ $formulate-white: #ffffff;
 			input:focus,
 			input:hover,
 			input[data-is-drag-hover] {
-				&~.formulate-input-upload-area-mask {
+				& ~ .formulate-input-upload-area-mask {
 					border-color: $formulate-green;
 
 					&::before {
@@ -630,7 +624,7 @@ $formulate-white: #ffffff;
 					}
 				}
 
-				&+li {
+				& + li {
 					margin-top: 0.5em;
 				}
 			}
@@ -726,3 +720,5 @@ $formulate-white: #ffffff;
 		margin-bottom: 0.25em;
 	}
 }
+
+/* purgecss end ignore */
