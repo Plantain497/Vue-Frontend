@@ -8,7 +8,7 @@
 	</button>
 </template>
 <script>
-import firebase from 'firebase';
+import { auth, authProvider } from '@/firebaseConfig';
 export default {
 	props: {
 		text: {
@@ -30,10 +30,8 @@ export default {
 							.getAuthInstance()
 							.currentUser.get()
 							.getAuthResponse().id_token;
-						const credential = firebase.auth.GoogleAuthProvider.credential(
-							idToken,
-						);
-						return await firebase.auth().signInWithCredential(credential);
+						const credential = authProvider.credential(idToken);
+						return await auth.signInWithCredential(credential);
 					})
 					.then(() => {
 						this.$router.push('Dashboard');

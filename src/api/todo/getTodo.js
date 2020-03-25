@@ -1,8 +1,9 @@
-import firebase from 'firebase';
+import {
+	db
+} from '@/firebaseConfig';
 
 const getTodos = async function (uid, todos) {
-	const todosRef = await firebase
-		.firestore()
+	const todosRef = await db
 		.collection('users')
 		.doc(uid)
 		.collection('todos');

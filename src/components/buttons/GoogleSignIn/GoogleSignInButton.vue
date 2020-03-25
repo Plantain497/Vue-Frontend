@@ -6,7 +6,7 @@
 	>{{ text }}</button>
 </template>
 <script>
-import { auth } from '@/firebaseConfig';
+import { auth, authProvider } from '@/firebaseConfig';
 export default {
 	props: {
 		text: {
@@ -28,9 +28,7 @@ export default {
 							.getAuthInstance()
 							.currentUser.get()
 							.getAuthResponse().id_token;
-						const credential = firebase.auth.GoogleAuthProvider.credential(
-							idToken,
-						);
+						const credential = authProvider.credential(idToken);
 						return await auth.signInWithCredential(credential);
 					})
 					.then(() => {

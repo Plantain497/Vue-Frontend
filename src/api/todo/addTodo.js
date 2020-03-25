@@ -1,9 +1,9 @@
-import firebase from 'firebase';
+import {
+	db
+} from '@/firebaseConfig';
 
 const addTodo = function (uid, title, description, dueDate, isComplete) {
-	firebase
-		.firestore()
-		.collection('users')
+	db.collection('users')
 		.doc(uid)
 		.collection('todos')
 		.add({
