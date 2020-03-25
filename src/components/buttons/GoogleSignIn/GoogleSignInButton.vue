@@ -28,9 +28,7 @@ export default {
 							.getAuthInstance()
 							.currentUser.get()
 							.getAuthResponse().id_token;
-						const credential = firebase.auth.GoogleAuthProvider.credential(
-							idToken,
-						);
+						const credential = auth.GoogleAuthProvider.credential(idToken);
 						return await auth.signInWithCredential(credential);
 					})
 					.then(() => {
