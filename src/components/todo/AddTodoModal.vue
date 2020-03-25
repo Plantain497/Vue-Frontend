@@ -70,16 +70,12 @@
 							</div>
 
 							<!-- Description form -->
-							<label
-								for="taskDescription"
-								class="block text-sm font-medium leading-5 text-gray-600"
-							>Description</label>
-							<formulate-input
-								class="w-full pt-1 pb-2 leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
-								id="taskDescription"
-								type="text"
-								placeholder="Description"
+							<text-input
+								inputId="description"
+								label="Description"
 								v-model="taskDescription"
+								placeholder="Enter a Task Description"
+								hint="Optional"
 							/>
 						</div>
 					</div>
