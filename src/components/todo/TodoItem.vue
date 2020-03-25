@@ -19,11 +19,13 @@
 			</div>
 		</span>
 
-		<delete
-			heightClass="h-8"
-			widthClass="w-8"
-			class="text-gray-500 hover:text-gray-700 focus:text-gray-700"
-		/>
+		<div v-on:click="deletePrompt">
+			<delete
+				heightClass="h-8"
+				widthClass="w-8"
+				class="text-gray-500 hover:text-gray-700 focus:text-gray-700"
+			/>
+		</div>
 	</div>
 </template>
 <script>
@@ -45,14 +47,13 @@ export default {
 			type: Boolean,
 			default: false,
 		},
-		dueDate: {
+		id: {
 			type: String,
 		},
-		assignees: {
-			type: Array,
-		},
-		id: {
-			type: Number,
+	},
+	methods: {
+		deletePrompt: function() {
+			this.$emit('deleteTodoId', this.id);
 		},
 	},
 };
