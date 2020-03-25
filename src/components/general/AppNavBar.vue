@@ -1,6 +1,6 @@
 <template>
 	<nav
-		v-if="['Landing', 'Login'].includes($route.name) === false"
+		v-if="['Landing', 'FAQ', 'Login'].includes($route.name) === false"
 		class="bg-gray-800"
 	>
 		<div class="px-2 mx-auto max-w-7xl sm:px-6 lg:px-8">

@@ -14,6 +14,11 @@ const routes = [
 		component: Landing,
 	},
 	{
+		path: '/faq',
+		name: 'FAQ',
+		component: () => import('@/views/FAQ.vue'),
+	},
+	{
 		path: '/login',
 		name: 'Login',
 		component: () => import('@/views/Login.vue'),

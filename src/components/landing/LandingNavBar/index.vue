@@ -148,6 +148,12 @@ import LargeNavButton from '@/components/buttons/NavButtons/LargeNavButton';
 import SmallNavButton from '@/components/buttons/NavButtons/SmallNavButton';
 
 export default {
+	props: {
+		absolute: {
+			type: Boolean,
+			default: false,
+		},
+	},
 	data() {
 		return {
 			hamburgerOpen: false,
@@ -163,6 +169,9 @@ export default {
 	},
 	methods: {
 		handleClick: function(newSelected) {
+			if (this.absolute) {
+				this.$router.push('/');
+			}
 			this.currentSelected = newSelected;
 		},
 		closeHamburger: async function() {
