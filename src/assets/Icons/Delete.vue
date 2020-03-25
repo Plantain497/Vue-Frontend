@@ -5,7 +5,7 @@
 		stroke-linecap="round"
 		stroke-linejoin="round"
 		stroke-width="2"
-		:viewBox="viewBox"
+		viewBox="0 0 24 24"
 		:class="[heightClass, widthClass]"
 		class="transition duration-150 ease-in-out"
 	>
@@ -26,10 +26,6 @@ export default {
 			type: String,
 			required: true,
 			default: 'w-8',
-		},
-		viewbox: {
-			type: String,
-			default: '0 0 24 24',
 		},
 	},
 };
