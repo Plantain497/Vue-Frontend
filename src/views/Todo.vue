@@ -73,7 +73,7 @@ export default {
 			this.selectedTodo = todo;
 		},
 		addToTodoList: function(id, todo) {
-			this.todoList[id] = todo;
+			this.$set(this.todoList, id, todo);
 		},
 		getViewStatus: function(curr) {
 			if (curr === 'Today') {
