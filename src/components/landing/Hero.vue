@@ -28,21 +28,28 @@
 				</p>
 				<div class="mt-5 sm:max-w-lg sm:mx-auto sm:text-center lg:text-left lg:mx-0">
 					<p class="text-base font-medium text-gray-900">Sign up to get notified when it’s ready.</p>
-					<div class="mt-3 sm:mt-4 sm:flex">
-						<div class="relative w-full">
-							<text-input
-								inputAriaLabel="email"
-								v-model="email"
-								placeholder="Enter your email"
-								:error="error"
-							/>
-						</div>
-
+					<div action="#" method="POST" class="mt-3 sm:flex">
+						<text-input
+							inputId="email"
+							height-class="py-3"
+							v-model="email"
+							placeholder="Enter your email"
+							:error="error"
+							class="w-full"
+						/>
 						<button
-							v-on:click="subscribeUser"
+							type="submit"
 							class="w-full px-6 py-3 mt-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto"
 						>Notify me</button>
 					</div>
+					<p class="mt-3 text-sm leading-5 text-gray-500">
+						We care about the protection of your data. Read our
+						<a
+							href="#"
+							class="font-medium text-gray-900 underline"
+						>Privacy Policy</a>.
+					</p>
+
 					<p class="pb-2 mt-6 text-sm leading-5 text-gray-500 sm:mt-4">
 						We care about the protection of your data. Read our
 						<router-link to="/faq" class="font-medium text-gray-900 underline">Privacy Policy</router-link>
