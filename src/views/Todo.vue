@@ -17,7 +17,7 @@
 			></todo-description>
 		</div>
 		<button
-			class="fixed flex justify-center bg-purple-400 rounded-full shadow-lg w-15 h-15 bottom-15 left-20 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue"
+			class="fixed flex justify-center bg-purple-400 rounded-full shadow-lg w-15 h-15 bottom-15 right-20 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue"
 			v-on:click="addModalOpen = true"
 		>
 			<svg

@@ -19,5 +19,6 @@ module.exports = {
 	plugins: [require('@tailwindcss/ui')],
 	variants: {
 		opacity: ['disabled'],
+		cursor: ['disabled'],
 	},
 };
