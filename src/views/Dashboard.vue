@@ -1,8 +1,7 @@
 <template>
-	<modal />
-	<!-- <div class="px-2 py-8 mx-auto bg-gray-100 max-w-7xl sm:px-6 lg:px-8">
-		<HelloWorld msg="Welcome to Your Vue.js App" />
-	</div> -->
+	<div class="px-2 py-8 mx-auto bg-gray-100 max-w-7xl sm:px-6 lg:px-8">
+		<modal />
+	</div>
 </template>
 
 <script>

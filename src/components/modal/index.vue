@@ -1,5 +1,5 @@
 <template>
-	<Layout>
+	<div>
 		<span class="inline-flex rounded-md shadow-sm">
 			<button
 				@click="open = !open"
@@ -94,7 +94,7 @@
 				</div>
 			</transition>
 		</div>
-	</Layout>
+	</div>
 </template>
 
 <script>
