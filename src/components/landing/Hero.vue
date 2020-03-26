@@ -48,7 +48,7 @@
 							class="w-full"
 						/>
 						<button
-							type="submit"
+							@click="subscribeUser"
 							class="w-full px-6 py-3 mt-3 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-gray-800 border border-transparent rounded-md shadow-sm hover:bg-gray-700 focus:outline-none focus:shadow-outline active:bg-gray-900 sm:mt-0 sm:ml-3 sm:flex-shrink-0 sm:inline-flex sm:items-center sm:w-auto"
 						>
 							Notify me
