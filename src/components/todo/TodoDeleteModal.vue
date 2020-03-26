@@ -94,11 +94,11 @@ export default {
 	},
 	methods: {
 		closeModal: function() {
-			this.$emit('closeModal');
+			this.$emit('closeModal', { id: this.id, deleted: false });
 		},
 		deleteTodo: function() {
 			deleteToDo(auth.currentUser.uid, this.id);
-			this.$emit('closeModal');
+			this.$emit('closeModal', { id: this.id, deleted: true });
 		},
 	},
 };

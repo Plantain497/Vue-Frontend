@@ -28,6 +28,7 @@
 				<div v-click-outside="resetSelectedTodoItem">
 					<div v-for="(todo, id) in todoList" :key="id">
 						<todo-item
+							:id="id"
 							v-if="compareTwoDates(todo.dueDate, date)"
 							@deleteTodoId="deleteTodo"
 							:title="todo.title"
@@ -76,7 +77,10 @@ export default {
 			this.idToDelete = id;
 			this.showDeleteModal = true;
 		},
-		handleCloseModal: function() {
+		handleCloseModal: function(e) {
+			if (e.deleted) {
+				this.$emit('deleteTodoItem', e.id);
+			}
 			this.showDeleteModal = false;
 		},
 		sendClickedTodoItem: function(todo) {

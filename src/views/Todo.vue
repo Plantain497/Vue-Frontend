@@ -24,6 +24,7 @@
 				:weekly-view-enabled="weeklyViewEnabled"
 				:todays-date="todaysDate"
 				v-on:sendTodoItemEvent="getTodo"
+				@deleteTodoItem="deleteTodoFromList"
 			></todo-container>
 			<todo-description
 				v-if="Object.keys(selectedTodo).length"
@@ -66,6 +67,9 @@ export default {
 	methods: {
 		getTodo: function(todo) {
 			this.selectedTodo = todo;
+		},
+		deleteTodoFromList: function(id) {
+			delete this.todoList[id];
 		},
 		addToTodoList: function(id, todo) {
 			this.$set(this.todoList, id, todo);
