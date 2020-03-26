@@ -1,17 +1,13 @@
 import Vue from 'vue';
 import App from './App.vue';
 import './assets/tailwind.scss';
-import './assets/form-style/form_theme.scss';
 import router from './router';
 import vco from 'v-click-outside';
 import VueGAPI from 'vue-gapi';
-import VueFormulate from '@braid/vue-formulate';
 import { firestorePlugin } from 'vuefire';
 
 const fb = require('./firebaseConfig.js');
 const VueScrollTo = require('vue-scrollto');
-
-Vue.use(VueFormulate);
 
 Vue.use(firestorePlugin);
 

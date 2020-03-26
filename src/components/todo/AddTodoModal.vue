@@ -1,5 +1,8 @@
 <template>
-	<div class="fixed inset-0 flex items-center justify-center h-auto px-4 pb-4" v-if="open">
+	<div
+		class="fixed inset-0 flex items-center justify-center h-auto px-4 pb-4"
+		v-if="open"
+	>
 		<transition
 			name="custom-background-transition"
 			enter-class="opacity-0"
@@ -24,12 +27,14 @@
 			leave-to-class="translate-y-4 opacity-0 sm:translate-y-0 sm:scale-95"
 		>
 			<div
-				class="overflow-hidden transition-all transform bg-white rounded-lg shadow-xl sm:max-w-lg sm:w-full"
+				class="transition-all transform bg-white rounded-lg shadow-xl sm:max-w-lg sm:w-full"
 			>
 				<div class="px-4 py-4 bg-white sm:p-6 sm:pb-4">
 					<h2
 						class="pb-2 text-base font-bold leading-7 text-gray-900 sm:text-xl sm:leading-9 sm:truncate"
-					>New Task</h2>
+					>
+						New Task
+					</h2>
 					<div class="flex sm:flex sm:items-start">
 						<div class="w-full mt-3 text-center sm:mt-0 sm:text-left">
 							<!-- Title form -->
@@ -44,28 +49,22 @@
 							/>
 
 							<!-- Due date selector -->
-							<label
-								for="addTodoDate"
-								class="block pt-2 text-sm font-medium leading-5 text-gray-600"
-							>Due Date</label>
-							<div id="addTodoDate" class="flex items-center w-full pb-2">
-								<svg
-									fill="none"
-									stroke="currentColor"
-									stroke-linecap="round"
-									stroke-linejoin="round"
-									stroke-width="2"
-									viewBox="0 0 24 24"
-									class="w-12 h-12 pr-3 text-gray-600"
-								>
-									<path
-										d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"
-									/>
-								</svg>
-								<formulate-input
-									type="date"
-									class="w-full py-2 text-sm leading-tight text-gray-700 appearance-none focus:outline-none focus:shadow-outline"
+							<div class="my-4">
+								<div class="flex justify-between pb-1">
+									<label
+										:for="inputId"
+										class="block text-sm font-medium leading-5 text-gray-700"
+									>
+										Due Date
+									</label>
+									<span class="text-sm leading-5 text-gray-500">Optional</span>
+								</div>
+								<date-picker
+									id="todoDatePicker"
 									v-model="taskDate"
+									:input-props="{
+										readonly: true,
+									}"
 								/>
 							</div>
 
@@ -87,14 +86,18 @@
 							:disabled="taskTitle === ''"
 							type="button"
 							class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md shadow-sm hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo sm:text-sm sm:leading-5 disabled:opacity-50 disabled:cursor-not-allowed"
-						>Add Task</button>
+						>
+							Add Task
+						</button>
 					</span>
 					<span class="flex w-full mt-3 rounded-md shadow-sm sm:mt-0 sm:w-auto">
 						<button
 							v-on:click="sendOpenStatus"
 							type="button"
 							class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-200 rounded-md shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline sm:text-sm sm:leading-5"
-						>Cancel</button>
+						>
+							Cancel
+						</button>
 					</span>
 				</div>
 			</div>
@@ -102,8 +105,7 @@
 	</div>
 </template>
 <script>
-import FormulateInput from '@braid/vue-formulate/src/FormulateInput.vue';
-import FormulateForm from '@braid/vue-formulate/src/FormulateForm';
+import DatePicker from 'v-calendar/lib/components/date-picker.umd';
 import TextInput from '@/components/inputs/TextInput';
 import { addTodo } from '@/api/todo';
 import { auth } from '@/firebaseConfig';
@@ -111,7 +113,7 @@ import { ValidateNotEmpty } from '../inputs/validation';
 export default {
 	name: 'AddTodoModal',
 	components: {
-		FormulateInput,
+		DatePicker,
 		TextInput,
 	},
 	props: {
@@ -125,7 +127,7 @@ export default {
 			taskTitle: '',
 			taskDescription: '',
 			taskTitleError: false,
-			taskDate: null,
+			taskDate: new Date(),
 			taskComplete: false,
 			uid: '',
 		};
