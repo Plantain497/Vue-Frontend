@@ -1,6 +1,11 @@
 <template>
 	<div class="px-2 py-8 mx-auto bg-gray-100 max-w-7xl sm:px-6 lg:px-8">
-		<modal />
+		<button @click="showModal = true">Open Modal</button>
+		<modal :open="showModal" @cancel="showModal = false">
+			<template v-slot:title>
+				<h1>Hello World</h1>
+			</template>
+		</modal>
 	</div>
 </template>
 
@@ -17,6 +22,7 @@ export default {
 	data: function() {
 		return {
 			currentUser: auth.currentUser,
+			showModal: false,
 		};
 	},
 	methods: {
