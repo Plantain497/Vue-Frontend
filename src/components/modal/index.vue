@@ -62,7 +62,6 @@ export default {
 		},
 		cancel() {
 			this.$emit('cancel');
-			this.close();
 		},
 	},
 };

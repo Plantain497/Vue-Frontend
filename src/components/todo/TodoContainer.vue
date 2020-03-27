@@ -4,9 +4,7 @@
 			<todo-delete-modal @closeModal="handleCloseModal" :id="idToDelete" />
 		</div>
 		<div v-if="todayViewEnabled || weeklyViewEnabled">
-			<p class="pb-1 border-b border-gray-300">
-				Today, {{ formatDate(todaysDate) }}
-			</p>
+			<p class="pb-1 border-b border-gray-300">Today, {{ formatDate(todaysDate) }}</p>
 			<div v-click-outside="resetSelectedTodoItem">
 				<div v-for="(todo, id) in todoList" :key="id">
 					<todo-item
@@ -22,9 +20,7 @@
 		</div>
 		<div v-if="weeklyViewEnabled">
 			<div v-for="date in thisWeekDates" :key="date">
-				<p class="pt-6 pb-1 border-b border-gray-300">
-					{{ longFormatDate(date) }}
-				</p>
+				<p class="pt-6 pb-1 border-b border-gray-300">{{ longFormatDate(date) }}</p>
 				<div v-click-outside="resetSelectedTodoItem">
 					<div v-for="(todo, id) in todoList" :key="id">
 						<todo-item
@@ -89,26 +85,22 @@ export default {
 		resetSelectedTodoItem: function() {
 			this.$emit('sendTodoItemEvent', {});
 		},
-		dateFormat: function(newDate) {
-			return newDate.toDateString();
-		},
-		dueDateConvert: function(dueDate) {
-			return new Date(dueDate * 1000);
-		},
-		formatDate: function(date) {
+		formatDate: function(date, isDueDate) {
+			if (isDueDate) {
+				return format(fromUnixTime(date), 'PPP');
+			}
 			return format(date, 'PPP');
 		},
 		longFormatDate: function(date) {
 			return format(date, 'PPPP');
 		},
-		fromUnixTime: fromUnixTime,
 		compareTodoDueDate: function(date) {
 			if (date == null) {
 				return false;
 			} else {
 				return (
-					this.formatDate(fromUnixTime(date.seconds)) ===
-					this.formatDate(this.todaysDate)
+					this.formatDate(date.seconds, true) ===
+					this.formatDate(this.todaysDate, false)
 				);
 			}
 		},
@@ -116,16 +108,12 @@ export default {
 			if (d1 == null || d2 == null) {
 				return false;
 			} else {
-				console.log('date 1 ' + d1);
-				console.log('date 2 ' + d2);
-				return (
-					this.formatDate(fromUnixTime(d1.seconds)) === this.formatDate(d2)
-				);
+				return this.formatDate(d1.seconds, true) === this.formatDate(d2, false);
 			}
 		},
 	},
 	created() {
-		for (var i = 1; i < 8; ++i) {
+		for (let i = 1; i < 8; ++i) {
 			this.thisWeekDates.push(addDays(this.todaysDate, i));
 		}
 	},
