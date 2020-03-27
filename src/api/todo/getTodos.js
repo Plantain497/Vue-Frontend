@@ -5,7 +5,7 @@ const getTodos = async function(uid, todoCallback) {
 		.collection('users')
 		.doc(uid)
 		.collection('todos')
-		.orderBy('dueDate');
+		.orderBy('dueDate', 'asc');
 	todosRef.onSnapshot(snap => {
 		snap.forEach(doc => {
 			const todo = doc.data();
