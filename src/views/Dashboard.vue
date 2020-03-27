@@ -8,7 +8,12 @@
 						<div
 							class="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-red-100 rounded-full sm:mx-0 sm:h-10 sm:w-10"
 						>
-							<svg class="w-6 h-6 text-red-600" stroke="currentColor" fill="none" viewBox="0 0 24 24">
+							<svg
+								class="w-6 h-6 text-red-600"
+								stroke="currentColor"
+								fill="none"
+								viewBox="0 0 24 24"
+							>
 								<path
 									stroke-linecap="round"
 									stroke-linejoin="round"
@@ -18,11 +23,15 @@
 							</svg>
 						</div>
 						<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-							<h3 class="text-lg font-medium leading-6 text-gray-900">Deactivate account</h3>
+							<h3 class="text-lg font-medium leading-6 text-gray-900">
+								Deactivate account
+							</h3>
 							<div class="mt-2">
-								<p
-									class="text-sm leading-5 text-gray-500"
-								>Are you sure you want to deactivate your account? All of your data will be permanantly removed. This action cannot be undone.</p>
+								<p class="text-sm leading-5 text-gray-500">
+									Are you sure you want to deactivate your account? All of your
+									data will be permanantly removed. This action cannot be
+									undone.
+								</p>
 							</div>
 						</div>
 					</div>
@@ -36,6 +45,7 @@
 import { auth } from '@/firebaseConfig';
 import HelloWorld from '@/components/HelloWorld.vue';
 import Modal from '@/components/modal';
+import { getTodosOnDate } from '@/api/todo';
 
 export default {
 	name: 'Dashboard',
@@ -61,6 +71,15 @@ export default {
 				console.log(res.result.items);
 			});
 		},
+	},
+	created: function() {
+		const arr = [];
+		const pushIntoArr = (id, todo) => {
+			arr.push({ id, ...todo });
+		};
+		const today = new Date();
+		getTodosOnDate(this.currentUser.uid, today, pushIntoArr);
+		console.log(arr);
 	},
 };
 </script>
