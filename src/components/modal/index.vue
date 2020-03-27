@@ -3,7 +3,7 @@
 		<transition name="main">
 			<div
 				v-show="open"
-				class="fixed inset-x-0 bottom-0 z-20 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center"
+				class="fixed inset-x-0 z-20 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center"
 			>
 				<transition name="backdrop">
 					<div v-show="open" class="fixed inset-0 transition-opacity">
@@ -13,28 +13,22 @@
 				<transition name="modal">
 					<div
 						v-show="open"
-						class="px-4 pt-5 pb-4 overflow-hidden transition-all transform bg-white rounded-lg shadow-xl sm:max-w-lg sm:w-full sm:p-6"
+						class="overflow-hidden transition-all transform rounded-lg shadow-xl sm:max-w-lg sm:w-full"
 					>
-						<div>
-							<div class="mt-3 text-center sm:mt-5">
-								<slot name="title"></slot>
-							</div>
-						</div>
-						<div class="mt-5 sm:mt-4 sm:flex sm:flex-row-reverse">
+						<slot name="content"></slot>
+						<div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
 							<span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
 								<button
 									data-test="modalButtonOkay"
 									:disabled="disableOk"
-									@click="$emit('ok')"
-									type="button"
-									class="inline-flex items-center px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-600 border border-transparent rounded-md hover:bg-indigo-500 focus:outline-none focus:border-indigo-700 focus:shadow-outline-indigo active:bg-indigo-700"
+									@click="closeAction"
+									class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red sm:text-sm sm:leading-5"
 								>{{ okayText }}</button>
 							</span>
 							<span class="flex w-full mt-3 rounded-md shadow-sm sm:mt-0 sm:w-auto">
 								<button
 									@click="cancel()"
-									type="button"
-									class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-gray-700 transition duration-150 ease-in-out bg-gray-100 border border-transparent rounded-md hover:bg-gray-50 focus:outline-none focus:border-gray-300 focus:shadow-outline-gray active:bg-gray-200"
+									class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline sm:text-sm sm:leading-5"
 								>{{ cancelText }}</button>
 							</span>
 						</div>
@@ -51,7 +45,7 @@ export default {
 		open: Boolean,
 		okayText: {
 			type: String,
-			default: 'Okay',
+			default: 'Confirm',
 		},
 		cancelText: {
 			type: String,
@@ -63,8 +57,8 @@ export default {
 		},
 	},
 	methods: {
-		close() {
-			this.$emit('input', false);
+		closeAction() {
+			this.$emit('action', false);
 		},
 		cancel() {
 			this.$emit('cancel');
