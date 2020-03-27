@@ -50,10 +50,13 @@ export default {
 		id: {
 			type: String,
 		},
+		date: {
+			type: Date,
+		},
 	},
 	methods: {
 		deletePrompt: function() {
-			this.$emit('deleteTodoId', this.id);
+			this.$emit('deleteTodoId', { id: this.id, date: this.date });
 		},
 	},
 };

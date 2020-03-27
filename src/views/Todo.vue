@@ -18,14 +18,7 @@
 			</button>
 		</div>
 		<div class="flex h-screen py-8 max-w-7xl sm:px-6 lg:px-8">
-			<todo-container
-				:todo-list="todoList"
-				:today-view-enabled="todayViewEnabled"
-				:weekly-view-enabled="weeklyViewEnabled"
-				:todays-date="todaysDate"
-				v-on:sendTodoItemEvent="getTodo"
-				@deleteTodoItem="deleteTodoFromList"
-			></todo-container>
+			<todo-container :selected-view="selectedView"></todo-container>
 			<todo-description
 				v-if="Object.keys(selectedTodo).length"
 				:selected-todo="selectedTodo"
@@ -44,8 +37,8 @@ import TodoDescription from '@/components/todo/TodoDescription';
 import Dropdown from '@/components/dropdowns/Dropdown';
 import TodoContainer from '@/components/todo/TodoContainer';
 import AddTodoModal from '@/components/todo/AddTodoModal';
-import { auth } from '@/firebaseConfig';
-import { getTodos } from '@/api/todo';
+import store from '@/store';
+
 export default {
 	name: 'Todo',
 	components: {
@@ -56,39 +49,27 @@ export default {
 	},
 	data: function() {
 		return {
-			todoList: {},
-			selectedTodo: {},
-			todayViewEnabled: true,
-			weeklyViewEnabled: false,
-			todaysDate: new Date(),
+			selectedView: 'Today',
+			thisWeekDates: [],
 			addModalOpen: false,
 		};
 	},
 	methods: {
-		getTodo: function(todo) {
-			this.selectedTodo = todo;
-		},
-		deleteTodoFromList: function(id) {
-			delete this.todoList[id];
-		},
-		addToTodoList: function(id, todo) {
-			this.$set(this.todoList, id, todo);
-		},
 		getViewStatus: function(curr) {
 			if (curr === 'Today') {
-				this.todayViewEnabled = true;
-				this.weeklyViewEnabled = false;
+				this.selectedView = 'Today';
 			} else if (curr === 'This Week') {
-				this.weeklyViewEnabled = true;
-				this.todayViewEnabled = false;
+				this.selectedView = 'Weekly';
 			}
 		},
 		changeAddModalStatus: function(open) {
 			this.addModalOpen = open;
 		},
 	},
-	created() {
-		getTodos(auth.currentUser.uid, this.addToTodoList);
+	computed: {
+		selectedTodo: function() {
+			return store.state.currentSelectedTodo;
+		},
 	},
 };
 </script>

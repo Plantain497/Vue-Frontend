@@ -1,37 +1,44 @@
 <template>
 	<div class="w-full h-full bg-gray-100 md:w-1/2">
 		<div v-if="showDeleteModal">
-			<todo-delete-modal @closeModal="handleCloseModal" :id="idToDelete" />
+			<todo-delete-modal @closeModal="handleCloseModal" :id="todoToDelete.id" />
 		</div>
-		<div v-if="todayViewEnabled || weeklyViewEnabled">
-			<p class="pb-1 border-b border-gray-300">Today, {{ formatDate(todaysDate) }}</p>
-			<div v-click-outside="resetSelectedTodoItem">
-				<div v-for="(todo, id) in todoList" :key="id">
+		<div v-if="selectedView === 'Today' || selectedView === 'Weekly'">
+			<p class="pb-1 border-b border-gray-300">Today, {{ todaysDate }}</p>
+			<div>
+				<div
+					v-for="(todo, id) in todoList[todaysDate]"
+					:key="selectedView + todaysDate + id"
+				>
 					<todo-item
 						:id="id"
 						:title="todo.title"
 						:description="todo.description"
-						v-on:click.native="sendClickedTodoItem(todo)"
+						:date="todaysDate"
 						@deleteTodoId="deleteTodo"
-						v-if="compareTodoDueDate(todo.dueDate)"
+						v-on:click.native="sendClickedTodoItem(id, todo)"
 					></todo-item>
 				</div>
 			</div>
 		</div>
-		<div v-if="weeklyViewEnabled">
-			<div v-for="date in thisWeekDates" :key="date">
-				<p class="pt-6 pb-1 border-b border-gray-300">{{ longFormatDate(date) }}</p>
-				<div v-click-outside="resetSelectedTodoItem">
-					<div v-for="(todo, id) in todoList" :key="id">
-						<todo-item
-							:id="id"
-							v-if="compareTwoDates(todo.dueDate, date)"
-							@deleteTodoId="deleteTodo"
-							:title="todo.title"
-							:description="todo.description"
-							v-on:click.native="sendClickedTodoItem(todo)"
-						></todo-item>
-					</div>
+		<div v-if="selectedView === 'Weekly'">
+			<div v-for="date in thisWeekDates" :key="selectedView + date">
+				<p class="pt-6 pb-1 border-b border-gray-300">
+					{{ longFormatDate(date) }}
+				</p>
+
+				<div
+					v-for="(todo, id) in todoList[formatDate(date)]"
+					:key="selectedView + date + id"
+				>
+					<todo-item
+						:id="id"
+						:title="todo.title"
+						:description="todo.description"
+						:date="date"
+						@deleteTodoId="deleteTodo"
+						v-on:click.native="sendClickedTodoItem(id, todo)"
+					></todo-item>
 				</div>
 			</div>
 		</div>
@@ -41,6 +48,10 @@
 import { compareAsc, format, fromUnixTime, addDays } from 'date-fns';
 import TodoItem from '@/components/todo/TodoItem';
 import TodoDeleteModal from '@/components/todo/TodoDeleteModal';
+import { getTodosOnDate, getTodosForRange } from '@/api/todo';
+import { auth } from '@/firebaseConfig';
+import store from '@/store';
+
 export default {
 	name: 'TodoContainer',
 	components: {
@@ -48,74 +59,84 @@ export default {
 		TodoDeleteModal,
 	},
 	props: {
-		todoList: {
-			type: Object,
-		},
-		todayViewEnabled: {
-			type: Boolean,
-		},
-		weeklyViewEnabled: {
-			type: Boolean,
-		},
-		todaysDate: {
-			type: Date,
+		selectedView: {
+			type: String,
+			default: 'Today',
 		},
 	},
 	data: function() {
 		return {
+			todaysDate: this.formatDate(new Date()),
 			showDeleteModal: false,
-			idToDelete: '',
+			todoToDelete: {},
 			thisWeekDates: [],
 		};
 	},
 	methods: {
-		deleteTodo: function(id) {
-			this.idToDelete = id;
+		deleteTodo: function(todo) {
+			this.todoToDelete = { id: todo.id, date: todo.date };
 			this.showDeleteModal = true;
+		},
+		addTodoToStore: function(id, todo) {
+			store.dispatch('addTodoToStore', { id: id, todo: todo });
 		},
 		handleCloseModal: function(e) {
 			if (e.deleted) {
-				this.$emit('deleteTodoItem', e.id);
+				store.dispatch('deleteTodoFromStore', {
+					id: this.todoToDelete.id,
+					date: this.formatDate(this.todoToDelete.date),
+				});
 			}
 			this.showDeleteModal = false;
 		},
-		sendClickedTodoItem: function(todo) {
-			this.$emit('sendTodoItemEvent', todo);
+
+		sendClickedTodoItem: function(id, todo) {
+			store.dispatch('setCurrentSelectedTodo', { id: id, ...todo });
 		},
+
 		resetSelectedTodoItem: function() {
-			this.$emit('sendTodoItemEvent', {});
+			console.log('Reset');
+			// store.dispatch('setCurrentSelectedTodo', {});
 		},
-		formatDate: function(date, isDueDate) {
-			if (isDueDate) {
-				return format(fromUnixTime(date), 'PPP');
-			}
+		formatDate: function(date) {
 			return format(date, 'PPP');
 		},
 		longFormatDate: function(date) {
 			return format(date, 'PPPP');
 		},
-		compareTodoDueDate: function(date) {
-			if (date == null) {
-				return false;
-			} else {
-				return (
-					this.formatDate(date.seconds, true) ===
-					this.formatDate(this.todaysDate, false)
-				);
-			}
+		getTodayTasks: async function() {
+			const today = new Date();
+			await getTodosOnDate(auth.currentUser.uid, today, this.addTodoToStore);
 		},
-		compareTwoDates: function(d1, d2) {
-			if (d1 == null || d2 == null) {
-				return false;
-			} else {
-				return this.formatDate(d1.seconds, true) === this.formatDate(d2, false);
-			}
+		getWeeksTasks: async function() {
+			await getTodosForRange(
+				auth.currentUser.uid,
+				this.thisWeekDates[0],
+				this.thisWeekDates[this.thisWeekDates.length - 1],
+				this.addTodoToStore,
+			);
 		},
 	},
-	created() {
+	created: function() {
+		this.getTodayTasks();
+		const today = new Date();
 		for (let i = 1; i < 8; ++i) {
-			this.thisWeekDates.push(addDays(this.todaysDate, i));
+			this.thisWeekDates.push(addDays(today, i));
 		}
+	},
+	computed: {
+		todoList: function() {
+			return store.state.todos;
+		},
+	},
+	watch: {
+		selectedView: function() {
+			if (this.selectedView === 'Today') {
+				this.getTodayTasks();
+			} else if (this.selectedView === 'Weekly') {
+				this.getWeeksTasks();
+			}
+		},
 	},
 };
 </script>
