@@ -39,7 +39,7 @@
 						<div class="w-full mt-3 text-center sm:mt-0 sm:text-left">
 							<!-- Title form -->
 							<text-input
-								inputId="title"
+								input-id="title"
 								label="Title"
 								v-model="taskTitle"
 								placeholder="Enter a Task Title"
@@ -52,7 +52,7 @@
 							<div class="my-4">
 								<div class="flex justify-between pb-1">
 									<label
-										:for="inputId"
+										for="todoDatePicker"
 										class="block text-sm font-medium leading-5 text-gray-700"
 									>
 										Due Date
@@ -70,7 +70,7 @@
 
 							<!-- Description form -->
 							<text-input
-								inputId="description"
+								input-id="description"
 								label="Description"
 								v-model="taskDescription"
 								placeholder="Enter a Task Description"
