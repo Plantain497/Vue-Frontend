@@ -17,11 +17,11 @@
 			</span>
 		</div>
 
-		<div v-on:click="deletePrompt">
+		<div v-on:click="deletePrompt" class="flex items-center justify-center">
 			<delete
 				heightClass="h-8"
 				widthClass="w-8"
-				class="text-gray-500 hover:text-gray-700 focus:text-gray-700"
+				class="text-gray-400 hover:text-gray-700 focus:text-gray-700"
 			/>
 		</div>
 	</div>
