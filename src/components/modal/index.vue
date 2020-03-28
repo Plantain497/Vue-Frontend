@@ -35,15 +35,16 @@
 						<div class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
 							<span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
 								<button
-									data-test="modalButtonOkay"
-									:disabled="disableOk"
+									data-test="modalButtonConfirm"
+									:disabled="disableConfirm"
 									@click="closeAction"
-									class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-red-600 border border-transparent rounded-md shadow-sm hover:bg-red-500 focus:outline-none focus:border-red-700 focus:shadow-outline-red sm:text-sm sm:leading-5"
-								>{{ okayText }}</button>
+									class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 transition duration-150 ease-in-out border border-transparent rounded-md shadow-sm focus:outline-none sm:text-sm sm:leading-5"
+									:class="confirmClasses"
+								>{{ confirmText }}</button>
 							</span>
 							<span class="flex w-full mt-3 rounded-md shadow-sm sm:mt-0 sm:w-auto">
 								<button
-									@click="cancel()"
+									@click="cancel"
 									class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-md shadow-sm hover:text-gray-500 focus:outline-none focus:border-blue-300 focus:shadow-outline sm:text-sm sm:leading-5"
 								>{{ cancelText }}</button>
 							</span>
@@ -59,22 +60,27 @@
 export default {
 	props: {
 		open: Boolean,
-		okayText: {
+		confirmText: {
 			type: String,
 			default: 'Confirm',
+		},
+		confirmClasses: {
+			type: String,
+			default:
+				'bg-red-600 hover:bg-red-500 focus:border-red-700 focus:shadow-outline-red text-white',
 		},
 		cancelText: {
 			type: String,
 			default: 'Cancel',
 		},
-		disableOk: {
+		disableConfirm: {
 			type: Boolean,
 			default: false,
 		},
 	},
 	methods: {
 		closeAction() {
-			this.$emit('action', false);
+			this.$emit('action');
 		},
 		cancel() {
 			this.$emit('cancel');
