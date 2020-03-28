@@ -11,13 +11,12 @@
 						fill-rule="evenodd"
 						d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
 						clip-rule="evenodd"
-					></path>
+					/>
 				</svg>
-
 				Add Task
 			</button>
 		</div>
-		<div class="flex h-screen py-8 max-w-7xl sm:px-6 lg:px-8">
+		<div class="flex w-full h-screen py-8 max-w-7xl sm:px-6 lg:px-8">
 			<todo-container :selected-view="selectedView"></todo-container>
 			<todo-description
 				v-if="Object.keys(selectedTodo).length"
@@ -25,10 +24,7 @@
 				class="hidden min-w-1/2 md:block"
 			></todo-description>
 		</div>
-		<add-todo-modal
-			v-on:changeAddModalOpenStatusEvent="changeAddModalStatus"
-			:open="addModalOpen"
-		></add-todo-modal>
+		<add-todo-modal v-on:changeAddModalOpenStatusEvent="changeAddModalStatus" :open="addModalOpen"></add-todo-modal>
 	</div>
 </template>
 <script>

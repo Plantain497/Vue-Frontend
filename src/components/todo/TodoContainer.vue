@@ -6,10 +6,7 @@
 		<div v-if="selectedView === 'Today' || selectedView === 'Weekly'">
 			<p class="pb-1 border-b border-gray-300">Today, {{ todaysDate }}</p>
 			<div>
-				<div
-					v-for="(todo, id) in todoList[todaysDate]"
-					:key="selectedView + todaysDate + id"
-				>
+				<div v-for="(todo, id) in todoList[todaysDate]" :key="selectedView + todaysDate + id">
 					<todo-item
 						:id="id"
 						:title="todo.title"
@@ -23,14 +20,9 @@
 		</div>
 		<div v-if="selectedView === 'Weekly'">
 			<div v-for="date in thisWeekDates" :key="selectedView + date">
-				<p class="pt-6 pb-1 border-b border-gray-300">
-					{{ longFormatDate(date) }}
-				</p>
+				<p class="pt-6 pb-1 border-b border-gray-300">{{ longFormatDate(date) }}</p>
 
-				<div
-					v-for="(todo, id) in todoList[formatDate(date)]"
-					:key="selectedView + date + id"
-				>
+				<div v-for="(todo, id) in todoList[formatDate(date)]" :key="selectedView + date + id">
 					<todo-item
 						:id="id"
 						:title="todo.title"
