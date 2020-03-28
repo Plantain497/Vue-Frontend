@@ -1,16 +1,32 @@
 <template>
 	<div ref="modal" class="z-20">
-		<transition name="main">
+		<transition name="main" leave-active-class="duration-200">
 			<div
 				v-show="open"
 				class="fixed inset-x-0 z-20 px-4 pb-6 sm:inset-0 sm:p-0 sm:flex sm:items-center sm:justify-center"
 			>
-				<transition name="backdrop">
+				<transition
+					name="backdrop"
+					enter-class="opacity-0"
+					enter-active-class="duration-200 ease-out"
+					enter-to-class="opacity-100"
+					leave-class="opacity-100"
+					leave-active-class="duration-300"
+					leave-to-class="opacity-0"
+				>
 					<div v-show="open" class="fixed inset-0 transition-opacity">
 						<div class="absolute inset-0 bg-gray-500 opacity-75"></div>
 					</div>
 				</transition>
-				<transition name="modal">
+				<transition
+					name="modal"
+					enter-class="translate-y-4 opacity-0"
+					enter-active-class="duration-200 ease-out"
+					enter-to-class="translate-y-0 opacity-100"
+					leave-class="translate-y-0 opacity-100"
+					leave-active-class="duration-200 ease-in"
+					leave-to-class="translate-y-4 opacity-0"
+				>
 					<div
 						v-show="open"
 						class="overflow-hidden transition-all transform rounded-lg shadow-xl sm:max-w-lg sm:w-full"
@@ -66,73 +82,3 @@ export default {
 	},
 };
 </script>
-
-
-<style lang="scss" scoped>
-.modal-enter-active {
-	@apply ease-out duration-300;
-}
-
-.backdrop-enter-active {
-	@apply ease-out duration-300;
-}
-
-.modal-leave-active {
-	@apply ease-in duration-200;
-}
-
-.main-leave-active {
-	@apply duration-300;
-}
-
-.backdrop-leave-active {
-	@apply ease-in duration-200;
-}
-
-.modal-enter {
-	@apply opacity-0 translate-y-4;
-
-	@screen sm {
-		@apply translate-y-0 scale-95;
-	}
-}
-
-.modal-enter-to {
-	@apply opacity-100 translate-y-0;
-
-	@screen sm {
-		@apply scale-100;
-	}
-}
-
-.modal-leave {
-	@apply opacity-100 translate-y-0;
-
-	@screen sm {
-		@applyscale-100;
-	}
-}
-.modal-leave-to {
-	@apply opacity-0 translate-y-4;
-
-	@screen sm {
-		@apply translate-y-0 scale-95;
-	}
-}
-
-.backdrop-enter {
-	@apply opacity-0;
-}
-
-.backdrop-enter-to {
-	@apply opacity-100;
-}
-
-.backdrop-leave {
-	@apply opacity-100;
-}
-
-.backdrop-leave-to {
-	@apply opacity-0;
-}
-</style>
