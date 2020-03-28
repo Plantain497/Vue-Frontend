@@ -11,7 +11,7 @@
 						<span class="inline-flex rounded-md shadow-sm">
 							<button
 								type="button"
-								class="relative inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-white bg-red-500 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red focus:border-red-600 active:bg-red-600 hover:bg-red-600"
+								class="inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-white bg-red-500 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red focus:border-red-600 active:bg-red-600 hover:bg-red-600"
 								@click="deleteTodo"
 							>Delete</button>
 						</span>
@@ -23,13 +23,18 @@
 			>{{ selectedTodo.description }}</div>
 		</div>
 		<div v-if="showDeleteModal">
-			<todo-delete-modal @closeModal="handleCloseModal" :id="selectedTodo.id" />
+			<todo-delete-modal
+				:show-modal="showDeleteModal"
+				@closeModal="handleCloseModal"
+				:id="selectedTodo.id"
+			/>
 		</div>
 	</div>
 </template>
 <script>
 import { format, fromUnixTime } from 'date-fns';
 import TodoDeleteModal from '@/components/todo/TodoDeleteModal';
+import store from '@/store';
 
 export default {
 	name: 'TodoDescription',

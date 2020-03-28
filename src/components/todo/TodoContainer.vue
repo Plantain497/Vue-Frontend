@@ -1,8 +1,10 @@
 <template>
 	<div class="w-full h-full bg-gray-100 md:w-1/2">
-		<div v-if="showDeleteModal">
-			<todo-delete-modal @closeModal="handleCloseModal" :id="todoToDelete.id" />
-		</div>
+		<todo-delete-modal
+			:show-modal="showDeleteModal"
+			@closeModal="handleCloseModal"
+			:id="todoToDelete.id"
+		/>
 		<div v-if="selectedView === 'Today' || selectedView === 'Weekly'">
 			<p class="pb-1 border-b border-gray-300">Today, {{ todaysDate }}</p>
 			<div>
@@ -11,7 +13,7 @@
 						:id="id"
 						:title="todo.title"
 						:description="todo.description"
-						:date="todaysDate"
+						:date="new Date()"
 						@deleteTodoId="deleteTodo"
 						v-on:click.native="sendClickedTodoItem(id, todo)"
 					></todo-item>
