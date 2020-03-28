@@ -1,6 +1,6 @@
 <template>
 	<div class="px-2 mx-auto bg-gray-100 max-w-7xl sm:px-6 lg:px-8">
-		<div class="pt-8 ml-8 mr-8">
+		<div class="pt-8 sm:px-6 lg:px-8">
 			<dropdown v-on:changeViewStatusEvent="getViewStatus"></dropdown>
 			<button
 				class="flex items-center float-right w-32 h-auto px-4 py-2 text-sm font-medium leading-5 text-white bg-purple-500 rounded-md shadow-sm bottom-15 right-20 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue"
