@@ -8,7 +8,7 @@
 					enter-active-class="duration-200 ease-out"
 					enter-to-class="opacity-100"
 					leave-class="opacity-100"
-					leave-active-class="duration-300"
+					leave-active-class="duration-200"
 					leave-to-class="opacity-0"
 				>
 					<div v-show="open" class="fixed inset-0 transition-opacity">
