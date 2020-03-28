@@ -22,13 +22,12 @@
 				class="px-6 py-5 text-base font-normal leading-5 text-gray-900"
 			>{{ selectedTodo.description }}</div>
 		</div>
-		<div v-if="showDeleteModal">
-			<todo-delete-modal
-				:show-modal="showDeleteModal"
-				@closeModal="handleCloseModal"
-				:id="selectedTodo.id"
-			/>
-		</div>
+
+		<todo-delete-modal
+			:show-modal="showDeleteModal"
+			@closeModal="handleCloseModal"
+			:id="selectedTodo.id"
+		/>
 	</div>
 </template>
 <script>
