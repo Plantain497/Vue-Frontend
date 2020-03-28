@@ -47,6 +47,22 @@ const routes = [
 			requiresAuth: true,
 		},
 	},
+	{
+		path: '/profile',
+		name: 'profile',
+		// component: () => import('@/views/Profile.vue'),
+		meta: {
+			requiresAuth: true,
+		},
+	},
+	{
+		path: '/settings',
+		name: 'settings',
+		// component: () => import('@/views/Settings.vue'),
+		meta: {
+			requiresAuth: true,
+		},
+	},
 ];
 
 const router = new VueRouter({
