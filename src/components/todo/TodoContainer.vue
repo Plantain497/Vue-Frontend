@@ -81,14 +81,8 @@ export default {
 			}
 			this.showDeleteModal = false;
 		},
-
 		sendClickedTodoItem: function(id, todo) {
 			store.dispatch('setCurrentSelectedTodo', { id: id, ...todo });
-		},
-
-		resetSelectedTodoItem: function() {
-			console.log('Reset');
-			// store.dispatch('setCurrentSelectedTodo', {});
 		},
 		formatDate: function(date) {
 			return format(date, 'PPP');

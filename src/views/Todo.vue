@@ -16,7 +16,10 @@
 				Add Task
 			</button>
 		</div>
-		<div class="flex w-full h-screen py-8 max-w-7xl sm:px-6 lg:px-8">
+		<div
+			class="flex w-full h-screen py-8 max-w-7xl sm:px-6 lg:px-8"
+			v-click-outside="resetCurrentTodo"
+		>
 			<todo-container :selected-view="selectedView"></todo-container>
 			<todo-description
 				v-if="Object.keys(selectedTodo).length"
@@ -60,6 +63,9 @@ export default {
 		},
 		changeAddModalStatus: function(open) {
 			this.addModalOpen = open;
+		},
+		resetCurrentTodo: function() {
+			store.dispatch('setCurrentSelectedTodo', {});
 		},
 	},
 	computed: {
