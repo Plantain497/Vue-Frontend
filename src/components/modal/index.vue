@@ -25,18 +25,10 @@
 					leave-to-class="translate-y-4 opacity-0"
 				>
 					<div v-show="open" class="transition-all transform rounded-lg shadow-xl sm:max-w-lg sm:w-full">
-						<div
-							class="px-4 pb-4 bg-white sm:p-6 sm:pb-4"
-							style="border-top-right-radius: 0.5rem;
-                    border-top-left-radius: 0.5rem;"
-						>
+						<div class="px-4 pb-4 bg-white rounded-t-lg sm:p-6 sm:pb-4">
 							<slot name="content"></slot>
 						</div>
-						<div
-							class="px-4 py-3 bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse"
-							style="border-bottom-right-radius: 0.5rem;
-                    border-bottom-left-radius: 0.5rem;"
-						>
+						<div class="px-4 py-3 rounded-b-lg bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
 							<span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
 								<button
 									data-test="modalButtonConfirm"

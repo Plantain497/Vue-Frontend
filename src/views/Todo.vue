@@ -1,12 +1,12 @@
 <template>
 	<div class="px-2 mx-auto bg-gray-100 max-w-7xl sm:px-6 lg:px-8">
-		<div class="pt-8 sm:px-6 lg:px-8">
+		<div class="flex justify-between pt-8 sm:px-6 lg:px-8">
 			<dropdown v-on:changeViewStatusEvent="getViewStatus"></dropdown>
 			<button
-				class="flex items-center float-right w-32 h-auto px-4 py-2 text-sm font-medium leading-5 text-white bg-purple-500 rounded-md shadow-sm bottom-15 right-20 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue"
+				class="flex items-center w-32 h-auto px-4 py-2 text-sm font-medium leading-6 text-white transition duration-150 ease-in-out bg-purple-500 rounded-md shadow-sm focus:outline-none focus:border-purple-300 hover:bg-purple-600 focus:shadow-outline-purple"
 				v-on:click="addModalOpen = true"
 			>
-				<svg fill="currentColor" viewBox="0 0 20 20" class="w-6 h-6 pr-2">
+				<svg fill="currentColor" viewBox="0 0 20 20" class="w-5 h-5 mr-3 -ml-1">
 					<path
 						fill-rule="evenodd"
 						d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z"
@@ -17,14 +17,15 @@
 			</button>
 		</div>
 		<div
-			class="flex w-full h-screen py-8 max-w-7xl sm:px-6 lg:px-8"
+			class="flex justify-between w-full h-screen py-8 max-w-7xl sm:px-6 lg:px-8"
 			v-click-outside="resetCurrentTodo"
 		>
 			<todo-container :selected-view="selectedView"></todo-container>
+
 			<todo-description
 				v-if="Object.keys(selectedTodo).length"
 				:selected-todo="selectedTodo"
-				class="hidden min-w-1/2 md:block"
+				class="flex-1 hidden ml-8 md:block"
 			></todo-description>
 		</div>
 		<add-todo-modal v-on:changeAddModalOpenStatusEvent="changeAddModalStatus" :open="addModalOpen"></add-todo-modal>
