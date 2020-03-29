@@ -22,11 +22,7 @@
 		>
 			<todo-container :selected-view="selectedView"></todo-container>
 
-			<todo-description
-				v-if="Object.keys(selectedTodo).length"
-				:selected-todo="selectedTodo"
-				class="flex-1 hidden ml-8 md:block"
-			></todo-description>
+			<todo-description class="flex-1 hidden ml-8 md:block"></todo-description>
 		</div>
 		<add-todo-modal v-on:changeAddModalOpenStatusEvent="changeAddModalStatus" :open="addModalOpen"></add-todo-modal>
 	</div>
@@ -67,11 +63,6 @@ export default {
 		},
 		resetCurrentTodo: function() {
 			store.dispatch('setCurrentSelectedTodo', {});
-		},
-	},
-	computed: {
-		selectedTodo: function() {
-			return store.state.currentSelectedTodo;
 		},
 	},
 };
