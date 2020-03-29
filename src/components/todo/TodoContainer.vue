@@ -12,9 +12,11 @@
 					'text-gray-700': todoList[todaysDate]
 				}"
 			>Today, {{ todaysDate }}</p>
-			<div>
-				<div v-for="(todo, id) in todoList[todaysDate]" :key="selectedView + todaysDate + id">
+
+			<transition-group name="item-group" tag="div" mode="out-in">
+				<div v-for="(todo, id) in todoList[todaysDate]" :key="todaysDate + id">
 					<todo-item
+						:key="id"
 						:id="id"
 						:title="todo.title"
 						:description="todo.description"
@@ -23,7 +25,7 @@
 						v-on:click.native="sendClickedTodoItem(id, todo)"
 					></todo-item>
 				</div>
-			</div>
+			</transition-group>
 		</div>
 		<div v-if="selectedView === 'Weekly'">
 			<div v-for="date in thisWeekDates" :key="selectedView + date">
@@ -33,16 +35,20 @@
 						'text-gray-700': todoList[formatDate(date)]
 					}"
 				>{{ longFormatDate(date) }}</p>
-				<div v-for="(todo, id) in todoList[formatDate(date)]" :key="selectedView + date + id">
-					<todo-item
-						:id="id"
-						:title="todo.title"
-						:description="todo.description"
-						:date="date"
-						@deleteTodoId="deleteTodo"
-						v-on:click.native="sendClickedTodoItem(id, todo)"
-					></todo-item>
-				</div>
+
+				<transition-group name="item-group" tag="div" mode="out-in">
+					<div v-for="(todo, id) in todoList[formatDate(date)]" :key="date + id">
+						<todo-item
+							:key="id"
+							:id="id"
+							:title="todo.title"
+							:description="todo.description"
+							:date="date"
+							@deleteTodoId="deleteTodo"
+							v-on:click.native="sendClickedTodoItem(id, todo)"
+						></todo-item>
+					</div>
+				</transition-group>
 			</div>
 		</div>
 	</div>
@@ -137,3 +143,14 @@ export default {
 	},
 };
 </script>
+<style scoped>
+.item-group-enter-active,
+.item-group-leave-active {
+	transition: all 200ms ease-in-out;
+}
+.item-group-enter,
+.item-group-leave-to {
+	opacity: 0;
+	transform: scale(0.9);
+}
+</style>
