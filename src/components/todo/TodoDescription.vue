@@ -10,7 +10,7 @@
 			leave-to-class="translate-y-4 opacity-0"
 		>
 			<div
-				v-if="Object.keys(selectedTodo).length"
+				v-show="Object.keys(selectedTodo).length"
 				class="h-64 transition-all transform rounded-lg shadow bg-gray-50"
 				:key="selectedTodo.id"
 			>
