@@ -8,9 +8,10 @@
 			leave-class="translate-y-0 opacity-100"
 			leave-active-class="duration-100 ease-in"
 			leave-to-class="translate-y-4 opacity-0"
+			mode="out-in"
 		>
 			<div
-				v-show="Object.keys(selectedTodo).length"
+				v-if="Object.keys(selectedTodo).length"
 				class="h-64 transition-all transform rounded-lg shadow bg-gray-50"
 				:key="selectedTodo.id"
 			>
