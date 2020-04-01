@@ -1,0 +1,14 @@
+.fc th {
+  /* Plantain Custom: Table Header */
+  text-align: left;
+  padding-bottom: 8px;
+  font-weight: normal;
+}
+
+.fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number {
+  float: left;
+}
+
+.fc td, .fc th {
+  border: 0;
+}

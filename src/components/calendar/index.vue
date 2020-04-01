@@ -15,8 +15,6 @@
 		:selectable="true"
 		:columnHeaderFormat="{
 			weekday: 'short',
-			month: 'numeric',
-			day: 'numeric',
 			omitCommas: true,
 		}"
 		:plugins="calendarPlugins"
@@ -38,8 +36,8 @@ export default {
 			calendarPlugins: [dayGridPlugin, timeGridPlugin, interactionPlugin],
 			header: {
 				left: 'title',
-				center: '',
-				right: 'today weekView,monthView prev,next',
+				center: 'weekView,monthView',
+				right: 'today prev,next',
 			},
 			views: {
 				weekView: {
@@ -64,7 +62,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import './core.css';
-@import './daygrid.css';
-@import './timegrid.css';
+@import '~@fullcalendar/core/main.css';
+@import '~@fullcalendar/daygrid/main.css';
+@import '~@fullcalendar/timegrid/main.css';
+
+@import './custom.css';
 </style>
