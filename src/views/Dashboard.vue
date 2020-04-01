@@ -40,7 +40,6 @@
 
 <script>
 import { auth } from '@/firebaseConfig';
-import HelloWorld from '@/components/HelloWorld.vue';
 import Modal from '@/components/modal';
 import { getTodosOnDate } from '@/api/todo';
 
