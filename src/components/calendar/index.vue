@@ -1,9 +1,15 @@
 <template>
 	<full-calendar
 		:header="header"
+		:buttonText="{
+			today: 'Today',
+			month: 'Month',
+			week: 'Week',
+			day: 'Day',
+		}"
 		height="parent"
 		:views="views"
-		default-view="weekView"
+		default-view="monthView"
 		contentHeight="auto"
 		:editable="true"
 		:selectable="true"
