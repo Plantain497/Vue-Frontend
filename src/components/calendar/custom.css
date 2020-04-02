@@ -50,6 +50,12 @@ td.fc-future, td.fc-today {
   opacity: 0.7;
 }
 
+td.fc-past {
+  /* Lower opacity for items in this month but have already passed */
+  background: #e2e8f0;
+  opacity: 0.35;
+}
+
 .fc-unthemed td.fc-today {
   /* Today Highlight */
   background: #dcd7fe;
