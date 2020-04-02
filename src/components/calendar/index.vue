@@ -65,12 +65,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
-/* purgecss start ignore */
-@import './core.scss';
-@import './daygrid.scss';
-@import './timegrid.scss';
+<style lang="css" scoped>
+@import './core.css';
+@import './daygrid.css';
+@import './timegrid.css';
 
-@import './custom.scss';
-/* purgecss end ignore */
+@import './custom.css';
 </style>
