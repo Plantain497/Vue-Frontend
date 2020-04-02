@@ -1,6 +1,6 @@
 <template>
 	<div class="h-full px-2 py-8 mx-auto bg-gray-100 max-w-7xl sm:px-6 lg:px-8">
-		<calendar :events="combineEvents()" />
+		<calendar :events="combinedEvents" />
 	</div>
 </template>
 <script>
@@ -18,11 +18,12 @@ export default {
 		return {
 			events: [],
 			calendarEvents: [],
+			combinedEvents: [],
 		};
 	},
 	methods: {
 		combineEvents: function() {
-			return this.calendarEvents.concat(this.events);
+			this.combinedEvents = this.calendarEvents.concat(this.events);
 		},
 		getTasksForMonth: async function(startMonth, endMonth) {
 			await getTodosForRange(
@@ -85,6 +86,12 @@ export default {
 				}
 			}
 			this.events = events;
+		},
+		events: function() {
+			this.combineEvents();
+		},
+		calendarEvents: function() {
+			this.combineEvents();
 		},
 	},
 };
