@@ -64,3 +64,15 @@ td.fc-other-month {
   text-overflow: ellipsis;
   white-space: nowrap;
 }
+
+/* Heading Buttons */
+
+.fc-today-button, .fc-button-primary {
+  background: #374151 !important;
+  border-color: #374151 !important;
+}
+
+.fc-button-active {
+  background: #252f3f !important;
+  border-color: #252f3f !important;
+}
