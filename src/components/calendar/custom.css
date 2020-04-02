@@ -22,6 +22,7 @@
   float: left;
   font-size: 20px;
   padding-left: 2px;
+  color: #161e2e;
 }
 
 .fc td, .fc th {
@@ -44,6 +45,7 @@
 td.fc-future, td.fc-today {
   /* Give grey backgrounds for this month */
   background: #e2e8f0;
+  opacity: 0.7;
 }
 
 .fc-unthemed td.fc-today {
