@@ -48,6 +48,8 @@ export default {
 						title: event.summary,
 						start: event.start.dateTime,
 						end: event.end.dateTime,
+						backgroundColor: '#1c64f2',
+						borderColor: '#1c64f2',
 					});
 				}
 				this.calendarEvents = calendarEvents;
