@@ -38,8 +38,8 @@ td.fc-future, td.fc-today {
 
 .fc-unthemed td.fc-today {
   /* Today Highlight */
-  background: #fde8e8;
-  color: #f05252;
+  background: #dcd7fe;
+  color: #6c2bd9;
   font-weight: bold;
 }
 
@@ -51,9 +51,12 @@ td.fc-other-month {
 /* Events */
 
 .fc-event {
-  background: #3f83f8;
-  border-color: #3f83f8;
+  background: #9061f9;
+  border-color: #9061f9;
+  color: white;
   border-radius: 4px;
+  padding-left: 4px;
+  padding-right: 4px;
   /* min-height: 3rem; */
 }
 
