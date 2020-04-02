@@ -1,3 +1,5 @@
+/* purgecss start ignore */
+
 /* Calendar */
 
 .fc th {
@@ -88,3 +90,5 @@ td.fc-other-month {
   background: #252f3f !important;
   border-color: #252f3f !important;
 }
+
+/* purgecss end ignore */
