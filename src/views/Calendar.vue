@@ -1,6 +1,6 @@
 <template>
 	<div class="h-full px-2 py-8 mx-auto bg-gray-100 max-w-7xl sm:px-6 lg:px-8">
-		<calendar :events="events" />
+		<calendar :events="combineEvents()" />
 	</div>
 </template>
 <script>
@@ -16,26 +16,14 @@ export default {
 	},
 	data: function() {
 		return {
-			events: [
-				// {
-				// 	title: 'Event Title1',
-				// 	start: '2020-04-04T13:13:55.008',
-				// 	end: '2020-04-06T13:13:55.008',
-				// },
-				// {
-				// 	title: 'Event Title2',
-				// 	start: '2020-04-05T13:13:55-0400',
-				// 	end: '2020-04-07T13:13:55-0400',
-				// },
-				// {
-				// 	title: 'Now',
-				// 	start: formatISO(new Date()),
-				// 	end: formatISO(new Date()),
-				// },
-			],
+			events: [],
+			calendarEvents: [],
 		};
 	},
 	methods: {
+		combineEvents: function() {
+			return this.calendarEvents.concat(this.events);
+		},
 		getTasksForMonth: async function(startMonth, endMonth) {
 			await getTodosForRange(
 				auth.currentUser.uid,
@@ -47,6 +35,27 @@ export default {
 		addTodoToStore: function(id, todo) {
 			store.dispatch('addTodoToStore', { id: id, todo: todo });
 		},
+		getCalendarEvents: async function() {
+			this.$gapi.getGapiClient().then(async gapi => {
+				const res = await gapi.client.calendar.events.list({
+					calendarId: 'primary',
+					timeMin: new Date().toISOString(),
+				});
+				const calendarItems = res.result.items;
+				const calendarEvents = [];
+				for (let event of Object.values(calendarItems)) {
+					calendarEvents.push({
+						title: event.summary,
+						start: event.start.dateTime,
+						end: event.end.dateTime,
+					});
+				}
+				this.calendarEvents = calendarEvents;
+			});
+		},
+	},
+	created: function() {
+		this.getCalendarEvents();
 	},
 	computed: {
 		currentCalendarViewDates: function() {

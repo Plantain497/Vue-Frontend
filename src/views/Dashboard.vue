@@ -58,15 +58,6 @@ export default {
 		modelClose: function() {
 			this.showModal = false;
 		},
-		getEvents: async function() {
-			this.$gapi.getGapiClient().then(async gapi => {
-				const res = await gapi.client.calendar.events.list({
-					calendarId: 'primary',
-					timeMin: new Date().toISOString(),
-				});
-				console.log(res.result.items);
-			});
-		},
 	},
 	created: function() {
 		const arr = [];
