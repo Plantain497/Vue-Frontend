@@ -66,11 +66,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-/*! purgecss start ignore */
-@import '~@fullcalendar/core/main.css';
-@import '~@fullcalendar/daygrid/main.css';
-@import '~@fullcalendar/timegrid/main.css';
+/* purgecss start ignore */
+@import './core.css';
+@import './daygrid.css';
+@import './timegrid.css';
 
 @import './custom.css';
-/*! purgecss end ignore */
+/* purgecss end ignore */
 </style>
