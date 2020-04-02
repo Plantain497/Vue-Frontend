@@ -27,7 +27,7 @@
   color: #161e2e;
 }
 
-.fc td, .fc th {
+.fc-monthView-view td, .fc-monthView-view th {
   /* Remove borders */
   border: 0;
 }
@@ -89,6 +89,16 @@ td.fc-other-month {
 .fc-button-active {
   background: #252f3f !important;
   border-color: #252f3f !important;
+}
+
+/* Weekly */
+
+.fc-weekView-view .fc-head td, .fc-weekView-view .fc-head th {
+  border: 0;
+}
+
+.fc-body td, .fc-body th {
+  border: 0;
 }
 
 /* purgecss end ignore */
