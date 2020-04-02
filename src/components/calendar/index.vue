@@ -53,7 +53,11 @@ export default {
 				},
 			},
 			events: [
-				{ title: 'event 1', date: '2020-04-01' },
+				{
+					title:
+						'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quod obcaecati corrupti soluta in ab delectus maxime non. Vitae consequatur sapiente dolores animi consectetur deserunt, cum magni libero saepe rem!',
+					date: '2020-04-01',
+				},
 				{ title: 'event 2', date: '2020-04-02' },
 			],
 		};

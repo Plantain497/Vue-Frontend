@@ -1,3 +1,5 @@
+/* Calendar */
+
 .fc th {
   /* Table Header */
   text-align: left;
@@ -8,9 +10,54 @@
 .fc-ltr .fc-dayGrid-view .fc-day-top .fc-day-number {
   /* Date Alignment */
   float: left;
+  font-size: 20px;
+  padding-left: 2px;
 }
 
 .fc td, .fc th {
   /* Remove borders */
   border: 0;
+}
+
+.fc-row td {
+  /* All cells - padding + border radius */
+  padding: 8px;
+  border-radius: 16px;
+}
+
+.fc table {
+  /* All cells, border spacing for pseudo-margin */
+  border-collapse: separate;
+  border-spacing: 4px 4px;
+}
+
+td.fc-future, td.fc-today {
+  /* Give grey backgrounds for this month */
+  background: #e2e8f0;
+}
+
+.fc-unthemed td.fc-today {
+  /* Today Highlight */
+  background: #fde8e8;
+  color: #f05252;
+  font-weight: bold;
+}
+
+td.fc-other-month {
+  /* Last month don't highlight */
+  background: none;
+}
+
+/* Events */
+
+.fc-event {
+  background: #3f83f8;
+  border-color: #3f83f8;
+  border-radius: 4px;
+  /* min-height: 3rem; */
+}
+
+.fc-day-grid-event .fc-content {
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
