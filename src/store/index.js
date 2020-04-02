@@ -14,6 +14,9 @@ const store = new Vuex.Store({
 
 		// Date --> Todo Id --> Data
 		todos: {},
+
+		// currentCalendarViewDates
+		currentCalendarViewDates: {},
 	},
 	getters: {
 		getTodos: state => {
@@ -51,6 +54,10 @@ const store = new Vuex.Store({
 		setCurrentSelectedTodo: function(state, payload) {
 			Vue.set(state, 'currentSelectedTodo', payload);
 		},
+
+		setCurrentCalendarDateView: function(state, payload) {
+			Vue.set(state, 'currentCalendarViewDates', payload);
+		},
 	},
 	actions: {
 		// put asynchronous functions that can call one or more mutation functions
@@ -64,6 +71,9 @@ const store = new Vuex.Store({
 		},
 		setCurrentSelectedTodo: function(context, payload) {
 			context.commit('setCurrentSelectedTodo', payload);
+		},
+		setCurrentCalendarDateView: function(context, payload) {
+			context.commit('setCurrentCalendarDateView', payload);
 		},
 	},
 });

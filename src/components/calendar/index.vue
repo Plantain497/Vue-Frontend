@@ -19,6 +19,7 @@
 		}"
 		:plugins="calendarPlugins"
 		:events="events"
+		@datesRender="changeCalendarViewDates"
 	/>
 </template>
 <script>
@@ -26,10 +27,15 @@ import FullCalendar from '@fullcalendar/vue';
 import dayGridPlugin from '@fullcalendar/daygrid';
 import interactionPlugin from '@fullcalendar/interaction';
 import timeGridPlugin from '@fullcalendar/timegrid';
+import { format } from 'date-fns';
+import store from '@/store';
 
 export default {
 	components: {
 		FullCalendar,
+	},
+	props: {
+		events: Array,
 	},
 	data() {
 		return {
@@ -52,15 +58,17 @@ export default {
 					buttonText: 'Month',
 				},
 			},
-			events: [
-				{
-					title:
-						'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Itaque quod obcaecati corrupti soluta in ab delectus maxime non. Vitae consequatur sapiente dolores animi consectetur deserunt, cum magni libero saepe rem!',
-					date: '2020-04-01',
-				},
-				{ title: 'event 2', date: '2020-04-02' },
-			],
 		};
+	},
+	methods: {
+		changeCalendarViewDates: function(args) {
+			const currentStart = args.view.currentStart;
+			const currentEnd = args.view.currentEnd;
+			store.dispatch('setCurrentCalendarDateView', {
+				startDate: currentStart,
+				endDate: currentEnd,
+			});
+		},
 	},
 };
 </script>
