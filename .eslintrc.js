@@ -30,6 +30,27 @@ module.exports = {
 			env: {
 				jest: true
 			}
+<<<<<<< HEAD
+=======
+		},
+		{
+			files: [
+				'**/__tests__/*.{j,t}s?(x)',
+				'**/tests/unit/**/*.spec.{j,t}s?(x)'
+			],
+			env: {
+				mocha: true
+			}
+		},
+		{
+			files: [
+				'**/__tests__/*.{j,t}s?(x)',
+				'**/tests/unit/**/*.spec.{j,t}s?(x)'
+			],
+			env: {
+				jest: true
+			}
+>>>>>>> 29a75b4a8e0889e71ef906aaa25a98efd92346e4
 		}
 	]
 };
