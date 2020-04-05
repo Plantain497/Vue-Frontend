@@ -14,5 +14,6 @@ describe('TextInput.vue', () => {
 		const attributes = wrapper.find('input').attributes();
 		// Validate equality
 		expect(attributes.id).toBe(testInputId);
+		expect(attributes['aria-label']).toBe(testInputId);
 	});
 });
