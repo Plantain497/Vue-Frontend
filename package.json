@@ -6,6 +6,7 @@
 		"serve": "vue-cli-service serve --port 3000",
 		"build": "vue-cli-service build",
 		"test:unit": "vue-cli-service test:unit",
+		"test:e2e": "vue-cli-service test:e2e",
 		"lint": "vue-cli-service lint",
 		"report": "vue-cli-service build --report"
 	},
@@ -43,6 +44,7 @@
 		"@typescript-eslint/eslint-plugin": "^2.18.0",
 		"@typescript-eslint/parser": "^2.18.0",
 		"@vue/cli-plugin-babel": "~4.2.0",
+		"@vue/cli-plugin-e2e-cypress": "~4.3.0",
 		"@vue/cli-plugin-eslint": "~4.2.0",
 		"@vue/cli-plugin-router": "~4.2.0",
 		"@vue/cli-plugin-typescript": "~4.2.0",
@@ -64,11 +66,11 @@
 		"vue-cli-plugin-tailwind": "~1.2.0",
 		"vue-template-compiler": "^2.6.11"
 	},
-	"moduleNameMapper": {
-		"^@/(.*)$": "<rootDir>/src/$1"
-	},
 	"moduleFileExtensions": [
 		"js",
 		"ts"
-	]
+	],
+	"moduleNameMapper": {
+		"^@/(.*)$": "<rootDir>/src/$1"
+	}
 }
