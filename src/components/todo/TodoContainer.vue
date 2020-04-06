@@ -9,9 +9,11 @@
 			<p
 				class="pb-1 text-gray-400 border-b border-gray-200"
 				:class="{
-					'text-gray-700': todoList[todaysDate]
+					'text-gray-700': todoList[todaysDate],
 				}"
-			>Today, {{ todaysDate }}</p>
+			>
+				Today, {{ todaysDate }}
+			</p>
 
 			<transition-group name="item-group" tag="div" mode="out-in">
 				<div v-for="(todo, id) in todoList[todaysDate]" :key="todaysDate + id">
@@ -32,12 +34,17 @@
 				<p
 					class="pt-6 pb-1 text-gray-400 border-b border-gray-200"
 					:class="{
-						'text-gray-700': todoList[formatDate(date)]
+						'text-gray-700': todoList[formatDate(date)],
 					}"
-				>{{ longFormatDate(date) }}</p>
+				>
+					{{ longFormatDate(date) }}
+				</p>
 
 				<transition-group name="item-group" tag="div" mode="out-in">
-					<div v-for="(todo, id) in todoList[formatDate(date)]" :key="date + id">
+					<div
+						v-for="(todo, id) in todoList[formatDate(date)]"
+						:key="date + id"
+					>
 						<todo-item
 							:key="id"
 							:id="id"
@@ -51,13 +58,37 @@
 				</transition-group>
 			</div>
 		</div>
+		<div v-if="selectedView === 'All Tasks'">
+			<p
+				class="pb-1 text-gray-400 border-b border-gray-200"
+				:class="{
+					'text-gray-700': todoList,
+				}"
+			>
+				All Tasks
+			</p>
+
+			<transition-group name="item-group" tag="div" mode="out-in">
+				<div v-for="(todo, id) in todoList" :key="id">
+					<todo-item
+						:key="id"
+						:id="id"
+						:title="todo.title"
+						:description="todo.description"
+						:date="None"
+						@deleteTodoId="deleteTodo"
+						v-on:click.native="sendClickedTodoItem(id, todo)"
+					></todo-item>
+				</div>
+			</transition-group>
+		</div>
 	</div>
 </template>
 <script>
 import { compareAsc, format, fromUnixTime, addDays } from 'date-fns';
 import TodoItem from '@/components/todo/TodoItem';
 import TodoDeleteModal from '@/components/todo/TodoDeleteModal';
-import { getTodosOnDate, getTodosForRange } from '@/api/todo';
+import { getTodosOnDate, getTodosForRange, getAllTodos } from '@/api/todo';
 import { auth } from '@/firebaseConfig';
 import store from '@/store';
 
@@ -119,6 +150,10 @@ export default {
 				this.addTodoToStore,
 			);
 		},
+		getAllTasks: async function() {
+			console.log(this.todoList);
+			await getAllTodos(auth.currentUser.uid, this.addTodoToStore);
+		},
 	},
 	created: function() {
 		this.getTodayTasks();
@@ -138,6 +173,8 @@ export default {
 				this.getTodayTasks();
 			} else if (this.selectedView === 'Weekly') {
 				this.getWeeksTasks();
+			} else if (this.selectedView === 'All Tasks') {
+				this.getAllTasks();
 			}
 		},
 	},

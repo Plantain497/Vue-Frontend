@@ -1,4 +1,6 @@
-import { mount } from '@vue/test-utils';
+import {
+	mount
+} from '@vue/test-utils';
 import TextInput from '@/components/inputs/TextInput.vue';
 
 describe('TextInput.vue', () => {

@@ -1,7 +1,12 @@
-import { db } from '@/firebaseConfig';
-import { startOfDay, endOfDay } from 'date-fns';
+import {
+	db
+} from '@/firebaseConfig';
+import {
+	startOfDay,
+	endOfDay
+} from 'date-fns';
 
-const getTodosOnDate = async function(uid, date, todoCallback) {
+const getTodosOnDate = async function (uid, date, todoCallback) {
 	const start = startOfDay(date);
 	const end = endOfDay(date);
 	const todosRef = await db
@@ -19,7 +24,7 @@ const getTodosOnDate = async function(uid, date, todoCallback) {
 	});
 };
 
-const getTodosForRange = async function(uid, startDate, endDate, todoCallback) {
+const getTodosForRange = async function (uid, startDate, endDate, todoCallback) {
 	const start = startOfDay(startDate);
 	const end = endOfDay(endDate);
 	const rangeTodoRef = await db
@@ -37,4 +42,22 @@ const getTodosForRange = async function(uid, startDate, endDate, todoCallback) {
 	});
 };
 
-export { getTodosOnDate, getTodosForRange };
+const getAllTodos = async function (uid, todoCallback) {
+	const allTodosRef = await db
+		.collection('users')
+		.doc(uid)
+		.collection('todos');
+	allTodosRef.onSnapshot(snap => {
+		snap.forEach(doc => {
+			const todo = doc.data();
+			const id = doc.id;
+			todoCallback(id, todo);
+		});
+	});
+};
+
+export {
+	getTodosOnDate,
+	getTodosForRange,
+	getAllTodos,
+};

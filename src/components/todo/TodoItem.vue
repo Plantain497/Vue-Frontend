@@ -12,7 +12,9 @@
 			<span class="truncate">
 				<div class="px-6 truncate">
 					<p class="text-sm leading-5 text-gray-900 truncate">{{ title }}</p>
-					<p class="text-sm leading-5 text-gray-500 truncate">{{ description }}</p>
+					<p class="text-sm leading-5 text-gray-500 truncate">
+						{{ description }}
+					</p>
 				</div>
 			</span>
 		</div>

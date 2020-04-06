@@ -24,7 +24,10 @@
 
 			<todo-description class="flex-1 hidden ml-8 md:block"></todo-description>
 		</div>
-		<add-todo-modal v-on:changeAddModalOpenStatusEvent="changeAddModalStatus" :open="addModalOpen"></add-todo-modal>
+		<add-todo-modal
+			v-on:changeAddModalOpenStatusEvent="changeAddModalStatus"
+			:open="addModalOpen"
+		></add-todo-modal>
 	</div>
 </template>
 <script>
@@ -56,6 +59,8 @@ export default {
 				this.selectedView = 'Today';
 			} else if (curr === 'This Week') {
 				this.selectedView = 'Weekly';
+			} else if (curr === 'All Tasks') {
+				this.selectedView = 'All Tasks';
 			}
 		},
 		changeAddModalStatus: function(open) {
