@@ -1,4 +1,4 @@
-// https://docs.cypress.io/api/introduction/api.html
+// Tests for Landing
 
 describe('Visiting Landing', () => {
 	it('Visits the app root url', () => {
