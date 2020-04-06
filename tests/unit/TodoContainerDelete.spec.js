@@ -1,5 +1,8 @@
 import Vuex from 'vuex';
-import { createLocalVue, mount } from '@vue/test-utils';
+import {
+	createLocalVue,
+	mount
+} from '@vue/test-utils';
 import TodoContainer from '@/components/todo/TodoContainer.vue';
 import TodoItem from '@/components/todo/TodoItem.vue';
 import store from '../VuexStoreFactory';
@@ -17,8 +20,10 @@ describe('TodoContainer Store Test', () => {
 			localVue,
 		});
 
-		const todo = wrapper.find(TodoItem);
+		const mockFn = jest.fn().mockImplementation(wrapper.store = null);
+		mockFn();
 
-		expect(todo.length === 1);
+		const todo = wrapper.find(TodoItem);
+		expect(todo.length === 0);
 	});
 });

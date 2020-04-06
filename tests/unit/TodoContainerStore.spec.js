@@ -1,5 +1,8 @@
 import Vuex from 'vuex';
-import { createLocalVue, mount } from '@vue/test-utils';
+import {
+	createLocalVue,
+	mount
+} from '@vue/test-utils';
 import TodoContainer from '@/components/todo/TodoContainer.vue';
 import TodoItem from '@/components/todo/TodoItem.vue';
 import store from '../VuexStoreFactory';
