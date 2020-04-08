@@ -12,19 +12,9 @@
 			<span class="truncate">
 				<div class="px-6 truncate">
 					<p class="text-sm leading-5 text-gray-900 truncate">{{ title }}</p>
-					<p class="text-sm leading-5 text-gray-500 truncate">
-						{{ description }}
-					</p>
+					<p class="text-sm leading-5 text-gray-500 truncate">{{ description }}</p>
 				</div>
 			</span>
-		</div>
-
-		<div v-on:click="deletePrompt" class="flex items-center justify-center">
-			<delete
-				heightClass="h-8"
-				widthClass="w-8"
-				class="text-gray-400 hover:text-gray-700 focus:text-gray-700"
-			/>
 		</div>
 	</div>
 </template>
@@ -33,9 +23,6 @@ import Delete from '@/assets/Icons/Delete';
 
 export default {
 	name: 'TodoItem',
-	components: {
-		Delete,
-	},
 	props: {
 		title: {
 			type: String,

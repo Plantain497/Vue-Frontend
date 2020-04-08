@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full h-full bg-gray-100 md:w-1/2">
+	<div class="w-full h-auto bg-gray-200 md:w-1/2">
 		<todo-delete-modal
 			:show-modal="showDeleteModal"
 			@closeModal="handleCloseModal"

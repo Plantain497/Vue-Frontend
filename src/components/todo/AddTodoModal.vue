@@ -5,6 +5,7 @@
 		@cancel="sendOpenStatus"
 		cancel-text="Cancel"
 		confirm-text="Add Task"
+		:disableConfirm="taskTitleError"
 		confirm-classes="text-white bg-indigo-600 hover:bg-indigo-500 focus:border-indigo-700 focus:shadow-outline-indigo sm:text-sm sm:leading-5"
 	>
 		<template v-slot:content>
@@ -98,17 +99,19 @@ export default {
 		addTaskAndClose: function() {
 			this.uid = auth.currentUser.uid;
 
-			let date = null;
-			if (this.taskDate == null) {
-				const dateTemp = new Date();
-				date = this.dateShift(dateTemp);
-				addTodo(this.uid, this.taskTitle, this.taskDescription, null, false);
-			} else {
-				const dateTemp = new Date(this.taskDate);
-				date = this.dateShift(dateTemp);
-				addTodo(this.uid, this.taskTitle, this.taskDescription, date, false);
+			if (this.taskTitleError === false) {
+				let date = null;
+				if (this.taskDate == null) {
+					const dateTemp = new Date();
+					date = this.dateShift(dateTemp);
+					addTodo(this.uid, this.taskTitle, this.taskDescription, null, false);
+				} else {
+					const dateTemp = new Date(this.taskDate);
+					date = this.dateShift(dateTemp);
+					addTodo(this.uid, this.taskTitle, this.taskDescription, date, false);
+				}
+				this.sendOpenStatus();
 			}
-			this.sendOpenStatus();
 		},
 	},
 };

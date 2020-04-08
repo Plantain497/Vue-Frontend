@@ -31,11 +31,18 @@
 						<div class="px-4 py-3 rounded-b-lg bg-gray-50 sm:px-6 sm:flex sm:flex-row-reverse">
 							<span class="flex w-full rounded-md shadow-sm sm:ml-3 sm:w-auto">
 								<button
+									v-if="!disableConfirm"
 									data-test="modalButtonConfirm"
 									:disabled="disableConfirm"
 									@click="closeAction"
 									class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 transition duration-150 ease-in-out border border-transparent rounded-md shadow-sm focus:outline-none sm:text-sm sm:leading-5"
 									:class="confirmClasses"
+								>{{ confirmText }}</button>
+								<button
+									v-if="disableConfirm"
+									data-test="modalButtonConfirm"
+									@click="closeAction"
+									class="inline-flex justify-center w-full px-4 py-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-indigo-500 border border-transparent rounded-md shadow-sm hover:cursor-not-allowed focus:outline-none sm:text-sm sm:leading-5"
 								>{{ confirmText }}</button>
 							</span>
 							<span class="flex w-full mt-3 rounded-md shadow-sm sm:mt-0 sm:w-auto">

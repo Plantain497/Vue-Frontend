@@ -17,17 +17,14 @@
 			</button>
 		</div>
 		<div
-			class="flex justify-between w-full h-screen py-8 max-w-7xl sm:px-6 lg:px-8"
+			class="flex justify-between w-full h-auto py-8 max-w-7xl sm:px-6 lg:px-8"
 			v-click-outside="resetCurrentTodo"
 		>
 			<todo-container :selected-view="selectedView"></todo-container>
 
 			<todo-description class="flex-1 hidden ml-8 md:block"></todo-description>
 		</div>
-		<add-todo-modal
-			v-on:changeAddModalOpenStatusEvent="changeAddModalStatus"
-			:open="addModalOpen"
-		></add-todo-modal>
+		<add-todo-modal v-on:changeAddModalOpenStatusEvent="changeAddModalStatus" :open="addModalOpen"></add-todo-modal>
 	</div>
 </template>
 <script>
