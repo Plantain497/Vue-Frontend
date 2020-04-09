@@ -5,7 +5,7 @@
 			@closeModal="handleCloseModal"
 			:id="todoToDelete.id"
 		/>
-		<div v-if="selectedView === 'Today' || selectedView === 'Weekly'">
+		<div v-if="selectedView === 'Something' || selectedView === 'Weekly'">
 			<p
 				class="pb-1 text-gray-400 border-b border-gray-200"
 				:class="{
