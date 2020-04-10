@@ -1,52 +1,28 @@
 <template>
 	<div class="px-2 py-8 mx-auto bg-gray-100 max-w-7xl sm:px-6 lg:px-8">
-		<button @click="showModal = true">Open Modal</button>
-		<modal
-			:open="showModal"
-			@action="modelClose"
-			@cancel="showModal = false"
-			cancel-text="Cancel"
-			confirm-text="Deactivate"
+		<div
+			class="flex justify-between w-full h-auto"
+			v-click-outside="resetCurrentTodo"
 		>
-			<template v-slot:content>
-				<div class="sm:flex sm:items-start">
-					<div
-						class="flex items-center justify-center flex-shrink-0 w-12 h-12 mx-auto bg-red-100 rounded-full sm:mx-0 sm:h-10 sm:w-10"
-					>
-						<svg class="w-6 h-6 text-red-600" stroke="currentColor" fill="none" viewBox="0 0 24 24">
-							<path
-								stroke-linecap="round"
-								stroke-linejoin="round"
-								stroke-width="2"
-								d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"
-							/>
-						</svg>
-					</div>
-					<div class="mt-3 text-center sm:mt-0 sm:ml-4 sm:text-left">
-						<h3 class="text-lg font-medium leading-6 text-gray-900">Deactivate account</h3>
-						<div class="mt-2">
-							<p class="text-sm leading-5 text-gray-500">
-								Are you sure you want to deactivate your account? All of your
-								data will be permanantly removed. This action cannot be
-								undone.
-							</p>
-						</div>
-					</div>
+			<todo-container selected-view="Today" today-classes="text-2xl pb-4" />
+			<div class="flex-1 hidden ml-8 md:block">
+				<div class="w-full bg-gray-500 h-40vh">
+					Calendar
 				</div>
-			</template>
-		</modal>
+			</div>
+		</div>
 	</div>
 </template>
 
 <script>
 import { auth } from '@/firebaseConfig';
-import Modal from '@/components/modal';
 import { getTodosOnDate } from '@/api/todo';
+import TodoContainer from '@/components/todo/TodoContainer';
 
 export default {
 	name: 'Dashboard',
 	components: {
-		Modal,
+		TodoContainer,
 	},
 	data: function() {
 		return {
@@ -55,18 +31,14 @@ export default {
 		};
 	},
 	methods: {
-		modelClose: function() {
-			this.showModal = false;
+		resetCurrentTodo: function() {
+			store.dispatch('setCurrentSelectedTodo', {});
 		},
-	},
-	created: function() {
-		const arr = [];
-		const pushIntoArr = (id, todo) => {
-			arr.push({ id, ...todo });
-		};
-		const today = new Date();
-		getTodosOnDate(this.currentUser.uid, today, pushIntoArr);
-		console.log(arr);
 	},
 };
 </script>
+<style scoped>
+.h-40vh {
+	height: 40vh;
+}
+</style>

@@ -9,9 +9,12 @@
 			<p
 				class="pb-1 text-gray-400 border-b border-gray-200"
 				:class="{
+					[todayClasses]: true,
 					'text-gray-700': todoList[todaysDate],
 				}"
-			>Today, {{ todaysDate }}</p>
+			>
+				Today, {{ todaysDate }}
+			</p>
 
 			<transition-group name="item-group" tag="div" mode="out-in">
 				<div v-for="(todo, id) in todoList[todaysDate]" :key="todaysDate + id">
@@ -36,10 +39,15 @@
 					:class="{
 						'text-gray-700': todoList[formatDate(date)],
 					}"
-				>{{ longFormatDate(date) }}</p>
+				>
+					{{ longFormatDate(date) }}
+				</p>
 
 				<transition-group name="item-group" tag="div" mode="out-in">
-					<div v-for="(todo, id) in todoList[formatDate(date)]" :key="date + id">
+					<div
+						v-for="(todo, id) in todoList[formatDate(date)]"
+						:key="date + id"
+					>
 						<todo-item
 							:key="id"
 							:id="id"
@@ -61,7 +69,9 @@
 				:class="{
 					'text-gray-700': todoList,
 				}"
-			>All Tasks</p>
+			>
+				All Tasks
+			</p>
 
 			<transition-group name="item-group" tag="div" mode="out-in">
 				<div v-for="(todo, id) in todoList" :key="id">
@@ -100,6 +110,10 @@ export default {
 		TodoDeleteModal,
 	},
 	props: {
+		todayClasses: {
+			type: String,
+			default: '',
+		},
 		selectedView: {
 			type: String,
 			default: 'Today',
