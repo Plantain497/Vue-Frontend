@@ -3,7 +3,12 @@
 		class="flex justify-between px-6 py-4 pb-4 whitespace-no-wrap transition duration-200 ease-in-out border-b border-gray-200 rounded-sm rounded-md hover:shadow-md hover:bg-purple-50"
 	>
 		<div class="flex items-center truncate">
-			<input :checked="isCompleted" @change="completeTodo" type="checkbox" class="form-checkbox" />
+			<input
+				:checked="isCompleted"
+				@change="completeTodo"
+				type="checkbox"
+				class="text-gray-400 form-checkbox"
+			/>
 			<span class="truncate">
 				<div class="px-6 truncate">
 					<p
@@ -60,7 +65,10 @@ export default {
 </script>
 <style scoped>
 .task-complete {
-	@apply line-through;
+	/* @apply line-through; */
 	@apply text-gray-400;
+	@apply transition;
+	@apply duration-150;
+	@apply ease-in-out;
 }
 </style>
