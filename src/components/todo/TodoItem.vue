@@ -3,7 +3,7 @@
 		class="flex justify-between px-6 py-4 pb-4 whitespace-no-wrap transition duration-200 ease-in-out border-b border-gray-200 rounded-sm rounded-md hover:shadow-md hover:bg-purple-50"
 	>
 		<div class="flex items-center truncate">
-			<input :checked="isComplete" v-on:click="completeTodo" type="checkbox" class="form-checkbox" />
+			<input :checked="isComplete" @change="completeTodo" type="checkbox" class="form-checkbox" />
 			<span class="truncate">
 				<div class="px-6 truncate">
 					<p
@@ -46,12 +46,12 @@ export default {
 		deletePrompt: function() {
 			this.$emit('deleteTodoId', { id: this.id, date: this.date });
 		},
-		completeTodo: function() {
+		completeTodo: function(e) {
 			this.$emit('completeTodo', {
 				id: this.id,
 				title: this.title,
 				description: this.description,
-				isComplete: !this.isComplete,
+				isComplete: e.target.checked,
 				date: this.date,
 			});
 		},
