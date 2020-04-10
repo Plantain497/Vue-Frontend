@@ -4,7 +4,7 @@
 			class="flex justify-between w-full h-auto"
 			v-click-outside="resetCurrentTodo"
 		>
-			<todo-container selected-view="Today" today-classes="text-2xl pb-4" />
+			<todo-container selected-view="Today" today-classes="text-2xl pb-3" />
 			<div class="flex-1 hidden ml-8 md:block">
 				<div class="w-full bg-gray-500 h-40vh">
 					Calendar
