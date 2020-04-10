@@ -47,7 +47,13 @@ export default {
 			this.$emit('deleteTodoId', { id: this.id, date: this.date });
 		},
 		completeTodo: function() {
-			this.$emit('completeTodo', { id: this.id });
+			this.$emit('completeTodo', {
+				id: this.id,
+				title: this.title,
+				description: this.description,
+				isComplete: !this.isComplete,
+				date: this.date,
+			});
 		},
 	},
 };

@@ -55,6 +55,14 @@ const store = new Vuex.Store({
 			Vue.set(state, 'currentSelectedTodo', payload);
 		},
 
+		updateTodoInStore: function(state, payload) {
+			const { id, date, todo } = payload;
+			const formattedDate = convertDateToFormattedDate(date);
+			const currentTodosForDate = state.todos[[formattedDate]];
+			currentTodosForDate[id] = todo;
+			Vue.set(state.todos, [formattedDate], currentTodosForDate);
+		},
+
 		setCurrentCalendarDateView: function(state, payload) {
 			Vue.set(state, 'currentCalendarViewDates', payload);
 		},
@@ -68,6 +76,10 @@ const store = new Vuex.Store({
 		deleteTodoFromStore: function(context, payload) {
 			// Input: id, date
 			context.commit('deleteTodoFromStore', payload);
+		},
+		updateTodoInStore: function(context, payload) {
+			// Input: id, date, todo
+			context.commit('updateTodoInStore', payload);
 		},
 		setCurrentSelectedTodo: function(context, payload) {
 			context.commit('setCurrentSelectedTodo', payload);

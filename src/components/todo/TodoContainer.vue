@@ -1,5 +1,5 @@
 <template>
-	<div class="w-full h-auto bg-gray-200 md:w-1/2">
+	<div class="w-full h-auto bg-gray-100 md:w-1/2">
 		<todo-delete-modal
 			:show-modal="showDeleteModal"
 			@closeModal="handleCloseModal"
@@ -21,6 +21,7 @@
 						:title="todo.title"
 						:description="todo.description"
 						:date="new Date()"
+						@completeTodo="handleCompleteTodo"
 						@deleteTodoId="deleteTodo"
 						v-on:click.native="sendClickedTodoItem(id, todo)"
 					></todo-item>
@@ -44,6 +45,7 @@
 							:title="todo.title"
 							:description="todo.description"
 							:date="date"
+							@completeTodo="handleCompleteTodo"
 							@deleteTodoId="deleteTodo"
 							v-on:click.native="sendClickedTodoItem(id, todo)"
 						></todo-item>
@@ -67,6 +69,7 @@
 						:title="todo.title"
 						:description="todo.description"
 						:date="None"
+						@completeTodo="handleCompleteTodo"
 						@deleteTodoId="deleteTodo"
 						v-on:click.native="sendClickedTodoItem(id, todo)"
 					></todo-item>
@@ -104,6 +107,14 @@ export default {
 		};
 	},
 	methods: {
+		handleCompleteTodo: function(todo) {
+			const { id, date, ...todoData } = todo;
+			store.dispatch('updateTodoInStore', {
+				id: id,
+				date: date,
+				todo: todoData,
+			});
+		},
 		deleteTodo: function(todo) {
 			this.todoToDelete = { id: todo.id, date: todo.date };
 			this.showDeleteModal = true;
