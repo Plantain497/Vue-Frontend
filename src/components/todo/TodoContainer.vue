@@ -20,6 +20,7 @@
 						:id="id"
 						:title="todo.title"
 						:description="todo.description"
+						:is-completed="todo.isCompleted"
 						:date="new Date()"
 						@completeTodo="handleCompleteTodo"
 						@deleteTodoId="deleteTodo"
@@ -44,6 +45,7 @@
 							:id="id"
 							:title="todo.title"
 							:description="todo.description"
+							:is-completed="todo.isCompleted"
 							:date="date"
 							@completeTodo="handleCompleteTodo"
 							@deleteTodoId="deleteTodo"
@@ -82,7 +84,12 @@
 import { compareAsc, format, fromUnixTime, addDays } from 'date-fns';
 import TodoItem from '@/components/todo/TodoItem';
 import TodoDeleteModal from '@/components/todo/TodoDeleteModal';
-import { getTodosOnDate, getTodosForRange, getAllTodos } from '@/api/todo';
+import {
+	getTodosOnDate,
+	getTodosForRange,
+	getAllTodos,
+	updateTodo,
+} from '@/api/todo';
 import { auth } from '@/firebaseConfig';
 import store from '@/store';
 
@@ -109,6 +116,7 @@ export default {
 	methods: {
 		handleCompleteTodo: function(todo) {
 			const { id, date, ...todoData } = todo;
+			updateTodo(auth.currentUser.uid, id, todoData);
 			store.dispatch('updateTodoInStore', {
 				id: id,
 				date: date,

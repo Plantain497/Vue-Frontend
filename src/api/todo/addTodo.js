@@ -1,8 +1,6 @@
-import {
-	db
-} from '@/firebaseConfig';
+import { db } from '@/firebaseConfig';
 
-const addTodo = function (uid, title, description, dueDate, isComplete) {
+const addTodo = function(uid, title, description, dueDate, isCompleted) {
 	db.collection('users')
 		.doc(uid)
 		.collection('todos')
@@ -11,10 +9,8 @@ const addTodo = function (uid, title, description, dueDate, isComplete) {
 			description: description,
 			updatedAt: new Date(),
 			dueDate: dueDate,
-			isCompleted: isComplete,
+			isCompleted: isCompleted,
 		});
 };
 
-export {
-	addTodo
-};
+export { addTodo };

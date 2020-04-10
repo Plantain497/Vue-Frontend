@@ -1,18 +1,16 @@
-import {
-	db
-} from '@/firebaseConfig';
+import { db } from '@/firebaseConfig';
 
 // This function still needs work since we probably have to talk about what "updating" means
-const updateTodo = function (uid, docId, checked) {
+const updateTodo = function(uid, docId, newTodoData) {
 	db.collection('users')
 		.doc(uid)
 		.collection('todos')
 		.doc(docId)
 		.update({
-			isCompleted: isChecked,
+			title: newTodoData.title,
+			description: newTodoData.description,
+			isCompleted: newTodoData.isCompleted,
 		});
 };
 
-export {
-	updateTodo
-};
+export { updateTodo };

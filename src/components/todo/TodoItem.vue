@@ -3,16 +3,16 @@
 		class="flex justify-between px-6 py-4 pb-4 whitespace-no-wrap transition duration-200 ease-in-out border-b border-gray-200 rounded-sm rounded-md hover:shadow-md hover:bg-purple-50"
 	>
 		<div class="flex items-center truncate">
-			<input :checked="isComplete" @change="completeTodo" type="checkbox" class="form-checkbox" />
+			<input :checked="isCompleted" @change="completeTodo" type="checkbox" class="form-checkbox" />
 			<span class="truncate">
 				<div class="px-6 truncate">
 					<p
 						class="text-sm leading-5 truncate"
-						:class="{'task-complete': isComplete, 'text-gray-900': !isComplete}"
+						:class="{'task-complete': isCompleted, 'text-gray-900': !isCompleted}"
 					>{{ title }}</p>
 					<p
 						class="text-sm leading-5 truncate"
-						:class="{'task-complete': isComplete, 'text-gray-500': !isComplete}"
+						:class="{'task-complete': isCompleted, 'text-gray-500': !isCompleted}"
 					>{{ description }}</p>
 				</div>
 			</span>
@@ -31,7 +31,7 @@ export default {
 		description: {
 			type: String,
 		},
-		isComplete: {
+		isCompleted: {
 			type: Boolean,
 			default: false,
 		},
@@ -51,7 +51,7 @@ export default {
 				id: this.id,
 				title: this.title,
 				description: this.description,
-				isComplete: e.target.checked,
+				isCompleted: e.target.checked,
 				date: this.date,
 			});
 		},
