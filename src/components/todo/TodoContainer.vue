@@ -12,25 +12,27 @@
 					[todayClasses]: true,
 					'text-gray-700': todoList[todaysDate],
 				}"
-			>
-				Today, {{ todaysDate }}
-			</p>
-
-			<transition-group name="item-group" tag="div" mode="out-in">
-				<div v-for="(todo, id) in todoList[todaysDate]" :key="todaysDate + id">
-					<todo-item
-						:key="id"
-						:id="id"
-						:title="todo.title"
-						:description="todo.description"
-						:is-completed="todo.isCompleted"
-						:date="new Date()"
-						@completeTodo="handleCompleteTodo"
-						@deleteTodoId="deleteTodo"
-						v-on:click.native="sendClickedTodoItem(id, todo)"
-					></todo-item>
-				</div>
-			</transition-group>
+			>Today, {{ todaysDate }}</p>
+			<div>
+				<transition-group name="item-group" tag="div" mode="out-in">
+					<div v-for="(todo, id) in todoList[todaysDate]" :key="todaysDate + id">
+						<todo-item
+							:key="id"
+							:id="id"
+							:title="todo.title"
+							:description="todo.description"
+							:is-completed="todo.isCompleted"
+							:date="new Date()"
+							@completeTodo="handleCompleteTodo"
+							@deleteTodoId="deleteTodo"
+							v-on:click.native="sendClickedTodoItem(id, todo)"
+						></todo-item>
+					</div>
+				</transition-group>
+			</div>
+			<div v-if="showEmpty && !todoList[todaysDate]" class="flex flex-col items-start pt-4 pl-1">
+				<h1 class="text-gray-400">No Tasks for Today!</h1>
+			</div>
 		</div>
 		<div v-if="selectedView === 'Weekly'">
 			<div v-for="date in thisWeekDates" :key="selectedView + date">
@@ -39,15 +41,10 @@
 					:class="{
 						'text-gray-700': todoList[formatDate(date)],
 					}"
-				>
-					{{ longFormatDate(date) }}
-				</p>
+				>{{ longFormatDate(date) }}</p>
 
 				<transition-group name="item-group" tag="div" mode="out-in">
-					<div
-						v-for="(todo, id) in todoList[formatDate(date)]"
-						:key="date + id"
-					>
+					<div v-for="(todo, id) in todoList[formatDate(date)]" :key="date + id">
 						<todo-item
 							:key="id"
 							:id="id"
@@ -69,9 +66,7 @@
 				:class="{
 					'text-gray-700': todoList,
 				}"
-			>
-				All Tasks
-			</p>
+			>All Tasks</p>
 
 			<transition-group name="item-group" tag="div" mode="out-in">
 				<div v-for="(todo, id) in todoList" :key="id">
@@ -117,6 +112,10 @@ export default {
 		selectedView: {
 			type: String,
 			default: 'Today',
+		},
+		showEmpty: {
+			type: Boolean,
+			default: false,
 		},
 	},
 	data: function() {

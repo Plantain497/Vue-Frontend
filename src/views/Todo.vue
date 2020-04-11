@@ -1,6 +1,6 @@
 <template>
 	<div class="px-2 mx-auto bg-gray-100 max-w-7xl sm:px-6 lg:px-8">
-		<div class="flex justify-between pt-8 sm:px-6 lg:px-8">
+		<div class="flex justify-between pt-8">
 			<dropdown v-on:changeViewStatusEvent="getViewStatus"></dropdown>
 			<button
 				class="flex items-center w-32 h-auto px-4 py-2 text-sm font-medium leading-6 text-white transition duration-150 ease-in-out bg-purple-500 rounded-md shadow-sm focus:outline-none focus:border-purple-300 hover:bg-purple-600 focus:shadow-outline-purple"
@@ -16,10 +16,7 @@
 				Add Task
 			</button>
 		</div>
-		<div
-			class="flex justify-between w-full h-auto py-8 max-w-7xl sm:px-6 lg:px-8"
-			v-click-outside="resetCurrentTodo"
-		>
+		<div class="flex justify-between w-full h-auto py-8" v-click-outside="resetCurrentTodo">
 			<todo-container :selected-view="selectedView"></todo-container>
 
 			<todo-description class="flex-1 hidden ml-8 md:block"></todo-description>

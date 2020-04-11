@@ -1,10 +1,7 @@
 <template>
 	<div class="px-2 py-8 mx-auto bg-gray-100 max-w-7xl sm:px-6 lg:px-8">
-		<div
-			class="flex justify-between w-full h-auto"
-			v-click-outside="resetCurrentTodo"
-		>
-			<todo-container selected-view="Today" today-classes="text-2xl pb-3" />
+		<div class="flex justify-between w-full h-auto" v-click-outside="resetCurrentTodo">
+			<todo-container selected-view="Today" today-classes="text-2xl pb-3" :show-empty="true" />
 			<div class="flex-1 hidden ml-8 md:block">
 				<div class="w-full h-40vh">
 					<calendar :events="events" />
