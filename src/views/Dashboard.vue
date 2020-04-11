@@ -9,6 +9,7 @@
 				<div class="w-full h-40vh">
 					<calendar :events="events" />
 				</div>
+				<todo-description class="mt-6 ml-4 mr-2"></todo-description>
 			</div>
 		</div>
 	</div>
@@ -19,6 +20,7 @@ import { auth } from '@/firebaseConfig';
 import { getTodosForRange } from '@/api/todo';
 import { formatISO, startOfDay, parse, fromUnixTime } from 'date-fns';
 import store from '@/store';
+import TodoDescription from '@/components/todo/TodoDescription';
 import TodoContainer from '@/components/todo/TodoContainer';
 import Calendar from '@/components/calendar/Today';
 
@@ -27,6 +29,7 @@ export default {
 	components: {
 		Calendar,
 		TodoContainer,
+		TodoDescription,
 	},
 	data: function() {
 		return {
