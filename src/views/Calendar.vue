@@ -1,6 +1,22 @@
 <template>
 	<div class="h-full px-2 py-8 mx-auto bg-gray-100 max-w-7xl sm:px-6 lg:px-8">
-		<calendar :events="combinedEvents" />
+		<calendar
+			:events="combinedEvents"
+			:views="{
+				weekView: {
+					type: 'timeGridWeek',
+					slotDuration: '01:00:00',
+					allDayText: 'All-Day',
+					nowIndicator: true,
+					buttonText: 'Week',
+				},
+				monthView: {
+					type: 'dayGridMonth',
+					buttonText: 'Month',
+				},
+			}"
+			default-view="monthView"
+		/>
 	</div>
 </template>
 <script>

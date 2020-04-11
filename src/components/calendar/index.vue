@@ -9,7 +9,7 @@
 		}"
 		height="parent"
 		:views="views"
-		default-view="monthView"
+		:default-view="defaultView"
 		contentHeight="auto"
 		:editable="true"
 		:selectable="true"
@@ -36,6 +36,8 @@ export default {
 	},
 	props: {
 		events: Array,
+		views: Object,
+		defaultView: { type: String, default: 'monthView', required: true },
 	},
 	data() {
 		return {
@@ -44,19 +46,6 @@ export default {
 				left: 'title',
 				center: 'weekView,monthView',
 				right: 'today prev,next',
-			},
-			views: {
-				weekView: {
-					type: 'timeGridWeek',
-					slotDuration: '01:00:00',
-					allDayText: 'All-Day',
-					nowIndicator: true,
-					buttonText: 'Week',
-				},
-				monthView: {
-					type: 'dayGridMonth',
-					buttonText: 'Month',
-				},
 			},
 		};
 	},
