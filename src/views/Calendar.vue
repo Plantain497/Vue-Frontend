@@ -22,7 +22,7 @@
 <script>
 import { formatISO, startOfDay, parse, fromUnixTime } from 'date-fns';
 import { getTodosForRange } from '@/api/todo';
-import Calendar from '@/components/calendar';
+import Calendar from '@/components/calendar/Main';
 import { auth } from '@/firebaseConfig';
 import store from '@/store';
 

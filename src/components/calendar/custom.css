@@ -107,4 +107,8 @@ td.fc-other-month {
   border: 0;
 }
 
+.fc-todayView-view .fc-head td, .fc-todayView-view .fc-head th {
+  border: 0;
+}
+
 /* purgecss end ignore */
