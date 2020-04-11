@@ -9,7 +9,7 @@
 		height="parent"
 		:views="views"
 		default-view="todayView"
-		contentHeight="18rem"
+		contentHeight="24rem"
 		:editable="true"
 		:selectable="true"
 		:columnHeaderFormat="{
