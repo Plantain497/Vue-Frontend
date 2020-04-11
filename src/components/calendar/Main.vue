@@ -1,5 +1,6 @@
 <template>
 	<full-calendar
+		:scrollTime="currentHour"
 		:header="header"
 		:buttonText="{
 			today: 'Today',
@@ -57,6 +58,12 @@ export default {
 				startDate: currentStart,
 				endDate: currentEnd,
 			});
+		},
+	},
+	computed: {
+		currentHour: function() {
+			const curDate = new Date();
+			return format(curDate, 'HH:mm:ss');
 		},
 	},
 };
