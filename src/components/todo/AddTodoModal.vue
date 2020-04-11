@@ -11,7 +11,9 @@
 		<template v-slot:content>
 			<h2
 				class="pb-2 text-base font-bold leading-7 text-gray-900 sm:text-xl sm:leading-9 sm:truncate"
-			>New Task</h2>
+			>
+				New Task
+			</h2>
 			<div class="flex sm:flex sm:items-start">
 				<div class="w-full mt-3 text-center sm:mt-0 sm:text-left">
 					<!-- Title form -->
@@ -31,7 +33,9 @@
 							<label
 								for="todoDatePicker"
 								class="block text-sm font-medium leading-5 text-gray-700"
-							>Due Date</label>
+							>
+								Due Date
+							</label>
 							<span class="text-sm leading-5 text-gray-500">Optional</span>
 						</div>
 						<date-picker
@@ -43,6 +47,28 @@
 						/>
 					</div>
 
+					<div class="w-full my-4">
+						<div class="flex justify-between pb-1">
+							<label
+								for="todoTimePicker"
+								class="block text-sm font-medium leading-5 text-gray-700"
+							>
+								Task Deadline
+							</label>
+							<span class="text-sm leading-5 text-gray-500">Optional</span>
+						</div>
+						<vue-timepicker
+							id="todoTimePicker"
+							class="w-full"
+							format="hh:mm A"
+							:minute-range="[0, 15, 30, 45, 60]"
+							:hide-disabled-minutes="true"
+							:close-on-complete="true"
+							:hide-clear-button="true"
+							:auto-scroll="true"
+							v-model="taskTimeObject"
+						></vue-timepicker>
+					</div>
 					<!-- Description form -->
 					<text-input
 						input-id="description"
@@ -59,6 +85,9 @@
 <script>
 import DatePicker from 'v-calendar/lib/components/date-picker.umd';
 import TextInput from '@/components/inputs/TextInput';
+import VueTimepicker from 'vue2-timepicker';
+import '@/components/inputs/timePicker.css';
+
 import { addTodo } from '@/api/todo';
 import { auth } from '@/firebaseConfig';
 import { ValidateNotEmpty } from '../inputs/validation';
@@ -69,6 +98,7 @@ export default {
 		DatePicker,
 		TextInput,
 		Modal,
+		VueTimepicker,
 	},
 	props: {
 		open: {
@@ -82,6 +112,11 @@ export default {
 			taskDescription: '',
 			taskTitleError: false,
 			taskDate: new Date(),
+			taskTimeObject: {
+				hh: '09',
+				mm: '00',
+				A: 'AM',
+			},
 			taskComplete: false,
 			uid: '',
 		};
