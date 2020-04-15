@@ -11,9 +11,7 @@
 		<template v-slot:content>
 			<h2
 				class="pb-2 text-base font-bold leading-7 text-gray-900 sm:text-xl sm:leading-9 sm:truncate"
-			>
-				New Task
-			</h2>
+			>New Task</h2>
 			<div class="flex sm:flex sm:items-start">
 				<div class="w-full mt-3 text-center sm:mt-0 sm:text-left">
 					<!-- Title form -->
@@ -33,9 +31,7 @@
 							<label
 								for="todoDatePicker"
 								class="block text-sm font-medium leading-5 text-gray-700"
-							>
-								Due Date
-							</label>
+							>Due Date</label>
 							<span class="text-sm leading-5 text-gray-500">Optional</span>
 						</div>
 						<date-picker
@@ -52,9 +48,7 @@
 							<label
 								for="todoTimePicker"
 								class="block text-sm font-medium leading-5 text-gray-700"
-							>
-								Task Deadline
-							</label>
+							>Task Deadline</label>
 							<span class="text-sm leading-5 text-gray-500">Optional</span>
 						</div>
 						<vue-timepicker
@@ -63,7 +57,6 @@
 							format="hh:mm A"
 							:minute-range="[0, 15, 30, 45, 60]"
 							:hide-disabled-minutes="true"
-							:close-on-complete="true"
 							:hide-clear-button="true"
 							:auto-scroll="true"
 							v-model="taskTimeObject"
@@ -87,6 +80,7 @@ import DatePicker from 'v-calendar/lib/components/date-picker.umd';
 import TextInput from '@/components/inputs/TextInput';
 import VueTimepicker from 'vue2-timepicker';
 import '@/components/inputs/timePicker.css';
+import { set } from 'date-fns';
 
 import { addTodo } from '@/api/todo';
 import { auth } from '@/firebaseConfig';
@@ -128,23 +122,21 @@ export default {
 		sendOpenStatus: function() {
 			this.$emit('changeAddModalOpenStatusEvent', false);
 		},
-		dateShift: function(date) {
-			return new Date(date.getTime() - date.getTimezoneOffset() * -60000);
+		getDate: function(taskDate, taskTimeObject) {
+			const hourShift = taskTimeObject.A === 'AM' ? 0 : 12;
+			const newDate = set(taskDate, {
+				hours: parseInt(taskTimeObject.hh) + hourShift,
+				minutes: parseInt(taskTimeObject.mm),
+				seconds: 0,
+			});
+			return newDate;
 		},
 		addTaskAndClose: function() {
 			this.uid = auth.currentUser.uid;
 
 			if (this.taskTitleError === false) {
-				let date = null;
-				if (this.taskDate == null) {
-					const dateTemp = new Date();
-					date = this.dateShift(dateTemp);
-					addTodo(this.uid, this.taskTitle, this.taskDescription, null, false);
-				} else {
-					const dateTemp = new Date(this.taskDate);
-					date = this.dateShift(dateTemp);
-					addTodo(this.uid, this.taskTitle, this.taskDescription, date, false);
-				}
+				const date = this.getDate(this.taskDate, this.taskTimeObject);
+				addTodo(this.uid, this.taskTitle, this.taskDescription, date, false);
 				this.sendOpenStatus();
 			}
 		},
