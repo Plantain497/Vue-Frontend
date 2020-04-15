@@ -1,16 +1,10 @@
 <template>
 	<div class="relative pt-6 pb-4 lg:pb-6">
-		<nav
-			class="relative flex items-center justify-between max-w-screen-xl px-4 mx-auto sm:px-6"
-		>
+		<nav class="relative flex items-center justify-between max-w-screen-xl px-4 mx-auto sm:px-6">
 			<div class="flex items-center flex-1">
 				<div class="flex items-center justify-between w-full md:w-auto">
-					<a href="/">
-						<img
-							class="w-auto h-8 sm:h-10"
-							src="@/assets/shortLogo.svg"
-							alt="Logo"
-						/>
+					<a class="pl-2" href="/">
+						<img class="w-auto h-8 sm:h-10" src="@/assets/shortLogo.svg" alt="Logo" />
 					</a>
 					<div class="flex items-center -mr-2 md:hidden">
 						<button
@@ -78,7 +72,7 @@
 					<div class="overflow-hidden bg-white rounded-lg shadow-xs">
 						<div class="flex items-center justify-between px-5 pt-4">
 							<div>
-								<img class="w-auto h-8" src="@/assets/shortLogo.svg" alt="" />
+								<img class="w-auto h-8" src="@/assets/shortLogo.svg" alt />
 							</div>
 							<div class="-mr-2">
 								<button
@@ -86,12 +80,7 @@
 									type="button"
 									class="inline-flex items-center justify-center p-2 text-gray-400 transition duration-150 ease-in-out rounded-md hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 focus:text-gray-500"
 								>
-									<svg
-										class="w-6 h-6"
-										stroke="currentColor"
-										fill="none"
-										viewBox="0 0 24 24"
-									>
+									<svg class="w-6 h-6" stroke="currentColor" fill="none" viewBox="0 0 24 24">
 										<path
 											stroke-linecap="round"
 											stroke-linejoin="round"
