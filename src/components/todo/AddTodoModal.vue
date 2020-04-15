@@ -23,6 +23,7 @@
 						:error="taskTitleError"
 						v-click-outside="checkNotEmpty"
 						hint="Required"
+						:reset-content="resetFields"
 					/>
 
 					<!-- Due date selector -->
@@ -69,6 +70,7 @@
 						v-model="taskDescription"
 						placeholder="Enter a Task Description"
 						hint="Optional"
+						:reset-content="resetFields"
 					/>
 				</div>
 			</div>
@@ -113,6 +115,7 @@ export default {
 			},
 			taskComplete: false,
 			uid: '',
+			resetFields: false,
 		};
 	},
 	methods: {

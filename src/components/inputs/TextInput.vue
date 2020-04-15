@@ -18,7 +18,6 @@
 				v-model="content"
 				v-on:input="updateValue"
 			/>
-
 			<div class="absolute inset-y-0 right-0 flex items-center pr-3 pointer-events-none" v-if="error">
 				<svg class="w-5 h-5 text-red-500" fill="currentColor" viewBox="0 0 20 20">
 					<path
@@ -59,10 +58,20 @@ export default {
 		error: {
 			type: Boolean,
 		},
+		resetContent: {
+			type: Boolean,
+		},
 	},
 	methods: {
 		updateValue: function() {
 			this.$emit('input', this.content);
+		},
+	},
+	watch: {
+		checkForContentReset() {
+			if (this.resetContent) {
+				this.content = '';
+			}
 		},
 	},
 };
