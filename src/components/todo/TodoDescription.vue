@@ -77,7 +77,7 @@ export default {
 	methods: {
 		formatDate: function(dueDate) {
 			if (dueDate) {
-				return format(fromUnixTime(dueDate.seconds), 'PPP');
+				return format(fromUnixTime(dueDate.seconds), 'PPPp');
 			}
 			return '';
 		},
