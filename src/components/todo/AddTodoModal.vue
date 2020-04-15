@@ -11,9 +11,7 @@
 		<template v-slot:content>
 			<h2
 				class="pb-2 text-base font-bold leading-7 text-gray-900 sm:text-xl sm:leading-9 sm:truncate"
-			>
-				New Task
-			</h2>
+			>New Task</h2>
 			<div class="flex sm:flex sm:items-start">
 				<div class="w-full mt-3 text-center sm:mt-0 sm:text-left">
 					<!-- Title form -->
@@ -25,6 +23,7 @@
 						:error="taskTitleError"
 						v-click-outside="checkNotEmpty"
 						hint="Required"
+						:reset-content="resetFields"
 					/>
 
 					<!-- Due date selector -->
@@ -33,9 +32,7 @@
 							<label
 								for="todoDatePicker"
 								class="block text-sm font-medium leading-5 text-gray-700"
-							>
-								Due Date
-							</label>
+							>Due Date</label>
 							<span class="text-sm leading-5 text-gray-500">Optional</span>
 						</div>
 						<date-picker
@@ -52,9 +49,7 @@
 							<label
 								for="todoTimePicker"
 								class="block text-sm font-medium leading-5 text-gray-700"
-							>
-								Task Deadline
-							</label>
+							>Task Deadline</label>
 							<span class="text-sm leading-5 text-gray-500">Optional</span>
 						</div>
 						<vue-timepicker
@@ -76,6 +71,7 @@
 						v-model="taskDescription"
 						placeholder="Enter a Task Description"
 						hint="Optional"
+						:reset-content="resetFields"
 					/>
 				</div>
 			</div>
@@ -119,6 +115,7 @@ export default {
 			},
 			taskComplete: false,
 			uid: '',
+			resetFields: false,
 		};
 	},
 	methods: {
@@ -145,6 +142,7 @@ export default {
 					date = this.dateShift(dateTemp);
 					addTodo(this.uid, this.taskTitle, this.taskDescription, date, false);
 				}
+				this.resetFields = true;
 				this.sendOpenStatus();
 			}
 		},
