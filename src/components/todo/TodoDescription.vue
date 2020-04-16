@@ -167,6 +167,7 @@ export default {
 					date: this.formatDateFromUnix(this.selectedTodo.dueDate),
 				});
 			}
+			store.dispatch('setCurrentSelectedTodo', {});
 			this.showDeleteModal = false;
 		},
 	},
