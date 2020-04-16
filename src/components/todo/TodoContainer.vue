@@ -76,7 +76,7 @@
 							:id="id"
 							:title="todo.title"
 							:description="todo.description"
-							:date="todo.dueDate.seconds"
+							:date="fromUnixTime(todo.dueDate.seconds)"
 							@completeTodo="handleCompleteTodo"
 							@deleteTodoId="deleteTodo"
 							v-on:click.native="sendClickedTodoItem(id, todo)"
@@ -138,6 +138,7 @@ export default {
 				todo: todoData,
 			});
 		},
+		fromUnixTime,
 		deleteTodo: function(todo) {
 			this.todoToDelete = { id: todo.id, date: todo.date };
 			this.showDeleteModal = true;
