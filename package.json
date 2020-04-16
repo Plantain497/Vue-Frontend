@@ -32,6 +32,7 @@
 		"vue": "^2.6.11",
 		"vue-date-pick": "^1.2.1",
 		"vue-gapi": "^0.1.2",
+		"vue-native-notification": "^1.0.5",
 		"vue-router": "^3.1.5",
 		"vue-scrollto": "^2.17.1",
 		"vue2-timepicker": "^1.0.8",

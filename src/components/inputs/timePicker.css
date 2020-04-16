@@ -1,3 +1,5 @@
+/* purgecss start ignore */
+
 .vue__time-picker {
   display: inline-block;
   position: relative;
@@ -157,3 +159,5 @@
   cursor: default;
   font-size: .8em
 }
+
+/* purgecss end ignore */

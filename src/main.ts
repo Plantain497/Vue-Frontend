@@ -4,6 +4,7 @@ import './assets/tailwind.scss';
 import router from './router';
 import vco from 'v-click-outside';
 import VueGAPI from 'vue-gapi';
+import VueNativeNotification from 'vue-native-notification';
 import { firestorePlugin } from 'vuefire';
 
 const fb = require('./firebaseConfig.js');
@@ -14,6 +15,10 @@ Vue.use(firestorePlugin);
 Vue.use(VueScrollTo);
 
 Vue.use(vco);
+
+Vue.use(VueNativeNotification, {
+	requestOnNotify: true,
+});
 
 const apiConfig = {
 	apiKey: process.env.VUE_APP_APIKEY,
