@@ -69,17 +69,19 @@
 			>All Tasks</p>
 
 			<transition-group name="item-group" tag="div" mode="out-in">
-				<div v-for="(todo, id) in todoList" :key="id">
-					<todo-item
-						:key="id"
-						:id="id"
-						:title="todo.title"
-						:description="todo.description"
-						:date="None"
-						@completeTodo="handleCompleteTodo"
-						@deleteTodoId="deleteTodo"
-						v-on:click.native="sendClickedTodoItem(id, todo)"
-					></todo-item>
+				<div v-for="(todoObject, date) in todoList" :key="date">
+					<div v-for="(todo, id) in todoObject" :key="id">
+						<todo-item
+							:key="id"
+							:id="id"
+							:title="todo.title"
+							:description="todo.description"
+							:date="todo.dueDate.seconds"
+							@completeTodo="handleCompleteTodo"
+							@deleteTodoId="deleteTodo"
+							v-on:click.native="sendClickedTodoItem(id, todo)"
+						></todo-item>
+					</div>
 				</div>
 			</transition-group>
 		</div>
