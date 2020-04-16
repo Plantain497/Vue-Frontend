@@ -31,13 +31,6 @@
 							</p>
 						</div>
 						<div class="flex-shrink-0 mt-4 ml-4">
-							<!-- <span class="inline-flex rounded-md shadow-sm">
-								<button
-									type="button"
-									class="inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-white bg-red-500 border border-transparent rounded-md hover:bg-red-500 focus:outline-none focus:shadow-outline-red focus:border-red-600 active:bg-red-600 hover:bg-red-600"
-									@click="deleteTodo"
-								>Delete</button>
-							</span>-->
 							<span class="relative z-0 inline-flex shadow-sm">
 								<button
 									type="button"
