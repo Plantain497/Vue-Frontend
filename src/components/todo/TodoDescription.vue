@@ -26,9 +26,37 @@
 								v-model="titleText"
 								class="text-lg font-medium leading-6 text-gray-900"
 							/>
-							<p class="mt-1 text-sm leading-5 text-gray-500">
-								Due {{ formatDate(selectedTodo.dueDate) }}
+							<date-picker
+								id="todoDatePicker"
+								:popover="{ placement: 'bottom', visibility: 'click' }"
+								v-model="taskDate"
+								:input-props="{
+									readonly: true,
+								}"
+							>
+								<p class="mt-1 text-sm leading-5 text-gray-500">
+									Due {{ formatDate(selectedTodo.dueDate) }}
+								</p>
+							</date-picker>
+							<p
+								class="text-sm leading-5 text-gray-500"
+								v-if="showTimepicker === false"
+								@click="showTimepicker = true"
+							>
+								Finish by {{ taskTimeObject.hh }}:{{ taskTimeObject.mm }}
+								{{ taskTimeObject.A }}
 							</p>
+							<vue-timepicker
+								v-if="showTimepicker === true"
+								@close="showTimepicker = false"
+								id="todoTimePicker"
+								class="w-full"
+								format="hh:mm A"
+								:hide-disabled-minutes="true"
+								:hide-clear-button="true"
+								:auto-scroll="true"
+								v-model="taskTimeObject"
+							></vue-timepicker>
 						</div>
 						<div class="flex-shrink-0 mt-4 ml-4">
 							<span class="relative z-0 inline-flex shadow-sm">
@@ -68,9 +96,12 @@
 </template>
 <script>
 import { auth } from '@/firebaseConfig';
-import { format, fromUnixTime } from 'date-fns';
+import { format, fromUnixTime, set } from 'date-fns';
 import TodoDeleteModal from '@/components/todo/TodoDeleteModal';
 import TextEditable from '@/components/inputs/TextEditable';
+import DatePicker from 'v-calendar/lib/components/date-picker.umd';
+import VueTimepicker from 'vue2-timepicker';
+import '@/components/inputs/timePicker.css';
 import { updateTodo } from '@/api/todo';
 import store from '@/store';
 
@@ -79,28 +110,47 @@ export default {
 	components: {
 		TodoDeleteModal,
 		TextEditable,
+		DatePicker,
+		'vue-timepicker': VueTimepicker,
 	},
 	data: function() {
 		return {
 			showDeleteModal: false,
 			titleText: '',
 			descriptionText: '',
+			taskDate: new Date(),
+			taskTimeObject: {
+				hh: '09',
+				mm: '00',
+				A: 'AM',
+			},
+			showTimepicker: false,
 		};
 	},
 	methods: {
 		formatDate: function(dueDate) {
 			if (dueDate) {
-				return format(fromUnixTime(dueDate.seconds), 'PPPp');
+				return format(fromUnixTime(dueDate.seconds), 'PPP');
 			}
 			return '';
 		},
 		deleteTodo: function() {
 			this.showDeleteModal = true;
 		},
+		getDate: function(taskDate, taskTimeObject) {
+			const hourShift = taskTimeObject.A === 'AM' ? 0 : 12;
+			const newDate = set(taskDate, {
+				hours: parseInt(taskTimeObject.hh) + hourShift,
+				minutes: parseInt(taskTimeObject.mm),
+				seconds: 0,
+			});
+			return newDate;
+		},
 		updateTodo: function() {
 			updateTodo(auth.currentUser.uid, this.selectedTodo.id, {
 				title: this.titleText,
 				description: this.descriptionText,
+				dueDate: this.getDate(this.taskDate, this.taskTimeObject),
 				isCompleted: this.selectedTodo.isCompleted,
 			});
 		},
@@ -124,6 +174,21 @@ export default {
 
 				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
 				this.descriptionText = selectedTodo.description;
+
+				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+				// this.taskDate = fromUnixTime(selectedTodo.dueDate.seconds);
+				if (selectedTodo.dueDate) {
+					const taskTime = fromUnixTime(selectedTodo.dueDate.seconds);
+					// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+					this.taskDate = taskTime;
+
+					// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+					this.taskTimeObject = {
+						hh: format(taskTime, 'hh'),
+						mm: format(taskTime, 'm'),
+						A: format(taskTime, 'a'),
+					};
+				}
 				return selectedTodo;
 			},
 		},

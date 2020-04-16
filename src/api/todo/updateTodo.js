@@ -10,6 +10,7 @@ const updateTodo = function(uid, docId, newTodoData) {
 			title: newTodoData.title,
 			description: newTodoData.description,
 			isCompleted: newTodoData.isCompleted,
+			dueDate: newTodoData.dueDate,
 		});
 };
 
