@@ -15,14 +15,20 @@
 				class="h-64 transition-all transform rounded-lg shadow bg-gray-50"
 				:key="selectedTodo.id"
 			>
-				<div class="px-4 py-5 bg-white border-b border-gray-200 rounded-t-lg sm:px-6">
-					<div class="flex flex-wrap items-center justify-between -mt-4 -ml-4 sm:flex-no-wrap">
+				<div
+					class="px-4 py-5 bg-white border-b border-gray-200 rounded-t-lg sm:px-6"
+				>
+					<div
+						class="flex flex-wrap items-center justify-between -mt-4 -ml-4 sm:flex-no-wrap"
+					>
 						<div class="mt-4 ml-4">
-							<h3
-								contenteditable
+							<text-editable
+								v-model="titleText"
 								class="text-lg font-medium leading-6 text-gray-900"
-							>{{ selectedTodo.title }}</h3>
-							<p class="mt-1 text-sm leading-5 text-gray-500">Due {{ formatDate(selectedTodo.dueDate) }}</p>
+							/>
+							<p class="mt-1 text-sm leading-5 text-gray-500">
+								Due {{ formatDate(selectedTodo.dueDate) }}
+							</p>
 						</div>
 						<div class="flex-shrink-0 mt-4 ml-4">
 							<!-- <span class="inline-flex rounded-md shadow-sm">
@@ -36,19 +42,26 @@
 								<button
 									type="button"
 									class="relative inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-l-md hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-200 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700"
-								>Update</button>
+								>
+									Update
+								</button>
 								<button
 									type="button"
 									class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-red-500 border border-gray-300 rounded-r-md hover:bg-red-600 focus:z-10 focus:outline-none focus:border-red-200 focus:shadow-outline-red active:bg-red-700"
 									@click="deleteTodo"
-								>Delete</button>
+								>
+									Delete
+								</button>
 							</span>
 						</div>
 					</div>
 				</div>
-				<div
-					class="px-6 py-5 text-base font-normal leading-5 text-gray-900"
-				>{{ selectedTodo.description }}</div>
+				<div class="px-6 py-5">
+					<text-editable
+						v-model="descriptionText"
+						class="text-base font-normal leading-5 text-gray-900"
+					/>
+				</div>
 			</div>
 		</transition>
 
@@ -62,16 +75,19 @@
 <script>
 import { format, fromUnixTime } from 'date-fns';
 import TodoDeleteModal from '@/components/todo/TodoDeleteModal';
+import TextEditable from '@/components/inputs/TextEditable';
 import store from '@/store';
 
 export default {
 	name: 'TodoDescription',
 	components: {
 		TodoDeleteModal,
+		TextEditable,
 	},
 	data: function() {
 		return {
 			showDeleteModal: false,
+			titleText: '',
 		};
 	},
 	methods: {
@@ -95,8 +111,17 @@ export default {
 		},
 	},
 	computed: {
-		selectedTodo: function() {
-			return store.state.currentSelectedTodo;
+		selectedTodo: {
+			get: function() {
+				const selectedTodo = store.state.currentSelectedTodo;
+
+				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+				this.titleText = selectedTodo.title;
+
+				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+				this.descriptionText = selectedTodo.description;
+				return selectedTodo;
+			},
 		},
 	},
 };
