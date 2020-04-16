@@ -185,7 +185,7 @@ export default {
 					// eslint-disable-next-line vue/no-side-effects-in-computed-properties
 					this.taskTimeObject = {
 						hh: format(taskTime, 'hh'),
-						mm: format(taskTime, 'm'),
+						mm: format(taskTime, 'mm'),
 						A: format(taskTime, 'a'),
 					};
 				}
