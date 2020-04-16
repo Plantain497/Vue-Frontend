@@ -14,7 +14,7 @@
 			>
 				New Task
 			</h2>
-			<div class="flex sm:flex sm:items-start">
+			<div class="flex sm:flex sm:items-start" :key="modalCounter">
 				<div class="w-full mt-3 text-center sm:mt-0 sm:text-left">
 					<!-- Title form -->
 					<text-input
@@ -25,7 +25,6 @@
 						:error="taskTitleError"
 						v-click-outside="checkNotEmpty"
 						hint="Required"
-						:reset-content="resetFields"
 					/>
 
 					<!-- Due date selector -->
@@ -75,7 +74,6 @@
 						v-model="taskDescription"
 						placeholder="Enter a Task Description"
 						hint="Optional"
-						:reset-content="resetFields"
 					/>
 				</div>
 			</div>
@@ -120,7 +118,7 @@ export default {
 			},
 			taskComplete: false,
 			uid: '',
-			resetFields: false,
+			modalCounter: 0,
 		};
 	},
 	methods: {
@@ -128,6 +126,7 @@ export default {
 			this.taskTitleError = ValidateNotEmpty(this.taskTitle);
 		},
 		sendOpenStatus: function() {
+			this.modalCounter += 1;
 			this.$emit('changeAddModalOpenStatusEvent', false);
 		},
 		getDate: function(taskDate, taskTimeObject) {

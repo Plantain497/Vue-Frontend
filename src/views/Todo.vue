@@ -16,12 +16,21 @@
 				Add Task
 			</button>
 		</div>
-		<div class="flex justify-between w-full h-auto py-8" v-click-outside="resetCurrentTodo">
-			<todo-container :selected-view="selectedView" :show-empty="true"></todo-container>
+		<div
+			class="flex justify-between w-full h-auto py-8"
+			v-click-outside="resetCurrentTodo"
+		>
+			<todo-container
+				:selected-view="selectedView"
+				:show-empty="true"
+			></todo-container>
 
 			<todo-description class="flex-1 hidden ml-8 md:block"></todo-description>
 		</div>
-		<add-todo-modal v-on:changeAddModalOpenStatusEvent="changeAddModalStatus" :open="addModalOpen"></add-todo-modal>
+		<add-todo-modal
+			v-on:changeAddModalOpenStatusEvent="changeAddModalStatus"
+			:open="addModalOpen"
+		></add-todo-modal>
 	</div>
 </template>
 <script>
