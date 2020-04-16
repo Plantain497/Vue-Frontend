@@ -35,7 +35,7 @@
 								}"
 							>
 								<p class="mt-1 text-sm leading-5 text-gray-500">
-									Due {{ formatDate(selectedTodo.dueDate) }}
+									Due {{ formatDate(taskDate) }}
 								</p>
 							</date-picker>
 							<p
@@ -130,6 +130,12 @@ export default {
 	methods: {
 		formatDate: function(dueDate) {
 			if (dueDate) {
+				return format(dueDate, 'PPP');
+			}
+			return '';
+		},
+		formatDateFromUnix: function(dueDate) {
+			if (dueDate) {
 				return format(fromUnixTime(dueDate.seconds), 'PPP');
 			}
 			return '';
@@ -158,7 +164,7 @@ export default {
 			if (e.deleted) {
 				store.dispatch('deleteTodoFromStore', {
 					id: this.selectedTodo.id,
-					date: this.formatDate(this.selectedTodo.dueDate),
+					date: this.formatDateFromUnix(this.selectedTodo.dueDate),
 				});
 			}
 			this.showDeleteModal = false;
