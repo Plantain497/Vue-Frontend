@@ -41,6 +41,8 @@ import TodoDescription from '@/components/todo/TodoDescription';
 import Dropdown from '@/components/dropdowns/Dropdown';
 import TodoContainer from '@/components/todo/TodoContainer';
 import AddTodoModal from '@/components/todo/AddTodoModal';
+// added the TodoDescriptionModal import here but not sure how to incorporate
+// more than adding as a element in components below
 import TodoDescriptionModal from '@/components/todo/TodoDescriptionModal';
 import store from '@/store';
 
@@ -51,6 +53,7 @@ export default {
 		TodoContainer,
 		TodoDescription,
 		AddTodoModal,
+		// TodoDescriptionModal,
 	},
 	data: function() {
 		return {
