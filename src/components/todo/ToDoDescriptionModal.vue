@@ -104,8 +104,10 @@
 </template>
 <script>
 import { auth } from '@/firebaseConfig';
+import { set } from 'date-fns';
 import { format, fromUnixTime, set } from 'date-fns';
 import TodoDeleteModal from '@/components/todo/TodoDeleteModal';
+import { ValidateNotEmpty } from '../inputs/validation';
 import TextEditable from '@/components/inputs/TextEditable';
 import DatePicker from 'v-calendar/lib/components/date-picker.umd';
 import VueTimepicker from 'vue2-timepicker';

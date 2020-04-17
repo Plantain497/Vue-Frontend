@@ -86,11 +86,11 @@ import TextInput from '@/components/inputs/TextInput';
 import VueTimepicker from 'vue2-timepicker';
 import '@/components/inputs/timePicker.css';
 import { set } from 'date-fns';
-
 import { addTodo } from '@/api/todo';
 import { auth } from '@/firebaseConfig';
 import { ValidateNotEmpty } from '../inputs/validation';
 import Modal from '@/components/modal';
+
 export default {
 	name: 'AddTodoModal',
 	components: {
