@@ -25,12 +25,14 @@
 				:show-empty="true"
 			></todo-container>
 			<!-- This line is where I think responsive design takes care of / 
-				indicates whether Description modal or on the side shows up 
+				indicates whether Description is a modal or shows up on the side
 				(based on screen size)
 			--> <todo-description class="flex-1 hidden ml-8 md:block"> </todo-description>
-			<!-- My best guess at how to do this
+			<!-- My best guess at how to do this:
+				[But I am not sure if I am able to just create my own class which is why I left it commented]
+				
 			-> <todo-description-modal class="flex-1 hidden ml-8 md:block"></todo-description-modal>
-			--t>
+			--------------------------------------------------------------------------------------------->
 		</div>
 		<add-todo-modal
 			v-on:changeAddModalOpenStatusEvent="changeAddModalStatus"
