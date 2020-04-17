@@ -39,6 +39,7 @@ import TodoDescription from '@/components/todo/TodoDescription';
 import Dropdown from '@/components/dropdowns/Dropdown';
 import TodoContainer from '@/components/todo/TodoContainer';
 import AddTodoModal from '@/components/todo/AddTodoModal';
+import TodoDescriptionModal from '@/components/todo/TodoDescriptionModal';
 import store from '@/store';
 
 export default {
