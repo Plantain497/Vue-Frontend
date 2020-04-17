@@ -103,51 +103,110 @@
     </modal>
 </template>
 <script>
-import TextInput from '@/components/inputs/TextInput';
-import '@/components/inputs/timePicker.css';
-import { set } from 'date-fns';
-
-import { getAllTodos } from '@/api/todo';
 import { auth } from '@/firebaseConfig';
-import { ValidateNotEmpty } from '../inputs/validation';
-import Modal from '@/components/modal';
+import { format, fromUnixTime, set } from 'date-fns';
+import TodoDeleteModal from '@/components/todo/TodoDeleteModal';
+import TextEditable from '@/components/inputs/TextEditable';
+import DatePicker from 'v-calendar/lib/components/date-picker.umd';
+import VueTimepicker from 'vue2-timepicker';
+import '@/components/inputs/timePicker.css';
+import { updateTodo } from '@/api/todo';
+import store from '@/store';
+
 export default {
-	name: 'ToDoDescriptionModal',
+	name: 'TodoDescription',
 	components: {
-		TextInput,
-		Modal,
-	},
-	props: {
-		open: {
-			type: Boolean,
-			default: false,
-		},
+		TodoDeleteModal,
+		TextEditable,
+		DatePicker,
+		'vue-timepicker': VueTimepicker,
 	},
 	data: function() {
 		return {
-			taskTitle: '',
-			taskDescription: '',
-			taskTitleError: false,
+			showDeleteModal: false,
+			titleText: '',
+			descriptionText: '',
 			taskDate: new Date(),
 			taskTimeObject: {
 				hh: '09',
 				mm: '00',
 				A: 'AM',
 			},
-			taskComplete: false,
-			uid: '',
-			modalCounter: 0,
+			showTimepicker: false,
 		};
 	},
 	methods: {
-		checkNotEmpty: function() {
-			this.taskTitleError = ValidateNotEmpty(this.taskTitle);
+		formatDate: function(dueDate) {
+			if (dueDate) {
+				return format(dueDate, 'PPP');
+			}
+			return '';
 		},
-		sendOpenStatus: function() {
-			this.modalCounter += 1;
-			this.$emit('changeAddModalOpenStatusEvent', false);
+		formatDateFromUnix: function(dueDate) {
+			if (dueDate) {
+				return format(fromUnixTime(dueDate.seconds), 'PPP');
+			}
+			return '';
 		},
+		deleteTodo: function() {
+			this.showDeleteModal = true;
+		},
+		getDate: function(taskDate, taskTimeObject) {
+			const hourShift = taskTimeObject.A === 'AM' ? 0 : 12;
+			const newDate = set(taskDate, {
+				hours: parseInt(taskTimeObject.hh) + hourShift,
+				minutes: parseInt(taskTimeObject.mm),
+				seconds: 0,
+			});
+			return newDate;
+		},
+		updateTodo: function() {
+			updateTodo(auth.currentUser.uid, this.selectedTodo.id, {
+				title: this.titleText,
+				description: this.descriptionText,
+				dueDate: this.getDate(this.taskDate, this.taskTimeObject),
+				isCompleted: this.selectedTodo.isCompleted,
+			});
+		},
+		handleCloseModal: function(e) {
+			if (e.deleted) {
+				store.dispatch('deleteTodoFromStore', {
+					id: this.selectedTodo.id,
+					date: this.formatDateFromUnix(this.selectedTodo.dueDate),
+				});
+			}
+			store.dispatch('setCurrentSelectedTodo', {});
+			this.showDeleteModal = false;
+		},
+	},
+	computed: {
+		selectedTodo: {
+			get: function() {
+				const selectedTodo = store.state.currentSelectedTodo;
 
+				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+				this.titleText = selectedTodo.title;
+
+				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+				this.descriptionText = selectedTodo.description;
+
+				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+				// this.taskDate = fromUnixTime(selectedTodo.dueDate.seconds);
+				if (selectedTodo.dueDate) {
+					const taskTime = fromUnixTime(selectedTodo.dueDate.seconds);
+					// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+					this.taskDate = taskTime;
+
+					// eslint-disable-next-line vue/no-side-effects-in-computed-properties
+					this.taskTimeObject = {
+						hh: format(taskTime, 'hh'),
+						mm: format(taskTime, 'mm'),
+						A: format(taskTime, 'a'),
+					};
+				}
+				return selectedTodo;
+			},
+		},
 	},
 };
 </script>
