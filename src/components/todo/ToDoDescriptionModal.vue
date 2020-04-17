@@ -8,6 +8,7 @@
 		:disableConfirm="taskTitleError"
 		confirm-classes="text-white bg-indigo-600 hover:bg-indigo-500 focus:border-indigo-700 focus:shadow-outline-indigo sm:text-sm sm:leading-5"
 	>
+        <!-- Not sure if the transition is needed here in trying to make code similar to AddTodoModal
 		<transition
 			name="description-transition"
 			enter-class="translate-y-4 opacity-0"
@@ -18,6 +19,7 @@
 			leave-to-class="translate-y-4 opacity-0"
 			mode="out-in"
 		>
+        -->
 			<div
 				v-if="Object.keys(selectedTodo).length"
 				class="h-64 transition-all transform rounded-lg shadow bg-gray-50"
@@ -93,7 +95,7 @@
 					/>
 				</div>
 			</div>
-		</transition>
+		<!-- </transition> -->
 
 		<todo-delete-modal
 			:show-modal="showDeleteModal"
