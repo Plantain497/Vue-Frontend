@@ -103,9 +103,7 @@
     </modal>
 </template>
 <script>
-import DatePicker from 'v-calendar/lib/components/date-picker.umd';
 import TextInput from '@/components/inputs/TextInput';
-import VueTimepicker from 'vue2-timepicker';
 import '@/components/inputs/timePicker.css';
 import { set } from 'date-fns';
 
@@ -116,10 +114,8 @@ import Modal from '@/components/modal';
 export default {
 	name: 'ToDoDescriptionModal',
 	components: {
-		DatePicker,
 		TextInput,
 		Modal,
-		VueTimepicker,
 	},
 	props: {
 		open: {
@@ -151,24 +147,7 @@ export default {
 			this.modalCounter += 1;
 			this.$emit('changeAddModalOpenStatusEvent', false);
 		},
-		getDate: function(taskDate, taskTimeObject) {
-			const hourShift = taskTimeObject.A === 'AM' ? 0 : 12;
-			const newDate = set(taskDate, {
-				hours: parseInt(taskTimeObject.hh) + hourShift,
-				minutes: parseInt(taskTimeObject.mm),
-				seconds: 0,
-			});
-			return newDate;
-		},
-		addTaskAndClose: function() {
-			this.uid = auth.currentUser.uid;
 
-			if (this.taskTitleError === false) {
-				const date = this.getDate(this.taskDate, this.taskTimeObject);
-				addTodo(this.uid, this.taskTitle, this.taskDescription, date, false);
-				this.sendOpenStatus();
-			}
-		},
 	},
 };
 </script>
