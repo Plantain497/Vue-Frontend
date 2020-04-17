@@ -53,7 +53,7 @@ export default {
 		TodoContainer,
 		TodoDescription,
 		AddTodoModal,
-		// TodoDescriptionModal,
+		TodoDescriptionModal,
 	},
 	data: function() {
 		return {
