@@ -24,7 +24,7 @@
 				:selected-view="selectedView"
 				:show-empty="true"
 			></todo-container>
-
+			<!-- This line is where I think responsive design happens -->
 			<todo-description class="flex-1 hidden ml-8 md:block"></todo-description>
 		</div>
 		<add-todo-modal

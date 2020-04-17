@@ -26,7 +26,6 @@
 						v-click-outside="checkNotEmpty"
 						hint="Required"
 					/>
-
 					<!-- Due date selector -->
 					<div class="my-4">
 						<div class="flex justify-between pb-1">
@@ -46,7 +45,6 @@
 							}"
 						/>
 					</div>
-
 					<div class="w-full my-4">
 						<div class="flex justify-between pb-1">
 							<label
@@ -140,7 +138,6 @@ export default {
 		},
 		addTaskAndClose: function() {
 			this.uid = auth.currentUser.uid;
-
 			if (this.taskTitleError === false) {
 				const date = this.getDate(this.taskDate, this.taskTimeObject);
 				addTodo(this.uid, this.taskTitle, this.taskDescription, date, false);

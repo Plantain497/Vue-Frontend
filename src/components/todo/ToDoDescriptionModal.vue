@@ -106,8 +106,7 @@
 			@closeModal="handleCloseModal"
 			:id="selectedTodo.id"
 		/>
-        -->
-        
+        -->  
     </modal>
 </template>
 <script>
