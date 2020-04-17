@@ -24,8 +24,10 @@
 				:selected-view="selectedView"
 				:show-empty="true"
 			></todo-container>
-			<!-- This line is where I think responsive design happens -->
-			<todo-description class="flex-1 hidden ml-8 md:block"></todo-description>
+			<!-- This line is where I think responsive design takes care of / 
+				indicate whether Description modal or on the side shows up 
+				(based on screen size)
+			--> <todo-description class="flex-1 hidden ml-8 md:block"></todo-description>
 		</div>
 		<add-todo-modal
 			v-on:changeAddModalOpenStatusEvent="changeAddModalStatus"
