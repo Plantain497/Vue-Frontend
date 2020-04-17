@@ -4,81 +4,103 @@
 		@action="addTaskAndClose"
 		@cancel="sendOpenStatus"
 		cancel-text="Cancel"
-		confirm-text="Add Task"
+		confirm-text="To Do Description"
 		:disableConfirm="taskTitleError"
 		confirm-classes="text-white bg-indigo-600 hover:bg-indigo-500 focus:border-indigo-700 focus:shadow-outline-indigo sm:text-sm sm:leading-5"
 	>
-		<template v-slot:content>
-			<h2
-				class="pb-2 text-base font-bold leading-7 text-gray-900 sm:text-xl sm:leading-9 sm:truncate"
+		<transition
+			name="description-transition"
+			enter-class="translate-y-4 opacity-0"
+			enter-active-class="duration-200 ease-out"
+			enter-to-class="translate-y-0 opacity-100"
+			leave-class="translate-y-0 opacity-100"
+			leave-active-class="duration-100 ease-in"
+			leave-to-class="translate-y-4 opacity-0"
+			mode="out-in"
+		>
+			<div
+				v-if="Object.keys(selectedTodo).length"
+				class="h-64 transition-all transform rounded-lg shadow bg-gray-50"
+				:key="selectedTodo.id"
 			>
-				New Task
-			</h2>
-			<div class="flex sm:flex sm:items-start" :key="modalCounter">
-				<div class="w-full mt-3 text-center sm:mt-0 sm:text-left">
-					<!-- Title form -->
-					<text-input
-						input-id="title"
-						label="Title"
-						v-model="taskTitle"
-						placeholder="Enter a Task Title"
-						:error="taskTitleError"
-						v-click-outside="checkNotEmpty"
-						hint="Required"
-					/>
-
-					<!-- Due date selector -->
-					<div class="my-4">
-						<div class="flex justify-between pb-1">
-							<label
-								for="todoDatePicker"
-								class="block text-sm font-medium leading-5 text-gray-700"
+				<div
+					class="px-4 py-5 bg-white border-b border-gray-200 rounded-t-lg sm:px-6"
+				>
+					<div
+						class="flex flex-wrap items-center justify-between -mt-4 -ml-4 sm:flex-no-wrap"
+					>
+						<div class="mt-4 ml-4">
+							<text-editable
+								v-model="titleText"
+								class="text-lg font-medium leading-6 text-gray-900"
+							/>
+							<date-picker
+								id="todoDatePicker"
+								:popover="{ placement: 'bottom', visibility: 'click' }"
+								v-model="taskDate"
+								:input-props="{
+									readonly: true,
+								}"
 							>
-								Due Date
-							</label>
-							<span class="text-sm leading-5 text-gray-500">Optional</span>
-						</div>
-						<date-picker
-							id="todoDatePicker"
-							v-model="taskDate"
-							:input-props="{
-								readonly: true,
-							}"
-						/>
-					</div>
-
-					<div class="w-full my-4">
-						<div class="flex justify-between pb-1">
-							<label
-								for="todoTimePicker"
-								class="block text-sm font-medium leading-5 text-gray-700"
+								<p class="mt-1 text-sm leading-5 text-gray-500">
+									Due {{ formatDate(taskDate) }}
+								</p>
+							</date-picker>
+							<p
+								class="text-sm leading-5 text-gray-500"
+								v-if="showTimepicker === false"
+								@click="showTimepicker = true"
 							>
-								Task Deadline
-							</label>
-							<span class="text-sm leading-5 text-gray-500">Optional</span>
+								Finish by {{ taskTimeObject.hh }}:{{ taskTimeObject.mm }}
+								{{ taskTimeObject.A }}
+							</p>
+							<vue-timepicker
+								v-if="showTimepicker === true"
+								@close="showTimepicker = false"
+								id="todoTimePicker"
+								class="w-full"
+								format="hh:mm A"
+								:hide-disabled-minutes="true"
+								:hide-clear-button="true"
+								:auto-scroll="true"
+								v-model="taskTimeObject"
+							></vue-timepicker>
 						</div>
-						<vue-timepicker
-							id="todoTimePicker"
-							class="w-full"
-							format="hh:mm A"
-							:hide-disabled-minutes="true"
-							:hide-clear-button="true"
-							:auto-scroll="true"
-							v-model="taskTimeObject"
-						></vue-timepicker>
+						<div class="flex-shrink-0 mt-4 ml-4">
+							<span class="relative z-0 inline-flex shadow-sm">
+								<button
+									type="button"
+									class="relative inline-flex items-center px-4 py-2 text-sm font-medium leading-5 text-gray-700 transition duration-150 ease-in-out bg-white border border-gray-300 rounded-l-md hover:text-gray-500 focus:z-10 focus:outline-none focus:border-blue-200 focus:shadow-outline-blue active:bg-gray-100 active:text-gray-700"
+									@click="updateTodo"
+								>
+									Update
+								</button>
+								<button
+									type="button"
+									class="relative inline-flex items-center px-4 py-2 -ml-px text-sm font-medium leading-5 text-white transition duration-150 ease-in-out bg-red-500 border border-gray-300 rounded-r-md hover:bg-red-600 focus:z-10 focus:outline-none focus:border-red-200 focus:shadow-outline-red active:bg-red-700"
+									@click="deleteTodo"
+								>
+									Delete
+								</button>
+							</span>
+						</div>
 					</div>
-					<!-- Description form -->
-					<text-input
-						input-id="description"
-						label="Description"
-						v-model="taskDescription"
-						placeholder="Enter a Task Description"
-						hint="Optional"
+				</div>
+				<div class="px-6 py-5">
+					<text-editable
+						v-model="descriptionText"
+						class="text-base font-normal leading-5 text-gray-900"
 					/>
 				</div>
 			</div>
-		</template>
-	</modal>
+		</transition>
+
+		<todo-delete-modal
+			:show-modal="showDeleteModal"
+			@closeModal="handleCloseModal"
+			:id="selectedTodo.id"
+		/>
+    </modal>
 </template>
 <script>
 import DatePicker from 'v-calendar/lib/components/date-picker.umd';
