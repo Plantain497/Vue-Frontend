@@ -131,6 +131,7 @@ export default {
 	methods: {
 		handleCompleteTodo: function(todo) {
 			const { id, date, ...todoData } = todo;
+			todoData.dueDate = date;
 			updateTodo(auth.currentUser.uid, id, todoData);
 			store.dispatch('updateTodoInStore', {
 				id: id,

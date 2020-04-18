@@ -13,11 +13,11 @@
 				<div class="px-6 truncate">
 					<p
 						class="text-sm leading-5 truncate"
-						:class="{'task-complete': isCompleted, 'text-gray-900': !isCompleted}"
+						:class="{'task-complete line-through': isCompleted, 'text-gray-900': !isCompleted}"
 					>{{ title }}</p>
 					<p
 						class="text-sm leading-5 truncate"
-						:class="{'task-complete': isCompleted, 'text-gray-500': !isCompleted}"
+						:class="{'task-complete line-through': isCompleted, 'text-gray-500': !isCompleted}"
 					>{{ description }}</p>
 				</div>
 			</span>
