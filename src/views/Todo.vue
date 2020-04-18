@@ -24,15 +24,8 @@
 				:selected-view="selectedView"
 				:show-empty="true"
 			></todo-container>
-			<!-- This line is where I think responsive design takes care of / 
-				indicates whether Description is a modal or shows up on the side
-				(based on screen size)
-			--> <todo-description class="flex-1 hidden ml-8 md:block"> </todo-description>
-			<!-- My best guess at how to do this:
-				[But I am not sure if I am able to just create my own class which is why I left it commented]
-				
-			-> <todo-description-modal class="flex-1 hidden ml-8 md:block"></todo-description-modal>
-			--------------------------------------------------------------------------------------------->
+
+			<todo-description class="flex-1 hidden ml-8 md:block"></todo-description>
 		</div>
 		<add-todo-modal
 			v-on:changeAddModalOpenStatusEvent="changeAddModalStatus"
@@ -46,9 +39,6 @@ import TodoDescription from '@/components/todo/TodoDescription';
 import Dropdown from '@/components/dropdowns/Dropdown';
 import TodoContainer from '@/components/todo/TodoContainer';
 import AddTodoModal from '@/components/todo/AddTodoModal';
-// added the TodoDescriptionModal import here but not sure how to incorporate
-// more than adding as a element in components below
-import TodoDescriptionModal from '@/components/todo/TodoDescriptionModal';
 import store from '@/store';
 
 export default {
@@ -58,7 +48,6 @@ export default {
 		TodoContainer,
 		TodoDescription,
 		AddTodoModal,
-		TodoDescriptionModal,
 	},
 	data: function() {
 		return {

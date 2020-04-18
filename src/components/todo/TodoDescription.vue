@@ -175,16 +175,20 @@ export default {
 		selectedTodo: {
 			get: function() {
 				const selectedTodo = store.state.currentSelectedTodo;
+
 				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
 				this.titleText = selectedTodo.title;
+
 				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
 				this.descriptionText = selectedTodo.description;
+
 				// eslint-disable-next-line vue/no-side-effects-in-computed-properties
 				// this.taskDate = fromUnixTime(selectedTodo.dueDate.seconds);
 				if (selectedTodo.dueDate) {
 					const taskTime = fromUnixTime(selectedTodo.dueDate.seconds);
 					// eslint-disable-next-line vue/no-side-effects-in-computed-properties
 					this.taskDate = taskTime;
+
 					// eslint-disable-next-line vue/no-side-effects-in-computed-properties
 					this.taskTimeObject = {
 						hh: format(taskTime, 'hh'),

@@ -26,6 +26,7 @@
 						v-click-outside="checkNotEmpty"
 						hint="Required"
 					/>
+
 					<!-- Due date selector -->
 					<div class="my-4">
 						<div class="flex justify-between pb-1">
@@ -45,6 +46,7 @@
 							}"
 						/>
 					</div>
+
 					<div class="w-full my-4">
 						<div class="flex justify-between pb-1">
 							<label
@@ -84,11 +86,11 @@ import TextInput from '@/components/inputs/TextInput';
 import VueTimepicker from 'vue2-timepicker';
 import '@/components/inputs/timePicker.css';
 import { set } from 'date-fns';
+
 import { addTodo } from '@/api/todo';
 import { auth } from '@/firebaseConfig';
 import { ValidateNotEmpty } from '../inputs/validation';
 import Modal from '@/components/modal';
-
 export default {
 	name: 'AddTodoModal',
 	components: {
@@ -138,6 +140,7 @@ export default {
 		},
 		addTaskAndClose: function() {
 			this.uid = auth.currentUser.uid;
+
 			if (this.taskTitleError === false) {
 				const date = this.getDate(this.taskDate, this.taskTimeObject);
 				addTodo(this.uid, this.taskTitle, this.taskDescription, date, false);
