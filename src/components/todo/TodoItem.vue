@@ -65,7 +65,7 @@ export default {
 </script>
 <style scoped>
 .task-complete {
-	/* @apply line-through; */
+	@apply line-through;
 	@apply text-gray-400;
 	@apply transition;
 	@apply duration-150;
